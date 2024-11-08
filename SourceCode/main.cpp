@@ -19,7 +19,7 @@ int nextScene   = SCENE_TITLE;
 //--------------------------------------
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 {
-    GameLib::init(L"そうだ！転生しよう！", SCREEN_W, SCREEN_H);
+    GameLib::init(L"そうだ！転seiしよう！", SCREEN_W, SCREEN_H);
 
 
 
