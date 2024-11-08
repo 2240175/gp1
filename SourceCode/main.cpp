@@ -19,7 +19,7 @@ int nextScene   = SCENE_TITLE;
 //--------------------------------------
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 {
-    GameLib::init(L"ÇªÇ§ÇæÅIì]ê∂ÇµÇÊÇ§ÅI", SCREEN_W, SCREEN_H);
+    GameLib::init(L"ÇªÇ§ÇæÅIì]çZÇµÇÊÇ§ÅI", SCREEN_W, SCREEN_H);
 
 
 
