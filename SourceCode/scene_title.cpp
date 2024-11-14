@@ -8,7 +8,7 @@ Sprite* sprCar;
 
 //マウス処理（仮）
 void mousePressed() {
-    if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+    if (GetAsyncKeyState(VK_LBUTTON) & 0x8000&&title_timer>30) {
         nextScene++;
     }
 }
@@ -65,7 +65,7 @@ void title_update()
         {
             sound::play(XWB_SYSTEM, XWB_SYSTEM_START);
 
-            nextScene = SCENE_GAME;
+            nextScene = SCENE_HOME;
             break;
         }
         mousePressed();

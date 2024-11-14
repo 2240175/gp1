@@ -38,9 +38,9 @@
 #endif
 //TODO_01
 
-
-#include "scene_game.h"
 #include "scene_title.h"
+#include "scene_game.h"
+#include "scene_home.h"
 
 // namespace
 using namespace GameLib;
