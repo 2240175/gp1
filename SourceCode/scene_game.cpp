@@ -15,20 +15,67 @@
 
 
 //------< 構造体 >---------------------------------------------------------------
-
+Sprite* sprB;
+Sprite* sprSel[2];
+MouseManager mouseManager;
 
 //------< 変数 >----------------------------------------------------------------
 int game_state;
 int game_timer;
 
-Sprite* sprB;
-Sprite* sprSel[2];
-MouseManager mouseManager;
+int winner;
+int raund;
+int winraund;
+int lossraund;
+
+
+//カードデータ
+//プレイヤー用
+int numCard[5];
+//ディーラー用
+int npcCard[5];
+
+
+//現在のラウンド
+int nowraund;
+
+//ガジェット効果用
+int getnum;
+
+//星のかけら
+int StarPiece;
+int NPCPiece;
+
 //--------------------------------------
 //  ゲームの初期設定
 //--------------------------------------
 void game_init()
 {
+    winner = DRAW;
+    raund = 0;
+    winraund = 0;
+    lossraund = 0;
+
+    for (int i = 0; i < CARD_MAX; i++) {
+        //カードの初期化
+        numCard[i] = i+1;
+        npcCard[i] = i+1;
+    }
+
+    //現在のラウンド
+    //ここは必ず０にする
+    nowraund=0;
+
+    //ガジェット効果用
+    //初期化のためどのカードも持ってないようにするため０
+    getnum = 0;
+
+    //星のかけら（ガジェット動作確認のため今だけ１００）
+    //提出前に必ず０にする事
+    StarPiece = 100;
+    //相手用（ガジェット使用ディーラー追加する場合使う）
+    NPCPiece = 0;
+
     game_state      = 0;
     game_timer      = 0;
     player_init();
@@ -41,11 +88,10 @@ void game_deinit()
 {    //TODO_11
     player_deinit();
 
+    //画像
     safe_delete(sprB);
-
     safe_delete(sprSel[0]);
-    safe_delete(sprSel[1]);
-    
+    safe_delete(sprSel[1]);  
 }
 
 //--------------------------------------
