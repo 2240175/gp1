@@ -15,9 +15,13 @@
 
 
 //------< 構造体 >---------------------------------------------------------------
+
+//------< 画像読み込み用 >---------------------------------------------------------------
 Sprite* sprB;
 Sprite* sprSel[2];
 MouseManager mouseManager;
+
+Sprite* sprCard1;
 
 //------< 変数 >----------------------------------------------------------------
 int game_state;
@@ -91,7 +95,10 @@ void game_deinit()
     //画像
     safe_delete(sprB);
     safe_delete(sprSel[0]);
-    safe_delete(sprSel[1]);  
+    safe_delete(sprSel[1]);
+
+    //カード画像
+    safe_delete(sprCard1);
 }
 
 //--------------------------------------
@@ -107,6 +114,9 @@ void game_update()
         sprB = sprite_load(L"./Data/Images/m.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
+        
+        //カード画像読み込み
+        sprCard1 = sprite_load(L"./Data/Images/one.png");
 
         game_state++;
         /*fallthrough*/
@@ -166,5 +176,15 @@ void game_render()
     else {
         sprite_render(sprSel[1], 300, 100);
     }
+
+    //のちにカード専用の関数を作る
+    //そこにカードのアニメーションを入れる
+    //現在一時的に適当においてある
+    sprite_render(sprCard1, 200, 200);
+    sprite_render(sprCard1, 300, 200);
+    sprite_render(sprCard1, 400, 200);
+    sprite_render(sprCard1, 500, 200);
+    sprite_render(sprCard1, 600, 200);
+
     player_render();    
 }
