@@ -1,4 +1,5 @@
 #include "all.h"
+#include "obj2d.h"
 
 int     player_state;
 
@@ -110,7 +111,6 @@ void player_update()
 //******************************************************************************
 #endif
         //TODO_08
-
 
         ++player_state;
         /*fallthrough*/
