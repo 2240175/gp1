@@ -1,7 +1,12 @@
 #pragma once
+#ifndef SCENE_GAME_H
+#define SCENE_GAME_H
 
-// ŠÖ”‚Ìƒvƒƒgƒ^ƒCƒvéŒ¾
+
+// é–¢æ•°ã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 void home_init();
 void home_deinit();
 void home_update();
 void home_render();
+
+#endif
