@@ -17,9 +17,6 @@ int     Xpos;
 #endif
 //TODO_03
 
-//ƒNƒ‰ƒX
-OBJ2D player;
-
 Sprite* sprBox;
 Sprite* sprPlayer;
 
@@ -114,7 +111,6 @@ void player_update()
 //******************************************************************************
 #endif
         //TODO_08
-
 
         ++player_state;
         /*fallthrough*/
