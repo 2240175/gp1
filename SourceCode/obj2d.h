@@ -59,4 +59,17 @@ struct OBJ2D
 
 };
 
+class OBJ2D
+{
+public:
+    int timer;
+    //VECTOR2 pos;
+    //VECTOR2 scale;
+    //VECTOR2 texPos;
+    //VECTOR2 texSize;
+    //VECTOR2 pivot;
+    //VECTOR2 color;
+};
+
+
 #endif//OBJ2D_H
