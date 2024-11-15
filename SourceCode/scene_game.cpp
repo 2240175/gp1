@@ -27,7 +27,7 @@ Sprite* sprCard1;
 int game_state;
 int game_timer;
 
-//ものすごくどうでもいいもの
+//どうでもいいもの
 int checkmouse=0;
 bool onoff = false;
 
@@ -152,15 +152,11 @@ void game_update()
         //TODO_12
         debug::setString("MOUCE CHECK:%d",checkmouse);
 
-        if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-            if (onoff == false) {
-                checkmouse++;
-                onoff = true;
-            }
-        }
-        else if (!GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-            onoff = false;
-        }
+        //マウスクリックテスト（提出時は消す）
+        //ここから
+
+        
+        //ここまで
 
         break;
     }
