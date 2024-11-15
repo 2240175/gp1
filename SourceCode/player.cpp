@@ -1,4 +1,5 @@
 #include "all.h"
+#include "obj2d.h"
 
 int     player_state;
 
@@ -15,6 +16,9 @@ int     Xpos;
 //******************************************************************************
 #endif
 //TODO_03
+
+//ƒNƒ‰ƒX
+OBJ2D player;
 
 Sprite* sprBox;
 Sprite* sprPlayer;
