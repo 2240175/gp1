@@ -1,6 +1,8 @@
 #ifndef OBJ2D_H
 #define OBJ2D_H
 
+#include "../GameLib/vector.h"
+
 //******************************************************************************
 //
 //
@@ -63,12 +65,12 @@ class OBJ2D
 {
 public:
     int timer;
-    //VECTOR2 pos;
-    //VECTOR2 scale;
-    //VECTOR2 texPos;
-    //VECTOR2 texSize;
-    //VECTOR2 pivot;
-    //VECTOR2 color;
+    VECTOR2 pos;
+    VECTOR2 scale;
+    VECTOR2 texPos;
+    VECTOR2 texSize;
+    VECTOR2 pivot;
+    VECTOR2 color;
 };
 
 
