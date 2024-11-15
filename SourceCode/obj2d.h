@@ -65,12 +65,19 @@ class OBJ2D
 {
 public:
     int timer;
+    
+    //アニメ―ション、表示位置大きさ
+    //ご自由に
     VECTOR2 pos;
     VECTOR2 scale;
     VECTOR2 texPos;
     VECTOR2 texSize;
     VECTOR2 pivot;
-    VECTOR2 color;
+    VECTOR4 color;
+    VECTOR2 speed;
+    
+    //ここはあまり使わないでほしい
+    int num;
 };
 
 
