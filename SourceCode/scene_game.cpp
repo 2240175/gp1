@@ -184,6 +184,8 @@ void game_render()
 
     GameLib::clear(0.2f, 0.2f, 0.4f);
 
+    //これは画像の位置に合ったときに反応するようにしている
+    //ガジェットに置き換えて使える
     sprite_render(sprB, 0, 0);
     if (mousePos.x > 300 && mousePos.y > 100 && mousePos.x < 400 && mousePos.y < 127) {
         sprite_render(sprSel[0], 300, 100);
