@@ -64,6 +64,11 @@ struct OBJ2D
 class OBJ2D
 {
 public:
+
+    //これはあまり使わないでほしい
+    //カードの数字（あとなんかに使う）
+    int num;
+
     int timer;
     
     //アニメ―ション、表示位置大きさ
@@ -76,8 +81,9 @@ public:
     VECTOR4 color;
     VECTOR2 speed;
     
-    //ここはあまり使わないでほしい
-    int num;
+    //円の当たり判定
+    float   radius;
+    VECTOR2 offset;
 };
 
 
