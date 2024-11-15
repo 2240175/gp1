@@ -33,6 +33,7 @@ public:
     VECTOR2 speed;
     
     //‰~‚Ì“–‚½‚è”»’è
+    //ƒJ[ƒhŒÀ’è
     float   radius;
     VECTOR2 offset;
 };
