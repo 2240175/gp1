@@ -152,9 +152,12 @@ void game_update()
         //TODO_12
         debug::setString("MOUCE CHECK:%d",checkmouse);
 
+
+        debug::setString("MOUCE CHECK:%d",checkmouse);
+
         //マウスクリックテスト（提出時は消す）
         //ここから
-
+        
         
         //ここまで
 
