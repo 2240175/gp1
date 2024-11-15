@@ -10,6 +10,18 @@ using namespace GameLib;
 #define SCENE_HOME      (1)
 #define SCENE_GAME      (2)
 
+#define SELECT3X  (840)//‘I‘ğ‚P
+#define SELECT3Y  (153)
+
+#define SELECT4X  (875)//‘I‘ğ‚Q
+#define SELECT4Y  (258)
+
+#define SELECT5X  (911)//‘I‘ğ‚R
+#define SELECT5Y  (363)
+
+#define SELECT6X  (960)//‘I‘ğ‚S
+#define SELECT6Y  (464)
+
 //  ’è”
 extern const FLOAT PI;
 extern const LONG SCREEN_W;
