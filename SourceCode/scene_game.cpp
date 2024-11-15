@@ -26,11 +26,7 @@ MouseManager mouseManager;
 
 Sprite* sprCard1;
 Sprite* sprBack;
-Sprite* sprSelect[2];
-Sprite* sprSelect3;//‘I‘ð‚P
-Sprite* sprSelect4;//‘I‘ð‚Q
-Sprite* sprSelect5;//‘I‘ð‚R
-Sprite* sprSelect6;//‘I‘ð‚S
+
 
 //------< •Ï” >----------------------------------------------------------------
 int game_state;
