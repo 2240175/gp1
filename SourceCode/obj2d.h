@@ -86,5 +86,4 @@ public:
     VECTOR2 offset;
 };
 
-
 #endif//OBJ2D_H
