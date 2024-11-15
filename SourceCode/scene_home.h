@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SCENE_GAME_H
-#define SCENE_GAME_H
+#ifndef SCENE_HOME_H
+#define SCENE_HOME_H
 
 
 // 関数のプロトタイプ宣言

@@ -25,7 +25,7 @@ Sprite* sprSel[2];
 MouseManager mouseManager;
 
 Sprite* sprCard1;
-Sprite* sprBack;
+
 
 
 //------< •Ï” >----------------------------------------------------------------
