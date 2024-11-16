@@ -38,4 +38,6 @@ public:
     VECTOR2 offset;
 };
 
+OBJ2D* searchSet0(OBJ2D arr[], int dataNum, int moveAlg, VECTOR2 pos);
+
 #endif//OBJ2D_H
