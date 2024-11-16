@@ -7,6 +7,7 @@ OBJ2D	AnyCard[5];
 Card_INFO date;
 
 CardDate::CardDate()
+//�J�[�h�̏��
 {
 
 }
