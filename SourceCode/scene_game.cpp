@@ -120,7 +120,7 @@ void game_update()
     case 0:
         //////// 初期設定 ////////
 
-        sprB = sprite_load(L"./Data/Images/m.png");
+        sprB = sprite_load(L"./Data/Images/m.jpg");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
@@ -183,7 +183,7 @@ void game_render()
     debug::setString("X:%d", mousePos.x);
     debug::setString("Y:%d", mousePos.y);
 
-    GameLib::clear(0.2f, 0.2f, 0.4f);
+    GameLib::clear(0.0f, 0.0f, 0.0f);
 
     //これは画像の位置に合ったときに反応するようにしている
     //ガジェットに置き換えて使える
