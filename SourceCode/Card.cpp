@@ -1,6 +1,7 @@
 #include "Card.h"
 
-int card_timer;
+float card_timer;
+float card_time;
 int card_state;
 int card_num[5];
 
@@ -10,7 +11,7 @@ OBJ2D AnyCard[CARD_MAX];
 //カードの情報
 Card_INFO cardInfo[] = {
 	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//1のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//2のカード
+	{ NULL,L"./Data/Images/two.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//2のカード
 	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//3のカード
 	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//4のカード
 	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//5のカード
@@ -104,15 +105,55 @@ void Card_update()
 		//通常時
 		for (int i = 0; i < CARD_MAX; ++i) {
 			//カードの動き
-			if (cardInfo[i].moveAlg == moveCard1) {
-				//moveCard1(&cardInfo[i]);
+			if (AnyCard[i].moveAlg == moveCard1) {
+				moveCard1(&AnyCard[i]);
 			}
+			else if (AnyCard[i].moveAlg == moveCard2) {
+				moveCard2(&AnyCard[i]);
+			}
+			else if (AnyCard[i].moveAlg == moveCard3) {
+				moveCard3(&AnyCard[i]);
+			}
+			else if (AnyCard[i].moveAlg == moveCard4) {
+				moveCard4(&AnyCard[i]);
+			}
+			else if (AnyCard[i].moveAlg == moveCard5) {
+				moveCard5(&AnyCard[i]);
+			}
+			AnyCard[i].timer++;
 		}
+		debug::setString("Card_timer:%f", card_timer);
+		break;
 	}
+	card_timer++;
+	card_time++;
 }
 
 void Card_render()
 {
+	for (int i = 0; i < CARD_MAX; ++i) {
+		if (!AnyCard[i].moveAlg)		continue;
+
+		sprite_render(
+			AnyCard[i].spr,
+			AnyCard[i].pos.x, AnyCard[i].pos.y,
+			AnyCard[i].scale.x, AnyCard[i].scale.y,
+			AnyCard[i].texPos.x, AnyCard[i].texPos.y,
+			AnyCard[i].texSize.x, AnyCard[i].texSize.y,
+			AnyCard[i].pivot.x, AnyCard[i].pivot.y,
+			ToRadian(0),
+			AnyCard[i].color.x, AnyCard[i].color.y,
+			AnyCard[i].color.z, AnyCard[i].color.w
+		);
+
+
+		// カードのあたり領域の描画
+		primitive::circle(
+			AnyCard[i].pos + AnyCard[i].offset, AnyCard[i].radius,
+			{ 1, 1 }, ToRadian(0),
+			{ 0, 0,1, 0.0f }
+		);
+	}
 }
 
 void moveCard1(OBJ2D* obj) 
