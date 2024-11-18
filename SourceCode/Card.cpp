@@ -6,15 +6,15 @@ int card_state;
 int card_num[5];
 
 
-OBJ2D AnyCard[CARD_MAX] = {};
+OBJ2D AnyCard[CARD_MAX];
 
 //カードの情報
 Card_INFO cardInfo[] = {
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//1のカード
-	{ NULL,L"./Data/Images/two.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//2のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//3のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//4のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//5のカード
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard1},//1のカード
+	{ NULL,L"./Data/Images/two.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard2},//2のカード
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard3},//3のカード
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard4},//4のカード
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
 };
 
 //カードの配置
@@ -22,11 +22,11 @@ Card_INFO cardInfo[] = {
 //アニメーションするとき注意
 Card_SET	cardSet[]=
 {
-	{0,{200,300}},
-	{0,{400,100}},
-	{0,{600,500}},
-	{0,{800,100}},
-	{0,{1000,300}},
+	{0,{130,300}},
+	{1,{385,200}},
+	{2,{640,300}},
+	{3,{895,200}},
+	{4,{1150,300}},
 };
 
 CardDate::CardDate()
@@ -151,9 +151,9 @@ void Card_render()
 
 		// カードのあたり領域の描画
 		primitive::circle(
-			AnyCard[i].pos + AnyCard[i].offset, AnyCard[i].radius,
-			{ 1, 1 }, ToRadian(0),
-			{ 0, 0,1, 0.0f }
+			AnyCard[i].pos+AnyCard[i].offset, AnyCard[i].radius,
+			{ 1.0f, 1.0f }, ToRadian(0),
+			{ 1.0f, 0.0f, 0.5f, 0.5f }
 		);
 	}
 }
@@ -173,7 +173,9 @@ void moveCard1(OBJ2D* obj)
 		obj->texSize = cardInfo[0].texSize;
 		obj->pivot = cardInfo[0].pivot;
 
-		obj->offset = { 0,50 };
+		obj->offset = { 0,0 };
+		obj->radius = 127.5f;
+
 		++obj->state;
 		/*fallthrough*/
 	case 1:
@@ -196,12 +198,14 @@ void moveCard2(OBJ2D* obj)
 		obj->texSize = cardInfo[1].texSize;
 		obj->pivot = cardInfo[1].pivot;
 
-		obj->offset = { 0,50 };
+		obj->offset = { 0,0 };
 		++obj->state;
 		/*fallthrough*/
 	case 1:
 		//通常時
 		obj->pos.y += obj->speed.y;
+		obj->radius = 127.5f;
+
 		break;
 	}
 }
@@ -219,7 +223,9 @@ void moveCard3(OBJ2D* obj)
 		obj->texSize = cardInfo[2].texSize;
 		obj->pivot = cardInfo[2].pivot;
 
-		obj->offset = { 0,50 };
+		obj->offset = { 0,0 };
+		obj->radius = 127.5f;
+
 		++obj->state;
 		/*fallthrough*/
 	case 1:
@@ -242,7 +248,9 @@ void moveCard4(OBJ2D* obj)
 		obj->texSize = cardInfo[3].texSize;
 		obj->pivot = cardInfo[3].pivot;
 
-		obj->offset = { 0,50 };
+		obj->offset = { 0,0 };
+		obj->radius = 127.5f;
+
 		++obj->state;
 		/*fallthrough*/
 	case 1:
@@ -265,7 +273,8 @@ void moveCard5(OBJ2D* obj)
 		obj->texSize = cardInfo[4].texSize;
 		obj->pivot = cardInfo[4].pivot;
 
-		obj->offset = { 0,50 };
+		obj->offset = { 0,0 };
+		obj->radius = 127.5f;
 		++obj->state;
 		/*fallthrough*/
 	case 1:
