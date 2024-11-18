@@ -17,7 +17,7 @@ public:
     VECTOR2         texPos;
     VECTOR2         texSize;
     VECTOR2         pivot;
-    float         offset;
+    float           offset;
     float           radius;
     OBJ2D::FUNC_PTR moveAlg;
 };
