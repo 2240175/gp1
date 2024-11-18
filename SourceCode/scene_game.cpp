@@ -151,8 +151,6 @@ void game_update()
             break;
         }
 
-        Card_update();
-        player_update();
 
         //TODO_12
         debug::setString("MOUCE CHECK:%d",checkmouse);
@@ -165,6 +163,8 @@ void game_update()
         
         
         //‚±‚±‚Ü‚Å
+        Card_update();
+        player_update();
 
         break;
     }
@@ -207,6 +207,6 @@ void game_render()
     //sprite_render(sprCard1, 765, 250);
     //sprite_render(sprCard1, 1005, 350);
 
-    Card_render();
     player_render();    
+    Card_render();
 }
