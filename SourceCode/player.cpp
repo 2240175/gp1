@@ -72,7 +72,7 @@ void player_update()
         player.pivot = { 25,25 };
         player.color = { 1,1,1,1 };
 
-        player.radius = 25;
+        player.radius = 10;
         player.offset = { 0,0 };
 
         ++player_state;
@@ -106,10 +106,10 @@ void player_render()
 
     // プレイヤーのあたり領域の表示
     primitive::circle(
-        player.pos + player.offset,
+        player.pos,
         player.radius,
         { 1, 1 },
         ToRadian(0),
-        { 1, 0, 1.0f, 1.0f }
+        { 0.5f, 0.0f, 1.0f, 0.5f }
     );
 }
