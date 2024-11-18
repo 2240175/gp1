@@ -166,6 +166,7 @@ void moveCard1(OBJ2D* obj)
 	{
 	case 0:
 		//‰Šúİ’è
+		obj->num = 1;
 		obj->scale = { 1.0f,1.0f };
 		obj->color = { 1,1,1,1 };
 		obj->spr = cardInfo[0].spr;
@@ -174,13 +175,12 @@ void moveCard1(OBJ2D* obj)
 		obj->pivot = cardInfo[0].pivot;
 
 		obj->offset = { 0,0 };
-		obj->radius = 127.5f;
-
 		++obj->state;
 		/*fallthrough*/
 	case 1:
 		//’Êí
 		obj->pos.y += obj->speed.y;
+		obj->radius = 127.5f;
 		break;
 	}
 }
@@ -191,6 +191,7 @@ void moveCard2(OBJ2D* obj)
 	{
 	case 0:
 		//‰Šúİ’è
+		obj->num = 2;
 		obj->scale = { 1.0f,1.0f };
 		obj->color = { 1,1,1,1 };
 		obj->spr = cardInfo[1].spr;
@@ -216,6 +217,7 @@ void moveCard3(OBJ2D* obj)
 	{
 	case 0:
 		//‰Šúİ’è
+		obj->num = 3;
 		obj->scale = { 1.0f,1.0f };
 		obj->color = { 1,1,1,1 };
 		obj->spr = cardInfo[2].spr;
@@ -224,13 +226,13 @@ void moveCard3(OBJ2D* obj)
 		obj->pivot = cardInfo[2].pivot;
 
 		obj->offset = { 0,0 };
-		obj->radius = 127.5f;
 
 		++obj->state;
 		/*fallthrough*/
 	case 1:
 		//’Êí
 		obj->pos.y += obj->speed.y;
+		obj->radius = 127.5f;
 		break;
 	}
 }
@@ -241,6 +243,7 @@ void moveCard4(OBJ2D* obj)
 	{
 	case 0:
 		//‰Šúİ’è
+		obj->num = 4;
 		obj->scale = { 1.0f,1.0f };
 		obj->color = { 1,1,1,1 };
 		obj->spr = cardInfo[3].spr;
@@ -249,13 +252,13 @@ void moveCard4(OBJ2D* obj)
 		obj->pivot = cardInfo[3].pivot;
 
 		obj->offset = { 0,0 };
-		obj->radius = 127.5f;
 
 		++obj->state;
 		/*fallthrough*/
 	case 1:
 		//’Êí
 		obj->pos.y += obj->speed.y;
+		obj->radius = 127.5f;
 		break;
 	}
 }
@@ -266,6 +269,7 @@ void moveCard5(OBJ2D* obj)
 	{
 	case 0:
 		//‰Šúİ’è
+		obj->num = 5;
 		obj->scale = { 1.0f,1.0f };
 		obj->color = { 1,1,1,1 };
 		obj->spr = cardInfo[4].spr;
@@ -274,12 +278,16 @@ void moveCard5(OBJ2D* obj)
 		obj->pivot = cardInfo[4].pivot;
 
 		obj->offset = { 0,0 };
-		obj->radius = 127.5f;
 		++obj->state;
 		/*fallthrough*/
 	case 1:
 		//’Êí
 		obj->pos.y += obj->speed.y;
+		obj->radius = 127.5f;
+
+		if (obj->num != 5) {
+			obj->num = 5;
+		}
 		break;
 	}
 }
