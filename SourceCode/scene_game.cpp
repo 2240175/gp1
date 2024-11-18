@@ -9,6 +9,7 @@
 //----< インクルード >-----------------------------------------------------------
 #include "all.h"
 #include "player.h"
+#include "Card.h"
 #include "Mausu.h"
 //------< 定数 >----------------------------------------------------------------
 
@@ -87,6 +88,7 @@ void game_init()
 
     game_state      = 0;
     game_timer      = 0;
+    Card_init();
     player_init();
 }
 
@@ -104,6 +106,8 @@ void game_deinit()
 
     //カード画像
     safe_delete(sprCard1);
+    //カードいろいろ
+    Card_deinit();
 }
 
 //--------------------------------------
@@ -147,6 +151,7 @@ void game_update()
             break;
         }
 
+        Card_update();
         player_update();
 
         //TODO_12
@@ -202,5 +207,6 @@ void game_render()
     sprite_render(sprCard1, 765, 250);
     sprite_render(sprCard1, 1005, 350);
 
+    Card_render();
     player_render();    
 }
