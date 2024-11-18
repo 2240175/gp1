@@ -6,7 +6,7 @@ int card_state;
 int card_num[5];
 
 
-OBJ2D AnyCard[CARD_MAX];
+OBJ2D AnyCard[CARD_MAX] = {};
 
 //カードの情報
 Card_INFO cardInfo[] = {
@@ -90,12 +90,14 @@ void Card_update()
 		}
 
 		//カードの出現
-		for (int i = 0; cardSet[i].cardType >= 0; ++i) {
-			OBJ2D* p = searchSet0(
-				AnyCard, CARD_MAX,
-				cardInfo[cardSet[i].cardType].moveAlg,
-				cardSet[i].pos
-			);
+		for (int i = 0; i < CARD_MAX; ++i) {
+			if (cardSet[i].cardType >= 0) {
+				OBJ2D* p = searchSet0(
+					AnyCard, CARD_MAX,
+					cardInfo[cardSet[i].cardType].moveAlg,
+					cardSet[i].pos
+				);
+			}
 		}
 		card_timer++;
 		++card_state;
@@ -156,6 +158,8 @@ void Card_render()
 	}
 }
 
+
+//カードの動き（アニメーション）
 void moveCard1(OBJ2D* obj) 
 {
 	switch (obj->state)
