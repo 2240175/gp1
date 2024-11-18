@@ -1,15 +1,35 @@
 #include "Card.h"
 
-#define CARD_MAX (5)
+int card_timer;
+int card_state;
+int card_num[5];
 
-OBJ2D	AnyCard[5];
 
-Card_INFO date;
+OBJ2D AnyCard[CARD_MAX];
+
+//ƒJ[ƒh‚Ìî•ñ
+Card_INFO cardInfo[] = {
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//1‚ÌƒJ[ƒh
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//2‚ÌƒJ[ƒh
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//3‚ÌƒJ[ƒh
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//4‚ÌƒJ[ƒh
+	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 127, 127 }, { 255,  255 }, 10, 20},//5‚ÌƒJ[ƒh
+};
+
+//ƒJ[ƒh‚Ì”z’u
+//¡‚ÍG‚É”z’u
+//ƒAƒjƒ[ƒVƒ‡ƒ“‚·‚é‚Æ‚«’ˆÓ
+Card_SET	cardSet[]=
+{
+	{0,{200,300}},
+	{0,{400,100}},
+	{0,{600,500}},
+	{0,{800,100}},
+	{0,{1000,300}},
+};
 
 CardDate::CardDate()
-//ï¿½Jï¿½[ï¿½hï¿½Ìï¿½ï¿½
 {
-
 }
 
 CardDate::~CardDate()
@@ -25,19 +45,187 @@ void CardDate::CardShuffle()
 	random_shuffle(begin(SterCard), end(SterCard));
 }
 
+
 //‚¢‚Â‚à‚Ì‰Šú‰»XV‚Ì‚â‚Â
 void Card_init()
 {
+	card_state = 0;
+	card_timer = 0;
 }
 
+
+//ƒJ[ƒh‚ÌI—¹ˆ—
 void Card_deinit()
 {
+	int dateNum = ARRAYSIZE(cardInfo);
+	for (int i = 0; i < dateNum; ++i) {
+		safe_delete(cardInfo[i].spr);
+	}
 }
 
+//ƒJ[ƒh‚ÌXV
 void Card_update()
 {
+	switch (card_state) {
+	case 0:
+	{
+		//‰Šúİ’è
+		//ƒJ[ƒh–‡”‚ÌŒvZ
+		int dataNum = sizeof(cardInfo) / sizeof(Card_INFO);
+		//‰æ‘œ“Ç‚İ‚İ
+		for (int i = 0; i < dataNum; ++i) {
+			cardInfo[i].spr = sprite_load(cardInfo[i].filePath);
+		}
+
+		++card_state;
+		/*fallthrough*/
+	}
+
+	case 1:
+		//ƒpƒ‰ƒ[ƒ^[‚Ìİ’è
+		//ƒJ[ƒhƒf[ƒ^‚ÌƒNƒŠƒA
+		for (int i = 0; i < CARD_MAX; ++i) {
+			AnyCard[i] = {};
+		}
+
+		//ƒJ[ƒh‚ÌoŒ»
+		for (int i = 0; cardSet[i].cardType >= 0; ++i) {
+			OBJ2D* p = searchSet0(
+				AnyCard, CARD_MAX,
+				cardInfo[cardSet[i].cardType].moveAlg,
+				cardSet[i].pos
+			);
+		}
+		card_timer++;
+		++card_state;
+		/*fallthrough*/
+
+	case 2:
+		//’Êí
+		for (int i = 0; i < CARD_MAX; ++i) {
+			//ƒJ[ƒh‚Ì“®‚«
+			if (cardInfo[i].moveAlg == moveCard1) {
+				//moveCard1(&cardInfo[i]);
+			}
+		}
+	}
 }
 
 void Card_render()
 {
+}
+
+void moveCard1(OBJ2D* obj) 
+{
+	switch (obj->state)
+	{
+	case 0:
+		//‰Šúİ’è
+		obj->scale = { 1.0f,1.0f };
+		obj->color = { 1,1,1,1 };
+		obj->spr = cardInfo[0].spr;
+		obj->texPos = cardInfo[0].texPos;
+		obj->texSize = cardInfo[0].texSize;
+		obj->pivot = cardInfo[0].pivot;
+
+		obj->offset = { 0,50 };
+		++obj->state;
+		/*fallthrough*/
+	case 1:
+		//’Êí
+		obj->pos.y += obj->speed.y;
+		break;
+	}
+}
+
+void moveCard2(OBJ2D* obj)
+{
+	switch (obj->state)
+	{
+	case 0:
+		//‰Šúİ’è
+		obj->scale = { 1.0f,1.0f };
+		obj->color = { 1,1,1,1 };
+		obj->spr = cardInfo[1].spr;
+		obj->texPos = cardInfo[1].texPos;
+		obj->texSize = cardInfo[1].texSize;
+		obj->pivot = cardInfo[1].pivot;
+
+		obj->offset = { 0,50 };
+		++obj->state;
+		/*fallthrough*/
+	case 1:
+		//’Êí
+		obj->pos.y += obj->speed.y;
+		break;
+	}
+}
+
+void moveCard3(OBJ2D* obj)
+{
+	switch (obj->state)
+	{
+	case 0:
+		//‰Šúİ’è
+		obj->scale = { 1.0f,1.0f };
+		obj->color = { 1,1,1,1 };
+		obj->spr = cardInfo[2].spr;
+		obj->texPos = cardInfo[2].texPos;
+		obj->texSize = cardInfo[2].texSize;
+		obj->pivot = cardInfo[2].pivot;
+
+		obj->offset = { 0,50 };
+		++obj->state;
+		/*fallthrough*/
+	case 1:
+		//’Êí
+		obj->pos.y += obj->speed.y;
+		break;
+	}
+}
+
+void moveCard4(OBJ2D* obj)
+{
+	switch (obj->state)
+	{
+	case 0:
+		//‰Šúİ’è
+		obj->scale = { 1.0f,1.0f };
+		obj->color = { 1,1,1,1 };
+		obj->spr = cardInfo[3].spr;
+		obj->texPos = cardInfo[3].texPos;
+		obj->texSize = cardInfo[3].texSize;
+		obj->pivot = cardInfo[3].pivot;
+
+		obj->offset = { 0,50 };
+		++obj->state;
+		/*fallthrough*/
+	case 1:
+		//’Êí
+		obj->pos.y += obj->speed.y;
+		break;
+	}
+}
+
+void moveCard5(OBJ2D* obj)
+{
+	switch (obj->state)
+	{
+	case 0:
+		//‰Šúİ’è
+		obj->scale = { 1.0f,1.0f };
+		obj->color = { 1,1,1,1 };
+		obj->spr = cardInfo[4].spr;
+		obj->texPos = cardInfo[4].texPos;
+		obj->texSize = cardInfo[4].texSize;
+		obj->pivot = cardInfo[4].pivot;
+
+		obj->offset = { 0,50 };
+		++obj->state;
+		/*fallthrough*/
+	case 1:
+		//’Êí
+		obj->pos.y += obj->speed.y;
+		break;
+	}
 }
