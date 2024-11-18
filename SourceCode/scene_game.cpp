@@ -91,6 +91,9 @@ void game_init()
     game_timer      = 0;
     Card_init();
     player_init();
+
+    //マウスカーソル非表示
+    ShowCursor(false);
 }
 
 //--------------------------------------
@@ -109,6 +112,9 @@ void game_deinit()
     safe_delete(sprCard1);
     //カードいろいろ
     Card_deinit();
+
+    //マウスカーソル表示
+    ShowCursor(true);
 }
 
 //--------------------------------------
@@ -164,8 +170,14 @@ void game_update()
         
         
         //ここまで
+
+
         Card_update();
+
         player_update();
+
+        //あたり判定
+        judge();
 
         break;
     }
@@ -208,6 +220,6 @@ void game_render()
     //sprite_render(sprCard1, 765, 250);
     //sprite_render(sprCard1, 1005, 350);
 
-    player_render();    
     Card_render();
+    player_render();    
 }
