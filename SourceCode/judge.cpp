@@ -55,7 +55,6 @@ void judge()
 	for (int i = 0; i < CARD_MAX; ++i)
 	{
 		if (!AnyCard[i].moveAlg)              continue;
-
 		if (hitCheck(&player, &AnyCard[i]))
 		{
 			AnyCard[i].pos = { 100,300 };
