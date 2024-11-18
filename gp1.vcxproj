@@ -210,6 +210,7 @@ attrib +h SourceCode\gp1.log</Command>
     <ClCompile Include="SourceCode\Card.cpp" />
     <ClCompile Include="SourceCode\common.cpp" />
     <ClCompile Include="SourceCode\main.cpp" />
+    <ClCompile Include="SourceCode\obj2d.cpp" />
     <ClCompile Include="SourceCode\player.cpp" />
     <ClCompile Include="SourceCode\scene_game.cpp" />
     <ClCompile Include="SourceCode\scene_home.cpp" />
