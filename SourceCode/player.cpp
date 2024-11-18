@@ -34,7 +34,7 @@ void player_update()
     {
     case 0:
         //////// 初期設定 ////////
-        sprPlayer = sprite_load(L"./Data/Images/R.jpg");
+        sprPlayer = sprite_load(L"./Data/Images/R.png");
 
         ++player_state;
         /*fallthrough*/
@@ -65,29 +65,20 @@ void player_update()
         //TODO_08
         player = {};
         player.timer = 0;
-        player.pos = { SCREEN_W * 0.5f,SCREEN_H * 0.5f };
+        player.pos = { 0,0 };
         player.scale = { 1.0f,1.0f };
-        player.texPos = { 800,800 };
-        player.pivot = {400,400};
+        player.texPos = { 0,0 };
+        player.texSize = { 50, 50 };
+        player.pivot = { 25,25 };
         player.color = { 1,1,1,1 };
 
-        player.radius = 200;
+        player.radius = 25;
         player.offset = { 0,0 };
 
         ++player_state;
         /*fallthrough*/
 
     case 2:
-        //////// 通常時 ////////
-        POINT cursorPos;
-        GetCursorPos(&cursorPos);  // マウスカーソルの位置を取得
-
-        player.pos.x = cursorPos.x;
-        player.pos.y = cursorPos.y;
-
-
-
-#
 
         break;
     }
@@ -95,15 +86,30 @@ void player_update()
 
 void player_render()
 {
-    sprite_render(sprPlayer, (float)Xpos, 400);
-}
+    POINT cursorPos;
+    GetCursorPos(&cursorPos);  // マウスカーソルの位置を取得
 
-void player_moveY()
-{
+    player.pos.x = cursorPos.x;
+    player.pos.y = cursorPos.y;
 
-}
+    sprite_render(
+        sprPlayer,
+        player.pos.x,player.pos.y,
+        player.scale.x,player.scale.y,
+        player.texPos.x,player.texPos.y,
+        player.texSize.x,player.texSize.y,
+        player.pivot.x,player.pivot.y,
+        ToRadian(0),
+        player.color.x,player.color.y,
+        player.color.z,player.color.w
+        );
 
-void player_moveX()
-{
-
+    // プレイヤーのあたり領域の表示
+    primitive::circle(
+        player.pos + player.offset,
+        player.radius,
+        { 1, 1 },
+        ToRadian(0),
+        { 1, 0, 1.0f, 1.0f }
+    );
 }
