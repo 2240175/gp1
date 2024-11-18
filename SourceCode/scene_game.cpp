@@ -201,11 +201,11 @@ void game_render()
     //のちにカード専用の関数を作る
     //そこにカードのアニメーションを入れる
     //現在一時的に適当においてある
-    sprite_render(sprCard1, 0, 350);
-    sprite_render(sprCard1, 250, 250);
-    sprite_render(sprCard1, 510, 200);
-    sprite_render(sprCard1, 765, 250);
-    sprite_render(sprCard1, 1005, 350);
+    //sprite_render(sprCard1, 0, 350);
+    //sprite_render(sprCard1, 250, 250);
+    //sprite_render(sprCard1, 510, 200);
+    //sprite_render(sprCard1, 765, 250);
+    //sprite_render(sprCard1, 1005, 350);
 
     Card_render();
     player_render();    
