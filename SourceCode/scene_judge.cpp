@@ -1,6 +1,14 @@
 #include "Card.h"
 #include "scene_judge.h"
 
+//•Êƒtƒ@ƒCƒ‹‚Ì•Ï”‚È‚Ç
+extern OBJ2D AnyCard[CARD_MAX];
+extern bool UseCard[10];
+
+extern int winner;
+extern int winraund;
+extern int lossraund;
+extern int raund;
 
 Sprite* sprck;
 
@@ -8,8 +16,6 @@ int judge_timer;
 int judge_state;
 int judge_time;
 
-extern OBJ2D AnyCard[CARD_MAX];
-extern bool UseCard[10];
 
 int NPCNUM;
 int PLAYERNUM;
@@ -70,12 +76,27 @@ void judge_update()
 
 		if (PLAYERNUM < NPCNUM) {
 			debug::setString("NPC WIN");
+			winner = DRAW;
 		}
 		else if (PLAYERNUM > NPCNUM) {
 			debug::setString("PLAYER WIN");
+			winner = WIN;
 		}
 		else {
 			debug::setString("!!!!!DRAW!!!!!");
+			winner = LOSS;
+		}
+
+		if (winner == LOSS) {
+			lossraund++;
+			raund++;
+		}
+		else if (winner == WIN) {
+			winraund++;
+			raund++;
+		}
+		else if (winner == DRAW) {
+			raund++;
 		}
 
 		if (TRG(0) & PAD_TRG1) {
@@ -84,6 +105,8 @@ void judge_update()
 
 		break;
 	}
+
+
 
 	judge_timer++;
 }
