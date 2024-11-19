@@ -23,8 +23,7 @@
 #define CARD_MAX	(5)
 #define CARD_MIN	(1)
 
-//使用禁止(選択完了)
-bool Select;
+
 
 // 関数のプロトタイプ宣言
 void game_init();
