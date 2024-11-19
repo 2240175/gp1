@@ -20,6 +20,7 @@
 //------< ‰æ‘œ“Ç‚İ‚İ—p >---------------------------------------------------------------
 Sprite* sprB;
 Sprite* sprA;
+Sprite* sprC;
 Sprite* sprSel[2];
 MouseManager mouseManager;
 
@@ -44,6 +45,8 @@ int winner;
 int raund;
 int winraund;
 int lossraund;
+
+int timer;
 
 extern int PLAYERNUM;
 extern int NPCNUM;
@@ -71,9 +74,7 @@ int NPCPiece;
 void game_init()
 {
     winner = DRAW;
-    raund = 0;
-    winraund = 0;
-    lossraund = 0;
+
     Select = false;
     stop = false;
 
@@ -83,10 +84,20 @@ void game_init()
         npcCard[i] = i+1;
     }
 
-    StarPiece = 100;
-    NPCPiece = 0;
-    restart = true;
-    
+    if (restart == false) {
+        StarPiece=100;
+        NPCPiece=0;
+        //2‰ñ–Ú‚Ì¯‚Ì‚©‚¯‚çŒp‘±–h~
+        PLAYERNUM = 0;
+        NPCNUM = 0;
+        //ƒ‰ƒEƒ“ƒh‚Ì‰Šú‰»–h~
+        raund = 1;
+        winraund = 0;
+        lossraund = 0;
+
+        //ƒ^ƒCƒgƒ‹‚É–ß‚é‚ÆƒŠƒZƒbƒg
+        restart = true;
+    }
 
     //Œ»İ‚Ìƒ‰ƒEƒ“ƒh
     //‚±‚±‚Í•K‚¸‚O‚É‚·‚é
@@ -116,6 +127,8 @@ void game_deinit()
 
     //‰æ‘œ
     safe_delete(sprB);
+    safe_delete(sprA);
+    safe_delete(sprC);
     safe_delete(sprSel[0]);
     safe_delete(sprSel[1]);
 
@@ -142,6 +155,7 @@ void game_update()
 
         sprB = sprite_load(L"./Data/Images/maingame.png");
         sprA = sprite_load(L"./Data/Images/maingame2.png");
+        sprC = sprite_load(L"./Data/Images/one.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
@@ -169,9 +183,18 @@ void game_update()
         debug::setString("NPC:%d", NPCPiece);
         debug::setString("PLAYER:%d", StarPiece);
 
+
+        debug::setString("RAUND:%d", raund);
+        debug::setString("WIN:%d", winraund);
+        debug::setString("LOSS:%d", lossraund);
+
+
+
         if (TRG(0) & PAD_SELECT)
         {
             nextScene = SCENE_TITLE;
+            StarPiece=100;
+            NPCPiece=0;
             break;
         }
 
@@ -199,6 +222,10 @@ void game_update()
         break;
     }
     game_timer++;
+    timer++;
+    if (timer > 10) {
+        timer = 0;
+    }
 }
 
 //--------------------------------------
@@ -237,9 +264,6 @@ void game_render()
     //sprite_render(sprCard1, 510, 200);
     //sprite_render(sprCard1, 765, 250);
     //sprite_render(sprCard1, 1005, 350);
-
-
-    sprite_render(sprA, 0, 0);
 
     Card_render();
     player_render();    
