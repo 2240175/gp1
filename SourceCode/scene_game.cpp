@@ -67,6 +67,7 @@ void game_init()
     raund = 0;
     winraund = 0;
     lossraund = 0;
+    Select = false;
 
     for (int i = 0; i < CARD_MAX; i++) {
         //カードの初期化
@@ -165,13 +166,6 @@ void game_update()
 
 
         debug::setString("MOUCE CHECK:%d",checkmouse);
-
-        //マウスクリックテスト（提出時は消す）
-        //ここから
-        
-        
-        //ここまで
-
 
         Card_update();
 
