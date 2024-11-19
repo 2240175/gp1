@@ -72,7 +72,7 @@ void player_update()
         player.pivot = { 25,25 };
         player.color = { 1,1,1,1 };
 
-        player.radius = 10;
+        player.radius = 12;
         player.offset = { 0,0 };
 
         ++player_state;
