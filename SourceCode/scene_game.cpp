@@ -174,6 +174,12 @@ void game_update()
         //‚ ‚½‚è”»’è
         judge();
 
+        if (Select == false) { break; }
+        else if (Select == true)
+        {
+
+        }
+
         break;
     }
     game_timer++;
