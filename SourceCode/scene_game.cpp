@@ -25,7 +25,8 @@ MouseManager mouseManager;
 Sprite* sprCard1;
 
 
-
+//Žg—p‹ÖŽ~(‘I‘ðŠ®—¹)
+bool Select;
 //------< •Ï” >----------------------------------------------------------------
 int game_state;
 int game_timer;
@@ -177,7 +178,7 @@ void game_update()
         if (Select == false) { break; }
         else if (Select == true)
         {
-
+            nextScene = SCENE_TITLE;
         }
 
         break;
