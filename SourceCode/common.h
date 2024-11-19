@@ -9,6 +9,7 @@ using namespace GameLib;
 #define SCENE_TITLE     (0)
 #define SCENE_HOME      (1)
 #define SCENE_GAME      (2)
+#define SCENE_JUDGE     (3)
 
 #define SELECT1X  (840)//‘I‘ð‚P
 #define SELECT1Y  (153)
