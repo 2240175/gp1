@@ -23,7 +23,7 @@ bool hitCheckCircle(VECTOR2 pos1, float r1, VECTOR2 pos2, float r2)
 			if (!isLeftButtonPressed) {
 				//押されたことを記録
 				isLeftButtonPressed = true; 
-				// 初回クリック時のみ処理
+				 //初回クリック時のみ処理
 				return true;	
 			}
 		}
