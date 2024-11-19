@@ -287,3 +287,38 @@ void moveCard5(OBJ2D* obj)
 		break;
 	}
 }
+
+//ínçñÇÃifï∂Ç™ÇÊÇ›Ç™Ç¶ÇÈ
+void Card_act()
+{
+	if (UseCard[0] == true) {
+		AnyCard[0].pos = {640,400};
+	}
+	else if (UseCard[1] == true) {
+		AnyCard[1].pos = { 640,400 };
+	}
+	else if (UseCard[2] == true) {
+		AnyCard[2].pos = { 640,400 };
+	}
+	else if (UseCard[3] == true) {
+		AnyCard[3].pos = { 640,400 };
+	}
+	else if (UseCard[4] == true) {
+		AnyCard[4].pos = { 640,400 };
+	}
+	else if (UseCard[5] == true) {
+		AnyCard[5].pos = { 640,400 };
+	}
+	else if (UseCard[6] == true) {
+		AnyCard[6].pos = { 640,400 };
+	}
+	else if (UseCard[7] == true) {
+		AnyCard[7].pos = { 640,400 };
+	}
+	else if (UseCard[8] == true) {
+		AnyCard[8].pos = { 640,400 };
+	}
+	else if (UseCard[9] == true) {
+		AnyCard[9].pos = { 640,400 };
+	}
+}
