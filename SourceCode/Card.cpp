@@ -8,6 +8,8 @@ int card_num[5];
 //使用未使用判定
 bool UseCard[10] = { false };
 
+extern int PLAYERNUM;
+extern int NPCNUM;
 
 OBJ2D AnyCard[CARD_MAX];
 
@@ -295,33 +297,33 @@ void moveCard5(OBJ2D* obj)
 void Card_act()
 {
 	if (UseCard[0] == true) {
-		AnyCard[0].pos = {640,400};
+		PLAYERNUM = 1;
 	}
 	else if (UseCard[1] == true) {
-		AnyCard[1].pos = { 640,400 };
+		PLAYERNUM = 2;
 	}
 	else if (UseCard[2] == true) {
-		AnyCard[2].pos = { 640,400 };
+		PLAYERNUM = 3;
 	}
 	else if (UseCard[3] == true) {
-		AnyCard[3].pos = { 640,400 };
+		PLAYERNUM = 4;
 	}
 	else if (UseCard[4] == true) {
-		AnyCard[4].pos = { 640,400 };
+		PLAYERNUM = 5;
 	}
 	else if (UseCard[5] == true) {
-		AnyCard[5].pos = { 640,400 };
+		NPCNUM = 1;
 	}
 	else if (UseCard[6] == true) {
-		AnyCard[6].pos = { 640,400 };
+		NPCNUM = 2;
 	}
 	else if (UseCard[7] == true) {
-		AnyCard[7].pos = { 640,400 };
+		NPCNUM = 3;
 	}
 	else if (UseCard[8] == true) {
-		AnyCard[8].pos = { 640,400 };
+		NPCNUM = 4;
 	}
 	else if (UseCard[9] == true) {
-		AnyCard[9].pos = { 640,400 };
+		NPCNUM = 5;
 	}
 }
