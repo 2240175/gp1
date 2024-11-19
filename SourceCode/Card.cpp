@@ -5,6 +5,9 @@ float card_time;
 int card_state;
 int card_num[5];
 
+//使用未使用判定
+bool UseCard[10] = { false };
+
 
 OBJ2D AnyCard[CARD_MAX];
 
