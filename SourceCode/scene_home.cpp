@@ -5,6 +5,8 @@
 int home_state;
 int home_timer;
 
+bool restart;
+
 Sprite* sprBack;
 Sprite* sprSelect1;//‘I‘ð‚P
 Sprite* sprSelect2;//‘I‘ð‚Q
@@ -39,6 +41,7 @@ void home_init()
 {
     home_state = 0;
     home_timer = 0;
+    restart = false;
     player_init();
 }
 
