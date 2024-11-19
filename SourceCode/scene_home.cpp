@@ -119,6 +119,9 @@ void home_update()
         if (hitPointAndBlock(point, SELECT2X - 200, SELECT2Y - 35, SELECT2X + 200, SELECT2Y + 35))
         {
             select2X = select2Y = 1.3f;
+            if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                nextScene = SCENE_TITLE;
+            }
         }
         else
         {

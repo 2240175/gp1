@@ -9,13 +9,11 @@
 //----< インクルード >-----------------------------------------------------------
 #include "all.h"
 #include "player.h"
+#include "Card.h"
 #include "Mausu.h"
+#include "judge.h"
 
 //------< 定数 >----------------------------------------------------------------
-
-
-
-
 
 //------< 構造体 >---------------------------------------------------------------
 
@@ -69,6 +67,7 @@ void game_init()
     raund = 0;
     winraund = 0;
     lossraund = 0;
+    Select = false;
 
     for (int i = 0; i < CARD_MAX; i++) {
         //カードの初期化
@@ -92,7 +91,11 @@ void game_init()
 
     game_state      = 0;
     game_timer      = 0;
+    Card_init();
     player_init();
+
+    //マウスカーソル非表示
+    ShowCursor(false);
 }
 
 //--------------------------------------
@@ -109,6 +112,11 @@ void game_deinit()
 
     //カード画像
     safe_delete(sprCard1);
+    //カードいろいろ
+    Card_deinit();
+
+    //マウスカーソル表示
+    ShowCursor(true);
 }
 
 //--------------------------------------
@@ -121,7 +129,7 @@ void game_update()
     case 0:
         //////// 初期設定 ////////
 
-        sprB = sprite_load(L"./Data/Images/m.png");
+        sprB = sprite_load(L"./Data/Images/m.jpg");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
@@ -152,7 +160,6 @@ void game_update()
             break;
         }
 
-        player_update();
 
         //TODO_12
         debug::setString("MOUCE CHECK:%d",checkmouse);
@@ -160,11 +167,18 @@ void game_update()
 
         debug::setString("MOUCE CHECK:%d",checkmouse);
 
-        //マウスクリックテスト（提出時は消す）
-        //ここから
-        
-        
-        //ここまで
+        Card_update();
+
+        player_update();
+
+        //あたり判定
+        judge();
+
+        if (Select == false) { break; }
+        else if (Select == true)
+        {
+
+        }
 
         break;
     }
@@ -183,8 +197,10 @@ void game_render()
     debug::setString("X:%d", mousePos.x);
     debug::setString("Y:%d", mousePos.y);
 
-    GameLib::clear(0.2f, 0.2f, 0.4f);
+    GameLib::clear(0.0f, 0.0f, 0.0f);
 
+    //これは画像の位置に合ったときに反応するようにしている
+    //ガジェットに置き換えて使える
     sprite_render(sprB, 0, 0);
     if (mousePos.x > 300 && mousePos.y > 100 && mousePos.x < 400 && mousePos.y < 127) {
         sprite_render(sprSel[0], 300, 100);
@@ -199,11 +215,12 @@ void game_render()
     //のちにカード専用の関数を作る
     //そこにカードのアニメーションを入れる
     //現在一時的に適当においてある
-    sprite_render(sprCard1, 0, 350);
-    sprite_render(sprCard1, 250, 250);
-    sprite_render(sprCard1, 510, 200);
-    sprite_render(sprCard1, 765, 250);
-    sprite_render(sprCard1, 1005, 350);
+    //sprite_render(sprCard1, 0, 350);
+    //sprite_render(sprCard1, 250, 250);
+    //sprite_render(sprCard1, 510, 200);
+    //sprite_render(sprCard1, 765, 250);
+    //sprite_render(sprCard1, 1005, 350);
 
+    Card_render();
     player_render();    
 }
