@@ -19,6 +19,7 @@
 
 //------< 画像読み込み用 >---------------------------------------------------------------
 Sprite* sprB;
+Sprite* sprA;
 Sprite* sprSel[2];
 MouseManager mouseManager;
 
@@ -28,6 +29,8 @@ Sprite* sprCard1;
 //使用禁止(選択完了)
 bool Select;
 bool stop;
+
+extern bool restart;
 //------< 変数 >----------------------------------------------------------------
 int game_state;
 int game_timer;
@@ -80,6 +83,11 @@ void game_init()
         npcCard[i] = i+1;
     }
 
+    StarPiece = 100;
+    NPCPiece = 0;
+    restart = true;
+    
+
     //現在のラウンド
     //ここは必ず０にする
     nowraund=0;
@@ -88,11 +96,7 @@ void game_init()
     //初期化のためどのカードも持ってないようにするため０
     getnum = 0;
 
-    //星のかけら（ガジェット動作確認のため今だけ１００）
-    //提出前に必ず０にする事
-    StarPiece = 100;
-    //相手用（ガジェット使用ディーラー追加する場合使う）
-    NPCPiece = 0;
+
 
     game_state      = 0;
     game_timer      = 0;
@@ -136,7 +140,8 @@ void game_update()
     case 0:
         //////// 初期設定 ////////
 
-        sprB = sprite_load(L"./Data/Images/m.jpg");
+        sprB = sprite_load(L"./Data/Images/maingame.png");
+        sprA = sprite_load(L"./Data/Images/maingame2.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
@@ -161,6 +166,9 @@ void game_update()
         debug::setString("Left Click：selectS");
         debug::setString("");
 
+        debug::setString("NPC:%d", NPCPiece);
+        debug::setString("PLAYER:%d", StarPiece);
+
         if (TRG(0) & PAD_SELECT)
         {
             nextScene = SCENE_TITLE;
@@ -170,13 +178,8 @@ void game_update()
         if (stop == false) {
             StarPiece += PLAYERNUM;
             NPCPiece += NPCNUM;
+            stop = true;
         }
-
-        //TODO_12
-        debug::setString("MOUCE CHECK:%d",checkmouse);
-
-
-        debug::setString("MOUCE CHECK:%d",checkmouse);
 
         Card_update();
 
@@ -191,8 +194,7 @@ void game_update()
             nextScene = SCENE_JUDGE;
         }
 
-        debug::setString("NPC:%d", NPCPiece);
-        debug::setString("PLAYER:%d", StarPiece);
+
 
         break;
     }
@@ -216,6 +218,7 @@ void game_render()
     //これは画像の位置に合ったときに反応するようにしている
     //ガジェットに置き換えて使える
     sprite_render(sprB, 0, 0);
+
     if (mousePos.x > 300 && mousePos.y > 100 && mousePos.x < 400 && mousePos.y < 127) {
         sprite_render(sprSel[0], 300, 100);
         if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
@@ -236,8 +239,10 @@ void game_render()
     //sprite_render(sprCard1, 1005, 350);
 
 
-
+    sprite_render(sprA, 0, 0);
 
     Card_render();
     player_render();    
 }
+
+
