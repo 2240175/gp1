@@ -191,6 +191,9 @@ void game_update()
             nextScene = SCENE_JUDGE;
         }
 
+        debug::setString("NPC:%d", NPCPiece);
+        debug::setString("PLAYER:%d", StarPiece);
+
         break;
     }
     game_timer++;
@@ -231,6 +234,9 @@ void game_render()
     //sprite_render(sprCard1, 510, 200);
     //sprite_render(sprCard1, 765, 250);
     //sprite_render(sprCard1, 1005, 350);
+
+
+
 
     Card_render();
     player_render();    
