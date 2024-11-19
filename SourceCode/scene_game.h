@@ -31,4 +31,6 @@ void game_deinit();
 void game_update();
 void game_render();
 
+
+
 #endif//SCENE_GAME_H
