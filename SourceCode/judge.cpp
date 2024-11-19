@@ -55,6 +55,7 @@ void judge()
 		if (!AnyCard[i].moveAlg)              continue;
 		if (hitCheck(&player, &AnyCard[i]))
 		{
+			UseCard[i] = true;
 			Select = true;
 		}
 	}
