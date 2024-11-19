@@ -6,6 +6,9 @@
 extern OBJ2D player;
 extern OBJ2D AnyCard[CARD_MAX];
 
+extern bool UseCard[10];
+extern bool Select;
+
 bool isLeftButtonPressed = false; // 左ボタンが押されたかどうかを追跡するフラグ
 bool isClickHandled = false;       // 押されたクリックが処理済みかどうかを追跡
 
