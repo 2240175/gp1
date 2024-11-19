@@ -5,9 +5,10 @@
 #include <algorithm>
 using namespace std;
 
-
 #define CARD_MAX (5)
 
+//使用未使用判定
+bool UseCard[10] = { false };
 
 //カードの情報
 class Card_INFO {
@@ -52,3 +53,5 @@ void moveCard2(OBJ2D* obj);
 void moveCard3(OBJ2D* obj);
 void moveCard4(OBJ2D* obj);
 void moveCard5(OBJ2D* obj);
+
+void Card_act();
