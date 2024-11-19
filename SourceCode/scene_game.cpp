@@ -27,6 +27,7 @@ Sprite* sprCard1;
 
 //使用禁止(選択完了)
 bool Select;
+bool stop;
 //------< 変数 >----------------------------------------------------------------
 int game_state;
 int game_timer;
@@ -41,6 +42,8 @@ int raund;
 int winraund;
 int lossraund;
 
+extern int PLAYERNUM;
+extern int NPCNUM;
 
 //カードデータ
 //プレイヤー用
@@ -69,6 +72,7 @@ void game_init()
     winraund = 0;
     lossraund = 0;
     Select = false;
+    stop = false;
 
     for (int i = 0; i < CARD_MAX; i++) {
         //カードの初期化
@@ -116,6 +120,8 @@ void game_deinit()
     //カードいろいろ
     Card_deinit();
 
+    stop = false;
+
     //マウスカーソル表示
     ShowCursor(true);
 }
@@ -161,6 +167,10 @@ void game_update()
             break;
         }
 
+        if (stop == false) {
+            StarPiece += PLAYERNUM;
+            NPCPiece += NPCNUM;
+        }
 
         //TODO_12
         debug::setString("MOUCE CHECK:%d",checkmouse);
@@ -178,7 +188,7 @@ void game_update()
         if (Select == false) { break; }
         else if (Select == true)
         {
-            nextScene = SCENE_TITLE;
+            nextScene = SCENE_JUDGE;
         }
 
         break;
