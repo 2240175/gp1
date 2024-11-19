@@ -12,7 +12,7 @@ bool isClickHandled = false;       // 押されたクリックが処理済みかどうかを追跡
 bool hitCheckCircle(VECTOR2 pos1, float r1, VECTOR2 pos2, float r2)
 {
 	float dx = pos2.x - pos1.x;
-	float dy = pos2.x - pos1.y;
+	float dy = pos2.y - pos1.y;
 	float r = r1 + r2;
 
 	//重なったとき
@@ -31,7 +31,6 @@ bool hitCheckCircle(VECTOR2 pos1, float r1, VECTOR2 pos2, float r2)
 			// 左クリックが離されたらフラグをリセット
 			isLeftButtonPressed = false;
 		}
-
 	}
 
 	return false;
@@ -56,7 +55,7 @@ void judge()
 		if (!AnyCard[i].moveAlg)              continue;
 		if (hitCheck(&player, &AnyCard[i]))
 		{
-			AnyCard[i].pos = { 100,300 };
+			Select = true;
 		}
 	}
 }
