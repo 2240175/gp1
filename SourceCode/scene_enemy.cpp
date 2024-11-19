@@ -21,12 +21,6 @@ void enemy_deinit()
 
 void enemy_update()
 {
-	switch (enemy_state)
-	{
-	case 0:
-		//‰Šúİ’è
-
-	}
 }
 
 void enemy_render()
