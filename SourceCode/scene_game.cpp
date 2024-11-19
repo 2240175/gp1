@@ -9,6 +9,7 @@
 //----< インクルード >-----------------------------------------------------------
 #include "all.h"
 #include "player.h"
+#include "scene_enemy.h"
 #include "Card.h"
 #include "Mausu.h"
 #include "judge.h"
@@ -113,6 +114,8 @@ void game_init()
     game_timer      = 0;
     Card_init();
     player_init();
+    enemy_init();
+
 
     //マウスカーソル非表示
     ShowCursor(false);
