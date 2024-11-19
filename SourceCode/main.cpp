@@ -44,6 +44,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             case SCENE_GAME:
                 game_deinit();
                 break;
+
+            case SCENE_JUDGE:
+                judge_deinit();
+                break;
             }
 
             // 次のシーンに応じた初期設定処理
@@ -59,6 +63,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 
             case SCENE_GAME:
                 game_init();
+                break;
+
+            case SCENE_JUDGE:
+                judge_init();
                 break;
             }
 
@@ -88,6 +96,11 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             game_update();
             game_render();
             break;
+
+        case SCENE_JUDGE:
+            judge_update();
+            judge_render();
+            break;
         }
 
         // デバッグ文字列の描画
@@ -111,6 +124,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 
     case SCENE_GAME:
         game_deinit();
+        break;
+
+    case SCENE_JUDGE:
+        judge_deinit();
         break;
     }
 
