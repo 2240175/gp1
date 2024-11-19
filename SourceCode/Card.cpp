@@ -284,10 +284,6 @@ void moveCard5(OBJ2D* obj)
 		//�ʏ펞
 		obj->pos.y += obj->speed.y;
 		obj->radius = 127.5f;
-
-		if (obj->num != 5) {
-			obj->num = 5;
-		}
 		break;
 	}
 }
