@@ -23,6 +23,7 @@
 #include "scene_title.h"
 #include "scene_game.h"
 #include "scene_home.h"
+#include "scene_judge.h"
 
 // namespace
 using namespace GameLib;
