@@ -1,4 +1,5 @@
 #include "Card.h"
+#include "scene_enemy.h"
 #include "scene_judge.h"
 
 //•Êƒtƒ@ƒCƒ‹‚Ì•Ï”‚È‚Ç
@@ -39,6 +40,7 @@ void judge_deinit()
 		UseCard[i] = false;
 	}
 
+	enemy_deinit();
 	safe_delete(sprck);
 }
 
@@ -53,6 +55,7 @@ void judge_update()
 	case 1:
 		GameLib::setBlendMode(Blender::BS_ALPHA);
 
+		enemy_update();
 		judge_state++;
 		/*fallthrough*/
 	case 2:
@@ -114,4 +117,6 @@ void judge_update()
 void judge_render()
 {
 	sprite_render(sprck, 0, 0);
+
+	enemy_render();
 }
