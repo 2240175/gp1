@@ -1,6 +1,10 @@
 #ifndef SCENE_GAME_H
 #define SCENE_GAME_H
 
+
+#include <cstdlib>
+#include <ctime>
+#include <string>
 //******************************************************************************
 //
 //
