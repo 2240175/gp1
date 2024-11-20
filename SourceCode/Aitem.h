@@ -1,6 +1,6 @@
 #pragma once
 
-#include "scene_game.h"
+#include "all.h"
 
 void Aitem_init();
 void Aitem_deinit();
