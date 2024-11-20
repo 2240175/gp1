@@ -48,6 +48,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             case SCENE_JUDGE:
                 judge_deinit();
                 break;
+
+            case SCENE_SCORE:
+                score_deinit();
+                break;
             }
 
             // 次のシーンに応じた初期設定処理
@@ -67,6 +71,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 
             case SCENE_JUDGE:
                 judge_init();
+                break;
+
+            case SCENE_SCORE:
+                score_init();
                 break;
             }
 
@@ -101,12 +109,16 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             judge_update();
             judge_render();
             break;
+
+        case SCENE_SCORE:
+            score_update();
+            score_render();
+            break;
         }
 
         // デバッグ文字列の描画
-        debug::display(0.0f, 0.0f, 0.0f, 1.5f, 2.0f);
+        debug::display(0.0f, 0.0f, 0.0f, 1.5f, 1.2f);
 
- 
         // バックバッファの内容を表示
         GameLib::present(1, 0);
     }
@@ -128,6 +140,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 
     case SCENE_JUDGE:
         judge_deinit();
+        break;
+
+    case SCENE_SCORE:
+        score_deinit();
         break;
     }
 
