@@ -102,58 +102,60 @@ void home_update()
         ScreenToClient(window::getHwnd(), &point);
 
 
+        //‚·‚®ŽŸ‚Ì‰æ–Ê‚ÉˆÚ‚é‚Ì‚ð–hŽ~‚·‚é‚½‚ßA”»’è‚ð”•bi–ñ0.3•bj–³Œø‰»‚µ‚Ä‚¢‚é
+        //‚»‚Ì‚½‚ßˆêu‰æ–Ê‚É•\Ž¦‚³‚ê‚È‚¢
+        if (home_timer > 20) {
 
+            if (hitPointAndBlock(point, SELECT1X - 200, SELECT1Y - 35, SELECT1X + 200, SELECT1Y + 35))
+            {
+                select1X = select1Y = 1.3f;
+                if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                    nextScene = SCENE_GAME;
+                }
 
+            }
+            else
+            {
+                select1X = select1Y = 1.0f;
 
-        if (hitPointAndBlock(point, SELECT1X - 200, SELECT1Y - 35, SELECT1X + 200, SELECT1Y + 35))
-        {
-            select1X = select1Y = 1.3f;
-            if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-                nextScene = SCENE_GAME;
             }
 
-        }
-        else
-        {
-            select1X = select1Y = 1.0f;
-
-        }
-
-        if (hitPointAndBlock(point, SELECT2X - 200, SELECT2Y - 35, SELECT2X + 200, SELECT2Y + 35))
-        {
-            select2X = select2Y = 1.3f;
-            if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-                nextScene = SCENE_TITLE;
+            if (hitPointAndBlock(point, SELECT2X - 200, SELECT2Y - 35, SELECT2X + 200, SELECT2Y + 35))
+            {
+                select2X = select2Y = 1.3f;
+                if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                    nextScene = SCENE_TITLE;
+                }
             }
-        }
-        else
-        {
-            select2X = select2Y = 1.0f;
+            else
+            {
+                select2X = select2Y = 1.0f;
+
+            }
+
+            if (hitPointAndBlock(point, SELECT3X - 200, SELECT3Y - 35, SELECT3X + 200, SELECT3Y + 35))
+            {
+                select3X = select3Y = 1.3f;
+            }
+            else
+            {
+                select3X = select3Y = 1.0f;
+
+            }
+
+            if (hitPointAndBlock(point, SELECT4X - 200, SELECT4Y - 35, SELECT4X + 200, SELECT4Y + 35))
+            {
+                select4X = select4Y = 1.3f;
+            }
+            else
+            {
+                select4X = select4Y = 1.0f;
+
+            }
+
+            break;
 
         }
-
-        if (hitPointAndBlock(point, SELECT3X - 200, SELECT3Y - 35, SELECT3X + 200, SELECT3Y + 35))
-        {
-            select3X = select3Y = 1.3f;
-        }
-        else
-        {
-            select3X = select3Y = 1.0f;
-
-        }
-
-        if (hitPointAndBlock(point, SELECT4X - 200, SELECT4Y - 35, SELECT4X + 200, SELECT4Y + 35))
-        {
-            select4X = select4Y = 1.3f;
-        }
-        else
-        {
-            select4X = select4Y = 1.0f;
-
-        }
-
-        break;
-
     }
     home_timer++;
 }
