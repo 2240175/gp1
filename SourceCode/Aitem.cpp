@@ -11,7 +11,7 @@ extern int lossraund;
 
 extern int StarPiece;
 
-bool AitemNum[7] = { false };
+bool AitemDATE[7] = { false };
 
 int money = rand() % 3;
 int AitemSelect = 0;
@@ -33,7 +33,7 @@ void Aitem_update()
 
 void Aitem_render()
 {
-	sprite_render(AitemPNG, 0, 0);
+	sprite_render(AitemPNG, 340, 160);
 }
 
 void AitemBuy()
@@ -42,10 +42,45 @@ void AitemBuy()
 	case 0:
 		break;
 	case 1:
-		if (AitemNum[0] == false&& StarPiece>=3) {
-			AitemNum[0] = true;
-			StarPiece += -3;
+		//望遠鏡
+		if (AitemDATE[0] == false&& StarPiece>=8) {
+			AitemDATE[0] = true;
+			StarPiece += -8;
 		}
 		break;
+	case 2:
+		//キャンディー
+		if (AitemDATE[1] == false && StarPiece >= 8) {
+			AitemDATE[1] = true;
+			StarPiece += -8;
+		}
+		break;
+	case 3:
+		//UFO
+		if (AitemDATE[2] == false && StarPiece >= 4) {
+			AitemDATE[2] = true;
+			StarPiece += -4;
+		}
+		break;
+	case 4:
+		//時計
+		if (AitemDATE[3] == false && StarPiece >= 8) {
+			AitemDATE[3] = true;
+			StarPiece += -8;
+		}
+		break;
+	case 5:
+		//ベル
+		if (AitemDATE[4] == false && StarPiece >= 8) {
+			AitemDATE[4] = true;
+			StarPiece += -8;
+		}
+		break;
+	case 6:
+		//チケット
+		if (AitemDATE[5] == false && StarPiece >= 8) {
+			AitemDATE[5] = true;
+			StarPiece += -8;
+		}
 	}
 }
