@@ -18,7 +18,7 @@
 // 個々のヘッダーファイルは下の方へ
 #include "audio.h"
 #include "obj2d.h"
-
+#include "Aitem.h"
 
 #include "scene_title.h"
 #include "scene_game.h"
