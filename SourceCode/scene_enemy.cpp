@@ -42,7 +42,7 @@ void enemy_update()
 		break;
 	}
 	if (Check == false) {
-		NPCCard = rand() % 5;
+		NPCCard = 4;
 		UseCard[NPCCard + 4] == true;
 	}
 }
