@@ -9,6 +9,7 @@ int enemy_state;
 int NPCCard;
 
 extern bool UseCard[10];
+extern int NPCNUM;
 bool Check;
 
 void enemy_init()
@@ -33,11 +34,12 @@ void enemy_update()
 {
 	switch (enemy_state) {
 	case 0:
-		sprNPC[0] = sprite_load(L"./Data/Images/one.png");
-		sprNPC[1] = sprite_load(L"./Data/Images/two.png");
-		sprNPC[2] = sprite_load(L"./Data/Images/one.png");
-		sprNPC[3] = sprite_load(L"./Data/Images/one.png");
-		sprNPC[4] = sprite_load(L"./Data/Images/one.png");
+		sprNPC[0] = sprite_load(L"./Data/Images/Card/one.png");
+		sprNPC[1] = sprite_load(L"./Data/Images/Card/two.png");
+		sprNPC[2] = sprite_load(L"./Data/Images/Card/three.png");
+		sprNPC[3] = sprite_load(L"./Data/Images/Card/four.png");
+		sprNPC[4] = sprite_load(L"./Data/Images/Card/one.png");
+		break;
 	}
 	if (Check == false) {
 		NPCCard = rand() % 5;
@@ -47,21 +49,28 @@ void enemy_update()
 
 void enemy_render()
 {
+	//敵のカードを映す場所
+	//アニメ―ション用
 	switch (NPCCard) {
 	case 0:
 		sprite_render(sprNPC[NPCCard], 300, 500);
+		NPCNUM = 1;
 		break;
 	case 1:
 		sprite_render(sprNPC[NPCCard], 300, 500);
+		NPCNUM = 2;
 		break;
 	case 2:
 		sprite_render(sprNPC[NPCCard], 300, 500);
+		NPCNUM = 3;
 		break;
 	case 3:
 		sprite_render(sprNPC[NPCCard], 300, 500);
+		NPCNUM = 4;
 		break;
 	case 4:
 		sprite_render(sprNPC[NPCCard], 300, 500);
+		NPCNUM =5;
 		break;
 	}
 }
