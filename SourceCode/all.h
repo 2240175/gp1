@@ -24,6 +24,7 @@
 #include "scene_game.h"
 #include "scene_home.h"
 #include "scene_judge.h"
+#include "scene_score.h"
 
 // namespace
 using namespace GameLib;
