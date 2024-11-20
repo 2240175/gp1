@@ -47,6 +47,12 @@ int raund;
 int winraund;
 int lossraund;
 
+//現在のラウンド
+int nowraund;
+
+//最高ラウンド
+int MAXRAUND;
+
 int timer;
 
 extern int PLAYERNUM;
@@ -57,10 +63,6 @@ extern int NPCNUM;
 int numCard[5];
 //ディーラー用
 int npcCard[5];
-
-
-//現在のラウンド
-int nowraund;
 
 //ガジェット効果用
 int getnum;
@@ -98,6 +100,8 @@ void game_init()
 
         //現在のラウンド
         nowraund = 0;
+        //最高ラウンド
+        MAXRAUND = 8;
 
         //タイトルに戻るとリセット
         restart = true;
@@ -161,12 +165,12 @@ void game_update()
 
         sprB = sprite_load(L"./Data/Images/maingame.png");
         sprA = sprite_load(L"./Data/Images/maingame2.png");
-        sprC = sprite_load(L"./Data/Images/one.png");
+        sprC = sprite_load(L"./Data/Images/Card/one.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
         //カード画像読み込み
-        sprCard1 = sprite_load(L"./Data/Images/one.png");
+        sprCard1 = sprite_load(L"./Data/Images/Card/one.png");
 
         game_state++;
         /*fallthrough*/
@@ -199,8 +203,6 @@ void game_update()
             raund = nowraund;
         }
 
-        if (raund <= winraund) {
-        }
 
         if (TRG(0) & PAD_SELECT)
         {
@@ -220,8 +222,10 @@ void game_update()
 
         player_update();
 
-        //あたり判定
-        judge();
+        if (game_timer > 20) {
+            //あたり判定
+            judge();
+        }
 
         if (Select == false) { break; }
         else if (Select == true)
@@ -275,7 +279,7 @@ void game_render()
     //sprite_render(sprCard1, 250, 250);
     //sprite_render(sprCard1, 510, 200);
     //sprite_render(sprCard1, 765, 250);
-    //sprite_render(sprCard1, 1005, 350);
+    sprite_render(sprA, 0, 0);
 
     Card_render();
     player_render();    
