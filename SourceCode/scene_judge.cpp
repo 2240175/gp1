@@ -15,7 +15,7 @@ extern int MAXRAUND;
 extern int StarPiece;
 extern int NPCPiece;
 
-bool getraund = false;
+bool getraund;
 
 Sprite* sprck;
 
@@ -100,17 +100,21 @@ void judge_update()
 		}
 
 		if (getraund == false) {
-			if (winner == LOSS) {
-				NPCPiece += NPCNUM;
-				lossraund++;
-			}
-			else if (winner == WIN) {
+			switch (winner) {
+			case DRAW:
+				raund++;
+				break;
+			case WIN:
 				StarPiece += PLAYERNUM;
 				winraund++;
+				raund++;
+				break;
+			case LOSS:
+				NPCPiece += NPCNUM;
+				lossraund++;
+				raund++;
+				break;
 			}
-			else if (winner == DRAW) {
-			}
-			raund++;
 			getraund = true;
 		}
 
