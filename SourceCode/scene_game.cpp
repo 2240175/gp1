@@ -76,7 +76,6 @@ int NPCPiece;
 //--------------------------------------
 void game_init()
 {
-    winner = DRAW;
 
     Select = false;
     stop = false;
@@ -88,18 +87,21 @@ void game_init()
     }
 
     if (restart == false) {
+        //2回目の星のかけら継続防止
         StarPiece=100;
         NPCPiece=0;
-        //2回目の星のかけら継続防止
+        //カードリセット
         PLAYERNUM = 0;
         NPCNUM = 0;
         //ラウンドの初期化防止
         raund = 1;
         winraund = 0;
         lossraund = 0;
+        //最初だけ
+        winner = DRAW;
 
         //現在のラウンド
-        nowraund = 0;
+        nowraund = 1;
         //最高ラウンド
         MAXRAUND = 8;
 
@@ -112,8 +114,6 @@ void game_init()
     //ガジェット効果用
     //初期化のためどのカードも持ってないようにするため０
     getnum = 0;
-
-
 
     game_state      = 0;
     game_timer      = 0;
@@ -193,9 +193,11 @@ void game_update()
         debug::setString("NPC:%d", NPCPiece);
         debug::setString("PLAYER:%d", StarPiece);
 
+        debug::setString("");
 
         debug::setString("RAUND:%d", raund);
         debug::setString("NOW:%d", nowraund);
+        debug::setString("");
         debug::setString("WIN:%d", winraund);
         debug::setString("LOSS:%d", lossraund);
 
@@ -204,18 +206,13 @@ void game_update()
         }
 
 
+
         if (TRG(0) & PAD_SELECT)
         {
             nextScene = SCENE_TITLE;
             StarPiece=100;
             NPCPiece=0;
             break;
-        }
-
-        if (stop == false) {
-            StarPiece += PLAYERNUM;
-            NPCPiece += NPCNUM;
-            stop = true;
         }
 
         Card_update();
@@ -232,8 +229,6 @@ void game_update()
         {
             nextScene = SCENE_JUDGE;
         }
-
-
 
         break;
     }
@@ -272,13 +267,7 @@ void game_render()
         sprite_render(sprSel[1], 300, 100);
     }
 
-    //のちにカード専用の関数を作る
-    //そこにカードのアニメーションを入れる
-    //現在一時的に適当においてある
-    //sprite_render(sprCard1, 0, 350);
-    //sprite_render(sprCard1, 250, 250);
-    //sprite_render(sprCard1, 510, 200);
-    //sprite_render(sprCard1, 765, 250);
+
     sprite_render(sprA, 0, 0);
 
     Card_render();
