@@ -10,6 +10,9 @@ extern int winner;
 extern int winraund;
 extern int lossraund;
 extern int raund;
+extern int MAXRAUND;
+
+bool getraund = false;
 
 Sprite* sprck;
 
@@ -28,6 +31,7 @@ void judge_init()
 	judge_time = 0;
 	NPCNUM = 0;
 	PLAYERNUM = 0;
+	enemy_init();
 }
 
 void judge_deinit()
@@ -40,6 +44,8 @@ void judge_deinit()
 		UseCard[i] = false;
 	}
 
+	getraund = false;
+
 	enemy_deinit();
 	safe_delete(sprck);
 }
@@ -49,13 +55,13 @@ void judge_update()
 	switch (judge_state) {
 	case 0:
 		sprck = sprite_load(L"./Data/Images/m.png");
+		enemy_update();
 
 		judge_state++;
 		/*fallthrough*/
 	case 1:
 		GameLib::setBlendMode(Blender::BS_ALPHA);
 
-		enemy_update();
 		judge_state++;
 		/*fallthrough*/
 	case 2:
@@ -79,7 +85,7 @@ void judge_update()
 
 		if (PLAYERNUM < NPCNUM) {
 			debug::setString("NPC WIN");
-			winner = DRAW;
+			winner = LOSS;
 		}
 		else if (PLAYERNUM > NPCNUM) {
 			debug::setString("PLAYER WIN");
@@ -87,24 +93,35 @@ void judge_update()
 		}
 		else {
 			debug::setString("!!!!!DRAW!!!!!");
-			winner = LOSS;
+			winner = DRAW;
 		}
 
-		if (winner == LOSS) {
-			lossraund++;
-			raund++;
-		}
-		else if (winner == WIN) {
-			winraund++;
-			raund++;
-		}
-		else if (winner == DRAW) {
-			raund++;
+		if (getraund == false) {
+			if (winner == LOSS) {
+				lossraund++;
+				raund++;
+			}
+			else if (winner == WIN) {
+				winraund++;
+				raund++;
+			}
+			else if (winner == DRAW) {
+				raund++;
+			}
+			getraund = true;
 		}
 
-		if (TRG(0) & PAD_TRG1) {
+		if (winraund >= MAXRAUND || lossraund >= MAXRAUND) {
+			if (TRG(0) & PAD_TRG1) {
+				nextScene = SCENE_SCORE;
+				break;
+			}
+		}
+		else if (TRG(0) & PAD_TRG1) {
 			nextScene = SCENE_GAME;
 		}
+
+		debug::setString("RAUND:%d",raund);
 
 		break;
 	}
