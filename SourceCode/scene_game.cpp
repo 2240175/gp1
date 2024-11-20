@@ -96,13 +96,14 @@ void game_init()
         winraund = 0;
         lossraund = 0;
 
+        //現在のラウンド
+        nowraund = 0;
+
         //タイトルに戻るとリセット
         restart = true;
     }
 
-    //現在のラウンド
-    //ここは必ず０にする
-    nowraund=0;
+
 
     //ガジェット効果用
     //初期化のためどのカードも持ってないようにするため０
@@ -141,6 +142,8 @@ void game_deinit()
     Card_deinit();
 
     stop = false;
+
+    nowraund++;
 
     //マウスカーソル表示
     ShowCursor(true);
@@ -188,10 +191,16 @@ void game_update()
 
 
         debug::setString("RAUND:%d", raund);
+        debug::setString("NOW:%d", nowraund);
         debug::setString("WIN:%d", winraund);
         debug::setString("LOSS:%d", lossraund);
 
+        if (raund != nowraund) {
+            raund = nowraund;
+        }
 
+        if (raund <= winraund) {
+        }
 
         if (TRG(0) & PAD_SELECT)
         {
