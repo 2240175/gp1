@@ -12,6 +12,9 @@ extern int lossraund;
 extern int raund;
 extern int MAXRAUND;
 
+extern int StarPiece;
+extern int NPCPiece;
+
 bool getraund = false;
 
 Sprite* sprck;
@@ -98,16 +101,16 @@ void judge_update()
 
 		if (getraund == false) {
 			if (winner == LOSS) {
+				NPCPiece += NPCNUM;
 				lossraund++;
-				raund++;
 			}
 			else if (winner == WIN) {
+				StarPiece += PLAYERNUM;
 				winraund++;
-				raund++;
 			}
 			else if (winner == DRAW) {
-				raund++;
 			}
+			raund++;
 			getraund = true;
 		}
 
@@ -121,7 +124,7 @@ void judge_update()
 			nextScene = SCENE_GAME;
 		}
 
-		debug::setString("RAUND:%d",raund);
+		debug::setString("NEXT RAUND:%d",raund);
 
 		break;
 	}
