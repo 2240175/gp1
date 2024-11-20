@@ -15,11 +15,11 @@ OBJ2D AnyCard[CARD_MAX];
 
 //カードの情報
 Card_INFO cardInfo[] = {
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard1},//1のカード
-	{ NULL,L"./Data/Images/two.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard2},//2のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard3},//3のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard4},//4のカード
-	{ NULL,L"./Data/Images/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
+	{ NULL,L"./Data/Images/Card/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard1},//1のカード
+	{ NULL,L"./Data/Images/Card/two.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard2},//2のカード
+	{ NULL,L"./Data/Images/Card/three.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard3},//3のカード
+	{ NULL,L"./Data/Images/Card/four.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard4},//4のカード
+	{ NULL,L"./Data/Images/Card/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
 };
 
 //カードの配置
