@@ -32,6 +32,9 @@ Sprite* sprCard1;
 bool Select;
 bool stop;
 
+//アイテムを買う時間
+bool aitem_time;
+
 extern bool restart;
 //------< 変数 >----------------------------------------------------------------
 int game_state;
@@ -52,6 +55,9 @@ int nowraund;
 
 //最高ラウンド
 int MAXRAUND;
+
+//先に最高ラウンドに到達したやつの勝者判定
+int Game_Winner;
 
 int timer;
 
@@ -79,6 +85,7 @@ void game_init()
 
     Select = false;
     stop = false;
+    aitem_time = false;
 
     for (int i = 0; i < CARD_MAX; i++) {
         //カードの初期化
@@ -109,7 +116,7 @@ void game_init()
         restart = true;
     }
 
-
+    Game_Winner = 0;
 
     //ガジェット効果用
     //初期化のためどのカードも持ってないようにするため０
@@ -219,7 +226,7 @@ void game_update()
 
         player_update();
 
-        if (game_timer > 20) {
+        if (game_timer > 20&&aitem_time==false) {
             //あたり判定
             judge();
         }
@@ -254,13 +261,13 @@ void game_render()
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
     //これは画像の位置に合ったときに反応するようにしている
-    //ガジェットに置き換えて使える
+    //ガジェット購入
     sprite_render(sprB, 0, 0);
 
     if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
         sprite_render(sprC, 0, 0);
         if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-            nextScene=SCENE_TITLE;
+            aitem_time = true;
         }
     }
     else {
