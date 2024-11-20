@@ -128,7 +128,7 @@ void game_init()
     player_init();
     enemy_init();
 
-
+    Aitem_init();
     //マウスカーソル非表示
     ShowCursor(false);
 }
@@ -154,6 +154,7 @@ void game_deinit()
 
     stop = false;
 
+    Aitem_deinit();
     nowraund++;
 
     //マウスカーソル表示
@@ -172,7 +173,7 @@ void game_update()
 
         sprB = sprite_load(L"./Data/Images/maingame.png");
         sprA = sprite_load(L"./Data/Images/maingame2.png");
-        sprC = sprite_load(L"./Data/Images/ui.png");
+        sprC = sprite_load(L"./Data/Images/ui2.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
@@ -237,6 +238,10 @@ void game_update()
             nextScene = SCENE_JUDGE;
         }
 
+        if (aitem_time == true) {
+            Aitem_update();
+        }
+
         break;
     }
     game_timer++;
@@ -260,6 +265,8 @@ void game_render()
 
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
+    sprite_render(sprA, 0, 0);
+
     //これは画像の位置に合ったときに反応するようにしている
     //ガジェット購入
     sprite_render(sprB, 0, 0);
@@ -274,11 +281,13 @@ void game_render()
         sprite_render(sprSel[1], 300, 100);
     }
 
-
-    sprite_render(sprA, 0, 0);
-
     Card_render();
-    player_render();    
+
+    if (aitem_time == true) {
+        Aitem_render();
+    }
+    player_render();
+
 }
 
 
