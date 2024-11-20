@@ -165,7 +165,7 @@ void game_update()
 
         sprB = sprite_load(L"./Data/Images/maingame.png");
         sprA = sprite_load(L"./Data/Images/maingame2.png");
-        sprC = sprite_load(L"./Data/Images/Card/one.png");
+        sprC = sprite_load(L"./Data/Images/ui.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
@@ -257,8 +257,8 @@ void game_render()
     //ガジェットに置き換えて使える
     sprite_render(sprB, 0, 0);
 
-    if (mousePos.x > 300 && mousePos.y > 100 && mousePos.x < 400 && mousePos.y < 127) {
-        sprite_render(sprSel[0], 300, 100);
+    if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
+        sprite_render(sprC, 0, 0);
         if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
             nextScene=SCENE_TITLE;
         }
