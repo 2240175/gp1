@@ -109,8 +109,6 @@ void judge_update()
 		break;
 	}
 
-
-
 	judge_timer++;
 }
 
