@@ -15,6 +15,8 @@ extern int MAXRAUND;
 extern int StarPiece;
 extern int NPCPiece;
 
+extern int Game_Winner;
+
 bool getraund;
 
 Sprite* sprck;
@@ -118,8 +120,16 @@ void judge_update()
 			getraund = true;
 		}
 
-		if (winraund >= MAXRAUND || lossraund >= MAXRAUND) {
+		if (winraund >= MAXRAUND) {
 			if (TRG(0) & PAD_TRG1) {
+				Game_Winner = 1;
+				nextScene = SCENE_SCORE;
+				break;
+			}
+		}
+		else if(lossraund >= MAXRAUND){
+			if (TRG(0) & PAD_TRG1) {
+				Game_Winner = 2;
 				nextScene = SCENE_SCORE;
 				break;
 			}
