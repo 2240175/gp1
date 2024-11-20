@@ -179,6 +179,7 @@ attrib +h SourceCode\gp1.log</Command>
     <ClInclude Include="GameLib\util.h" />
     <ClInclude Include="GameLib\vector.h" />
     <ClInclude Include="GameLib\view_settings.h" />
+    <ClInclude Include="SourceCode\Aitem.h" />
     <ClInclude Include="SourceCode\all.h" />
     <ClInclude Include="SourceCode\audio.h" />
     <ClInclude Include="SourceCode\Card.h" />
@@ -210,6 +211,7 @@ attrib +h SourceCode\gp1.log</Command>
     <ClCompile Include="GameLib\vector.cpp" />
     <ClCompile Include="GameLib\view_settings.cpp" />
     <ClCompile Include="GameLib\wnd_proc.cpp" />
+    <ClCompile Include="SourceCode\Aitem.cpp" />
     <ClCompile Include="SourceCode\audio.cpp" />
     <ClCompile Include="SourceCode\Card.cpp" />
     <ClCompile Include="SourceCode\common.cpp" />
