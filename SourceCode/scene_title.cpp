@@ -102,7 +102,7 @@ void title_render()
 
     // タイトルの文字
     font::textOut(6, "Bet And Get", VECTOR2(100, 80), VECTOR2(2.4f, 2.4f), VECTOR4(1, 0.8f, 0, 1));
-    font::textOut(4, "Game Programming I", VECTOR2(80, 180), VECTOR2(2.0f, 2.0f), VECTOR4(0, 1, 0.6f, 1));
+    font::textOut(1, "1234", VECTOR2(80, 180), VECTOR2(2.0f, 2.0f), VECTOR4(0, 1, 0.6f, 1));
 
     // "Push Enter Key" 点滅
     if (title_timer >> 5 & 0x01)
