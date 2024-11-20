@@ -10,7 +10,9 @@ using namespace GameLib;
 #define SCENE_HOME      (1)
 #define SCENE_GAME      (2)
 #define SCENE_JUDGE     (3)
+#define SCENE_SCORE     (4)
 
+//‘I‘ğ‚·‚é“z
 #define SELECT1X  (840)//‘I‘ğ‚P
 #define SELECT1Y  (153)
 
@@ -22,6 +24,7 @@ using namespace GameLib;
 
 #define SELECT4X  (960)//‘I‘ğ‚S
 #define SELECT4Y  (464)
+
 
 //  ’è”
 extern const FLOAT PI;
