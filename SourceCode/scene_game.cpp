@@ -199,7 +199,7 @@ void game_update()
         debug::setString("");
 
         debug::setString("NPC:%d", NPCPiece);
-        debug::setString("PLAYER:%d", StarPiece);
+        debug::setString("StarPiece:%d", StarPiece);
 
         debug::setString("");
 
@@ -225,6 +225,11 @@ void game_update()
 
         Card_update();
 
+        if (aitem_time == true) {
+            Aitem_update();
+            AitemBuy();
+        }
+
         player_update();
 
         if (game_timer > 20&&aitem_time==false) {
@@ -238,9 +243,7 @@ void game_update()
             nextScene = SCENE_JUDGE;
         }
 
-        if (aitem_time == true) {
-            Aitem_update();
-        }
+
 
         break;
     }
