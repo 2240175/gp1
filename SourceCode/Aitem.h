@@ -1,6 +1,7 @@
 #pragma once
 
 #include "all.h"
+#include "Mausu.h"
 
 void Aitem_init();
 void Aitem_deinit();
