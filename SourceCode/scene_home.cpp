@@ -64,7 +64,7 @@ void home_update()
     case 0:
         //////// ‰Šúİ’è ////////
 
-        sprBack = sprite_load(L"./Data/Images/m.png");
+        sprBack    = sprite_load(L"./Data/Images/m.png");
         sprSelect1 = sprite_load(L"./Data/Images/kari.png");
         sprSelect2 = sprite_load(L"./Data/Images/kari.png");
         sprSelect3 = sprite_load(L"./Data/Images/kari.png");
