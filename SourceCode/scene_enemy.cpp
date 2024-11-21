@@ -1,4 +1,5 @@
 #include "scene_enemy.h"
+#include "Aitem.h"
 
 Sprite* sprNPC[5];
 
@@ -10,6 +11,10 @@ int NPCCard;
 
 extern bool UseCard[10];
 extern int NPCNUM;
+extern int money;
+
+extern bool AitemDATE[7];
+//‘I‚Ô‚Ì‚Íˆê‰ñ‚¾‚¯‚Å‚¢‚¢
 bool Check;
 
 void enemy_init()
@@ -42,7 +47,13 @@ void enemy_update()
 		break;
 	}
 	if (Check == false) {
-		NPCCard = 4;
+		//NPCCard = 4;
+		if (AitemDATE[0] == false) {
+			NPCCard = rand() % 5;
+		}
+		else {
+			NPCCard =money;
+		}
 		UseCard[NPCCard + 4] == true;
 	}
 }
