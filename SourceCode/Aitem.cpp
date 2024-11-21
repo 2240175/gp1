@@ -89,5 +89,10 @@ void Aitem_render()
 
 void AitemBuy()
 {
+	//ƒAƒCƒeƒ€”­“®
+	//‚Ù‚©‚ÌêŠ‚ÉˆÚ“®‚³‚¹‚é
+	//–]‰“‹¾”­“®
+	if (AitemDATE[0] == true) {
 
+	}
 }
