@@ -49,10 +49,12 @@ void enemy_update()
 	if (Check == false) {
 		//NPCCard = 4;
 		if (AitemDATE[0] == false) {
-			NPCCard = rand() % 5;
+			NPCCard = rand() % 5 ;
+			NPCNUM = NPCCard+ 1	;
 		}
 		else {
 			NPCCard =money;
+			NPCNUM = NPCCard + 1;
 		}
 		UseCard[NPCCard + 4] == true;
 	}
