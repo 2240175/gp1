@@ -9,7 +9,6 @@ MouseManager mouse;
 
 extern int winner;
 extern int raund;
-extern int winraund;
 extern int lossraund;
 
 extern int StarPiece;
@@ -67,27 +66,28 @@ void Aitem_update()
 		}
 	}
 	//時計
-	if (mousePos.x > 399 && mousePos.y > 420 && mousePos.x < 520 && mousePos.y < 520) {
+	if (mousePos.x > 399 && mousePos.y > 420 && mousePos.x < 520 && mousePos.y < 480) {
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[3] == false && StarPiece >= 8) {
 			AitemDATE[3] = true;
 		}
 	}
+
 	//ベル
-	if (mousePos.x > 596 && mousePos.y > 420 && mousePos.x < 724 && mousePos.y < 520) {
+	if (mousePos.x > 596 && mousePos.y > 420 && mousePos.x < 724 && mousePos.y < 480) {
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[4] == false && StarPiece >= 8) {
 			AitemDATE[4] = true;
 		}
 	}
 	//チケット
-	if (mousePos.x > 770 && mousePos.y > 420 && mousePos.x < 900 && mousePos.y < 520) {
+	if (mousePos.x > 770 && mousePos.y > 420 && mousePos.x < 900 && mousePos.y < 480) {
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[5] == false && StarPiece >= 3) {
 			AitemDATE[5] = true;
 		}
 	}
+
 	//戻る
 	if (mousePos.x > 548 && mousePos.y > 486 && mousePos.x < 767 && mousePos.y < 513) {
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-			StarPiece += 0;
 			aitem_time = false;
 		}
 	}
@@ -97,7 +97,7 @@ void Aitem_render()
 {
 	sprite_render(AitemPNG2, 340, 160);
 	if (AitemDATE[0] == true) {
-		sprite_render(AitemCard[money], 900, 300);
+		sprite_render(AitemCard[money], 942, 230);
 	}
 }
 
