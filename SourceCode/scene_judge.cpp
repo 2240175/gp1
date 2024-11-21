@@ -1,10 +1,13 @@
 #include "Card.h"
 #include "scene_enemy.h"
 #include "scene_judge.h"
+#include "Aitem.h"
 
 //•Êƒtƒ@ƒCƒ‹‚Ì•Ï”‚È‚Ç
 extern OBJ2D AnyCard[CARD_MAX];
-extern bool UseCard[10];
+
+extern bool OVERBUY[7];
+extern bool AitemDATE[7];
 
 extern int winner;
 extern int winraund;
@@ -34,8 +37,8 @@ void judge_init()
 	judge_timer = 0;
 	judge_state = 0;
 	judge_time = 0;
-	NPCNUM = 0;
-	PLAYERNUM = 0;
+	//NPCNUM = 0;
+	//PLAYERNUM = 0;
 	enemy_init();
 }
 
@@ -45,12 +48,11 @@ void judge_deinit()
 	judge_state = 0;
 	judge_time = 0;
 
-	for (int i = 0; i < 10; i++) {
-		UseCard[i] = false;
-	}
-
 	getraund = false;
-
+	for (int i = 0; i < 7; i++) {
+		OVERBUY[i] = false;
+		AitemDATE[i] = false;
+	}
 	enemy_deinit();
 	safe_delete(sprck);
 }
@@ -77,16 +79,16 @@ void judge_update()
 		debug::setString("NPC:%d", NPCNUM);
 		debug::setString("PLAYER:%d", PLAYERNUM);
 
-		for (int i = 0; i < 10; i++) {
+		/*for (int i = 0; i < 10; i++) {
 			if (UseCard[i] == true) {
 				if (i < 5) {
 					PLAYERNUM = i + 1;
 				}
-				else {
+				else if (i < 10 && i>4) {
 					NPCNUM = i - 4;
 				}
 			}
-		}
+		}*/
 
 		if (PLAYERNUM < NPCNUM) {
 			debug::setString("NPC WIN");
@@ -96,7 +98,7 @@ void judge_update()
 			debug::setString("PLAYER WIN");
 			winner = WIN;
 		}
-		else {
+		else if(PLAYERNUM == NPCNUM){
 			debug::setString("!!!!!DRAW!!!!!");
 			winner = DRAW;
 		}
@@ -104,6 +106,8 @@ void judge_update()
 		if (getraund == false) {
 			switch (winner) {
 			case DRAW:
+				winraund += 0;
+				lossraund += 0;
 				raund++;
 				break;
 			case WIN:
