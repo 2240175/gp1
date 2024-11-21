@@ -43,6 +43,7 @@ int game_timer;
 //‚Ç‚¤‚Å‚à‚¢‚¢‚à‚Ì
 int checkmouse=0;
 bool onoff = false;
+int count_;
 
 //ƒ‰ƒEƒ“ƒhŸ—˜”s–kŠ·ŽZ—p
 int winner = DRAW;
@@ -84,7 +85,7 @@ int NPCPiece;
 //--------------------------------------
 void game_init()
 {
-
+    count_ = 0;
     Select = false;
     stop = false;
     aitem_time = false;
@@ -103,10 +104,10 @@ void game_init()
         PLAYERNUM = 0;
         NPCNUM = 0;
         //ƒ‰ƒEƒ“ƒh‚Ì‰Šú‰»–hŽ~
-        raund = 1;
+        raund = 0;
         winraund = 0;
         lossraund = 0;
-
+        winner = DRAW;
 
         //Œ»Ý‚Ìƒ‰ƒEƒ“ƒh
         nowraund = 1;
@@ -214,7 +215,18 @@ void game_update()
             raund = nowraund;
         }
 
-
+        if (raund == 1) {
+            switch (winner) {
+            case WIN:
+                break;
+            case DRAW:
+                winraund = 0;
+                break;
+            case LOSS:
+                winraund = 0;
+                break;
+            }
+        }
 
         if (TRG(0) & PAD_SELECT)
         {
@@ -249,6 +261,7 @@ void game_update()
     }
     game_timer++;
     timer++;
+    count_++;
     if (timer > 10) {
         timer = 0;
     }
@@ -268,21 +281,24 @@ void game_render()
 
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
-    sprite_render(sprA, 0, 0);
+    if (aitem_time == false) {
+        sprite_render(sprA, 0, 0, 1, 1, 0, 0, 1280, 720, 0, 0, ToRadian(0),
+            1, 1, 1, 1);
+    }
 
     //‚±‚ê‚Í‰æ‘œ‚ÌˆÊ’u‚É‡‚Á‚½‚Æ‚«‚É”½‰ž‚·‚é‚æ‚¤‚É‚µ‚Ä‚¢‚é
     //ƒKƒWƒFƒbƒgw“ü
     sprite_render(sprB, 0, 0);
 
-    if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
-        sprite_render(sprC, 0, 0);
-        if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-            aitem_time = true;
+    if (aitem_time == false) {
+        if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
+            sprite_render(sprC, 0, 0);
+            if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                aitem_time = true;
+            }
         }
     }
-    else {
-        sprite_render(sprSel[1], 300, 100);
-    }
+
 
     Card_render();
 
