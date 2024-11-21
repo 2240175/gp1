@@ -6,6 +6,8 @@
 extern OBJ2D player;
 extern OBJ2D AnyCard[CARD_MAX];
 
+extern int PLAYERNUM;
+
 extern bool UseCard[10];
 extern bool Select;
 
@@ -58,7 +60,8 @@ void judge()
 		if (!AnyCard[i].moveAlg)              continue;
 		if (hitCheck(&player, &AnyCard[i]))
 		{
-			UseCard[i] = true;
+			//UseCard[i] = true;
+			PLAYERNUM = i + 1;
 			Select = true;
 		}
 	}
