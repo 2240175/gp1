@@ -45,7 +45,7 @@ int checkmouse=0;
 bool onoff = false;
 
 //ラウンド勝利敗北換算用
-int winner;
+int winner = DRAW;
 int raund;
 int winraund;
 int lossraund;
@@ -63,6 +63,8 @@ int timer;
 
 extern int PLAYERNUM;
 extern int NPCNUM;
+
+extern bool AitemDATE[7];
 
 //カードデータ
 //プレイヤー用
@@ -104,8 +106,7 @@ void game_init()
         raund = 1;
         winraund = 0;
         lossraund = 0;
-        //最初だけ
-        winner = DRAW;
+
 
         //現在のラウンド
         nowraund = 1;
@@ -218,7 +219,7 @@ void game_update()
         if (TRG(0) & PAD_SELECT)
         {
             nextScene = SCENE_TITLE;
-            StarPiece=100;
+            StarPiece=0;
             NPCPiece=0;
             break;
         }
@@ -242,7 +243,6 @@ void game_update()
         {
             nextScene = SCENE_JUDGE;
         }
-
 
 
         break;
