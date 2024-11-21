@@ -52,7 +52,7 @@ void score_render()
 		sprite_render(sprScore[1], 0, 250);
 		break;
 	case 2:
-		sprite_render(sprScore[2], 0, 250);
+		sprite_render(sprScore[3], 0, 250);
 		break;
 	}
 }
