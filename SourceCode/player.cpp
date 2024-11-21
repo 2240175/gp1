@@ -110,6 +110,6 @@ void player_render()
         player.radius,
         { 1, 1 },
         ToRadian(0),
-        { 0.5f, 0.0f, 1.0f, 0.5f }
+        { 0.5f, 0.0f, 1.0f, 0.0f }
     );
 }
