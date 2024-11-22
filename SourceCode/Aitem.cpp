@@ -3,8 +3,10 @@
 bool AitemNum[10] = { false };
 
 Sprite* AitemPNG;
-Sprite* AitemPNG2;
+Sprite* BLACK;
+
 Sprite* AitemCard[5];
+Sprite* AitemInfo[6];
 MouseManager mouse;
 
 extern int winner;
@@ -18,24 +20,39 @@ extern bool aitem_time;
 bool AitemDATE[7] = { false };
 bool OVERBUY[7] = { false };
 
+bool Info_state[6];
+
 int money;
 
 
 void Aitem_init()
 {
+	for (int i = 0; i < 6; i++) {
+		Info_state[i] = { false };
+	}
+
 	AitemPNG = sprite_load(L"./Data/Images/Aitem/Aitem.png");
-	AitemPNG2 = sprite_load(L"./Data/Images/Aitem/Aitem2.png");
+
+	BLACK = sprite_load(L"./Data/Images/Aitem/black.png");
+
 	AitemCard[0] = sprite_load(L"./Data/Images/Card/one.png");
 	AitemCard[1] = sprite_load(L"./Data/Images/Card/two.png");
 	AitemCard[2] = sprite_load(L"./Data/Images/Card/three.png");
 	AitemCard[3] = sprite_load(L"./Data/Images/Card/four.png");
 	AitemCard[4] = sprite_load(L"./Data/Images/Card/one.png");
+
+	AitemInfo[0]= sprite_load(L"./Data/Images/Aitem/telescope.png");
+	AitemInfo[1]= sprite_load(L"./Data/Images/Aitem/candy.png");
+	AitemInfo[2]= sprite_load(L"./Data/Images/Aitem/UFO.png");
+	AitemInfo[3]= sprite_load(L"./Data/Images/Aitem/clock.png");
+	AitemInfo[4]= sprite_load(L"./Data/Images/Aitem/bell.png");
+	AitemInfo[5]= sprite_load(L"./Data/Images/Aitem/ticket.png");
 }
 
 void Aitem_deinit()
 {
 	safe_delete(AitemPNG);
-	safe_delete(AitemPNG2);
+	safe_delete(BLACK);
 	for (int i = 0; i < 5; i++) {
 		safe_delete(AitemCard[i]);
 	}
@@ -48,56 +65,113 @@ void Aitem_update()
 	mouse.Update();
 	POINT mousePos = mouse.GetPosition();
 	//望遠鏡
-	if (mousePos.x > 399 && mousePos.y > 226 && mousePos.x < 520 && mousePos.y < 343) {
+	if (mousePos.x > 399 && mousePos.y > 196 && mousePos.x < 520 && mousePos.y < 313) {
+		for (int i = 0; i < 6; i++) {
+			Info_state[i] = false;
+		}
+			Info_state[0] = true;
+		sprite_render(AitemInfo[0], 0, 0);
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000&& AitemDATE[0] == false&&StarPiece>=8) {
 			AitemDATE[0] = true;
 		}
 	}
 	//キャンディー
-	if (mousePos.x > 596 && mousePos.y > 226 && mousePos.x < 724 && mousePos.y < 343) {
+	if (mousePos.x > 596 && mousePos.y > 196 && mousePos.x < 724 && mousePos.y < 313) {
+		for (int i = 0; i < 6; i++) {
+			Info_state[i] = false;
+		}
+		Info_state[1] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[1] == false && StarPiece >= 8) {
 			AitemDATE[1] = true;
 		}
 	}
 	//UFO
-	if (mousePos.x > 770 && mousePos.y > 226 && mousePos.x < 900 && mousePos.y < 343) {
+	if (mousePos.x > 770 && mousePos.y > 196 && mousePos.x < 900 && mousePos.y < 313) {
+		for (int i = 0; i < 6; i++) {
+			Info_state[i] = false;
+		}
+		Info_state[2] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[2] == false && StarPiece >= 4) {
 			AitemDATE[2] = true;
 		}
 	}
 	//時計
-	if (mousePos.x > 399 && mousePos.y > 420 && mousePos.x < 520 && mousePos.y < 480) {
+	if (mousePos.x > 399 && mousePos.y > 324 && mousePos.x < 520 && mousePos.y < 450) {
+		for (int i = 0; i < 6; i++) {
+			Info_state[i] = false;
+		}
+		Info_state[3] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[3] == false && StarPiece >= 8) {
 			AitemDATE[3] = true;
 		}
 	}
-
 	//ベル
-	if (mousePos.x > 596 && mousePos.y > 420 && mousePos.x < 724 && mousePos.y < 480) {
+	if (mousePos.x > 596 && mousePos.y > 324 && mousePos.x < 724 && mousePos.y < 450) {
+		for (int i = 0; i < 6; i++) {
+			Info_state[i] = false;
+		}
+		Info_state[4] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[4] == false && StarPiece >= 8) {
 			AitemDATE[4] = true;
 		}
 	}
 	//チケット
-	if (mousePos.x > 770 && mousePos.y > 420 && mousePos.x < 900 && mousePos.y < 480) {
+	if (mousePos.x > 770 && mousePos.y > 324 && mousePos.x < 900 && mousePos.y < 450) {
+		for (int i = 0; i < 6; i++) {
+			Info_state[i] = false;
+		}
+		Info_state[5] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[5] == false && StarPiece >= 3) {
 			AitemDATE[5] = true;
 		}
 	}
 
 	//戻る
-	if (mousePos.x > 548 && mousePos.y > 486 && mousePos.x < 767 && mousePos.y < 513) {
+	if (mousePos.x > 548 && mousePos.y > 456 && mousePos.x < 767 && mousePos.y < 483) {
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			aitem_time = false;
+			for (int i = 0; i < 6; i++) {
+				Info_state[i] = false;
+			}
 		}
 	}
 }
 
 void Aitem_render()
 {
-	sprite_render(AitemPNG2, 340, 160);
+	sprite_render(
+		BLACK,
+		0, 0,
+		1, 1, 
+		0, 0, 
+		1280, 720, 
+		0, 0, 
+		ToRadian(0),
+		1, 1, 1, 0.6f);
+
+
+	sprite_render(AitemPNG, 340, 130);
 	if (AitemDATE[0] == true) {
 		sprite_render(AitemCard[money], 942, 230);
+	}
+
+	if (Info_state[0] == true) {
+		sprite_render(AitemInfo[0], 0, 0);
+	}
+	if (Info_state[1] == true) {
+		sprite_render(AitemInfo[1], 0, 0);
+	}
+	if (Info_state[2] == true) {
+		sprite_render(AitemInfo[2], 0, 0);
+	}
+	if (Info_state[3] == true) {
+		sprite_render(AitemInfo[3], 0, 0);
+	}
+	if (Info_state[4] == true) {
+		sprite_render(AitemInfo[4], 0, 0);
+	}
+	if (Info_state[5] == true) {
+		sprite_render(AitemInfo[5], 0, 0);
 	}
 }
 
