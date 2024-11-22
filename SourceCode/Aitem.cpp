@@ -14,6 +14,7 @@ extern int raund;
 extern int lossraund;
 
 extern int StarPiece;
+extern int game_timer;
 
 extern bool aitem_time;
 
@@ -132,6 +133,7 @@ void Aitem_update()
 			aitem_time = false;
 			for (int i = 0; i < 6; i++) {
 				Info_state[i] = false;
+				game_timer = 0;
 			}
 		}
 	}
