@@ -66,23 +66,23 @@ void enemy_render()
 	//アニメ―ション用
 	switch (NPCCard) {
 	case 0:
-		sprite_render(sprNPC[NPCCard], 300, 500);
+		sprite_render(sprNPC[NPCCard], 900, 200);
 		NPCNUM = 1;
 		break;
 	case 1:
-		sprite_render(sprNPC[NPCCard], 300, 500);
+		sprite_render(sprNPC[NPCCard], 900, 200);
 		NPCNUM = 2;
 		break;
 	case 2:
-		sprite_render(sprNPC[NPCCard], 300, 500);
+		sprite_render(sprNPC[NPCCard], 900, 200);
 		NPCNUM = 3;
 		break;
 	case 3:
-		sprite_render(sprNPC[NPCCard], 300, 500);
+		sprite_render(sprNPC[NPCCard], 900, 200);
 		NPCNUM = 4;
 		break;
 	case 4:
-		sprite_render(sprNPC[NPCCard], 300, 500);
+		sprite_render(sprNPC[NPCCard], 900, 200);
 		NPCNUM =5;
 		break;
 	}
