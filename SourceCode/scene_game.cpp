@@ -98,26 +98,26 @@ void game_init()
 
     if (restart == false) {
         //2回目の星のかけら継続防止
-        StarPiece=50;
+        StarPiece=1000;
         NPCPiece=0;
         //カードリセット
         PLAYERNUM = 0;
         NPCNUM = 0;
         //ラウンドの初期化防止
-        raund = 0;
-        winraund = 7;
-        lossraund = 7;
+        raund = 1;
+        winraund = 0;
+        lossraund = 0;
         winner = DRAW;
 
         //現在のラウンド
-        nowraund = 10;
+        nowraund = 1;
         //最高ラウンド
         MAXRAUND = 8;
 
         //タイトルに戻るとリセット
         restart = true;
     }
-
+    
     Game_Winner = 0;
 
     //ガジェット効果用
