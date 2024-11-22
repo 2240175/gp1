@@ -196,20 +196,20 @@ void judge_update()
 
 
 		if (winraund >= MAXRAUND) {
-			if (judge_timer>300) {
+			if (judge_timer>240) {
 				Game_Winner = 1;
 				nextScene = SCENE_SCORE;
 				break;
 			}
 		}
 		else if (lossraund >= MAXRAUND) {
-			if (judge_timer > 300) {
+			if (judge_timer > 240) {
 				Game_Winner = 2;
 				nextScene = SCENE_SCORE;
 				break;
 			}
 		}
-		else if (judge_timer > 300) {
+		else if (judge_timer > 240) {
 			nextScene = SCENE_GAME;
 		}
 
@@ -233,9 +233,21 @@ void judge_render()
 		1, 1, 1, 0.6f);
 
 
-	
+
 
 	sprite_render(fait[0], 0, 0);
+
+	primitive::rect(525, 200, 244, 30, 0, 0, ToRadian(0), 1, 1, 1, 1);
+	primitive::rect(528, 202, 240, 26, 0, 0, ToRadian(0), 0, 0, 0, 1);
+	if (judge_timer < 60) {
+		primitive::rect(528, 202, judge_timer * 1.5f, 26, 0, 0, ToRadian(0), 0.5f, 0.5f, 0.7f, 1);
+	}
+	else if (judge_timer >= 60 && judge_timer < 209) {
+		primitive::rect(528, 202, (judge_timer + 30), 26, 0, 0, ToRadian(0), 0.5f, 0.5f, 0.7f, 1);
+	}
+	else {
+		primitive::rect(528, 202, 240, 26, 0, 0, ToRadian(0), 0.2f, 0.2f, 0.7f, 1);
+	}
 
 	if (winner == WIN) {
 		sprite_render(fait[2], 0, 0);
