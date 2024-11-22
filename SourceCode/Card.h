@@ -34,9 +34,6 @@ class CardDate
 private:
     int SterCard[5] = { 1,2,3,4,5 };
 public:
-    CardDate();
-    ~CardDate();
-
     void CardShuffle();
 };
 
