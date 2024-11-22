@@ -25,6 +25,7 @@ bool getraund;
 
 
 Sprite* sprck;
+Sprite* fait[4];
 
 int stopraund;
 int judge_timer;
@@ -61,13 +62,21 @@ void judge_deinit()
 
 	enemy_deinit();
 	safe_delete(sprck);
+	for (int i = 0; i < 4; i++) {
+		safe_delete(fait[i]);
+	}
 }
 
 void judge_update()
 {
 	switch (judge_state) {
 	case 0:
-		sprck = sprite_load(L"./Data/Images/m.png");
+		sprck = sprite_load(L"./Data/Images/maingame2.png");
+
+		fait[0] = sprite_load(L"./Data/Images/judge/vs.png");
+		fait[1] = sprite_load(L"./Data/Images/judge/lost.png");
+		fait[2] = sprite_load(L"./Data/Images/judge/get.png");
+		fait[3] = sprite_load(L"./Data/Images/Aitem/black.png");
 		enemy_update();
 		randam = rand() % 5;
 
@@ -153,12 +162,14 @@ void judge_update()
 			case DRAW:
 				break;
 			case WIN:
+				StarPiece += PLAYERNUM;
 				winraund++;
 				if (AitemDATE[4] == true) {
 					winraund++;
 				}
 				break;
 			case LOSS:
+				NPCPiece += NPCNUM;
 				lossraund++;
 				if (AitemDATE[4] == true) {
 					lossraund++;
@@ -198,6 +209,23 @@ void judge_update()
 void judge_render()
 {
 	sprite_render(sprck, 0, 0);
+	sprite_render(fait[3],
+		0, 0,
+		1, 1,
+		0, 0,
+		1280, 720,
+		0, 0,
+		ToRadian(0),
+		1, 1, 1, 0.6f);
+
+	sprite_render(fait[0], 0, 0);
+
+	if (winner == WIN) {
+		sprite_render(fait[2], 0, 0);
+	}
+	else if (winner == LOSS) {
+		sprite_render(fait[1], 0, 0);
+	}
 
 	enemy_render();
 }
