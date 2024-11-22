@@ -245,7 +245,7 @@ void game_update()
 
         player_update();
 
-        if (game_timer > 20&&aitem_time==false) {
+        if (game_timer > 20||aitem_time==false) {
             //‚ ‚½‚è”»’è
             judge();
         }
