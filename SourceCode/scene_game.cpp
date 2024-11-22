@@ -98,19 +98,19 @@ void game_init()
 
     if (restart == false) {
         //2回目の星のかけら継続防止
-        StarPiece=100;
+        StarPiece=50;
         NPCPiece=0;
         //カードリセット
         PLAYERNUM = 0;
         NPCNUM = 0;
         //ラウンドの初期化防止
         raund = 0;
-        winraund = 0;
-        lossraund = 0;
+        winraund = 7;
+        lossraund = 7;
         winner = DRAW;
 
         //現在のラウンド
-        nowraund = 1;
+        nowraund = 10;
         //最高ラウンド
         MAXRAUND = 8;
 
@@ -195,37 +195,8 @@ void game_update()
 
     case 2:
         //////// 通常時 ////////
-
-        debug::setString("");
-        debug::setString("Left Click：selectS");
-        debug::setString("");
-
-        debug::setString("NPC:%d", NPCPiece);
-        debug::setString("StarPiece:%d", StarPiece);
-
-        debug::setString("");
-
-        debug::setString("RAUND:%d", raund);
-        debug::setString("NOW:%d", nowraund);
-        debug::setString("");
-        debug::setString("WIN:%d", winraund);
-        debug::setString("LOSS:%d", lossraund);
-
         if (raund != nowraund) {
             raund = nowraund;
-        }
-
-        if (raund == 1) {
-            switch (winner) {
-            case WIN:
-                break;
-            case DRAW:
-                winraund = 0;
-                break;
-            case LOSS:
-                winraund = 0;
-                break;
-            }
         }
 
         if (TRG(0) & PAD_SELECT)
@@ -276,8 +247,7 @@ void game_render()
     mouseManager.Update();
     POINT mousePos = mouseManager.GetPosition();
 
-    debug::setString("X:%d", mousePos.x);
-    debug::setString("Y:%d", mousePos.y);
+
 
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
@@ -286,9 +256,11 @@ void game_render()
             1, 1, 1, 1);
     }
 
+
+
     //これは画像の位置に合ったときに反応するようにしている
     //ガジェット購入
-    sprite_render(sprB, 0, 0);
+    sprite_render(sprA, 0, 0);
 
     if (aitem_time == false) {
         if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
@@ -304,6 +276,91 @@ void game_render()
 
     if (aitem_time == true) {
         Aitem_render();
+    }
+
+    std::to_string(winraund);
+    std::to_string(lossraund);
+    std::to_string(StarPiece);
+    std::to_string(raund);
+
+    //星のかけら
+    if (StarPiece < 10) {
+        font::textOut(
+            1,
+            std::to_string(StarPiece),
+            VECTOR2(50, 80),
+            VECTOR2(1.0f, 1.0f),
+            VECTOR4(1.0f, 0.9f, 0.9f, 1)
+        );
+    }
+    else {
+        font::textOut(
+            1,
+            std::to_string(StarPiece),
+            VECTOR2(45, 80),
+            VECTOR2(1.0f, 1.0f),
+            VECTOR4(1.0f, 0.9f, 0.9f, 1)
+        );
+    }
+
+    //現在のラウンド
+    if (raund < 10) {
+        font::textOut(
+            1,
+            std::to_string(raund),
+            VECTOR2(621, 60),
+            VECTOR2(1.6f, 1.6f),
+            VECTOR4(1, 1, 1, 1)
+        );
+    }
+    else {
+        font::textOut(
+            1,
+            std::to_string(raund),
+            VECTOR2(600, 70),
+            VECTOR2(1.3f, 1.3f),
+            VECTOR4(1, 1, 1, 1)
+        );
+    }
+
+    //勝利ラウンド
+    if (winraund < 10) {
+        font::textOut(
+            1,
+            std::to_string(winraund),
+            VECTOR2(125, 24),
+            VECTOR2(1.6f, 1.6f),
+            VECTOR4(1, 1, 1, 1)
+        );
+    }
+    else {
+        font::textOut(
+            1,
+            std::to_string(winraund), 
+            VECTOR2(105, 30),
+            VECTOR2(1.1f, 1.1f),
+            VECTOR4(1, 1, 1, 1)
+        );
+    }
+
+    //負けラウンド
+    if (lossraund < 10) {
+        font::textOut(
+            1,
+            std::to_string(lossraund),
+            VECTOR2(1120, 24),
+            VECTOR2(1.6f, 1.6f),
+            VECTOR4(1, 1, 1, 1)
+        );
+    }
+    else {
+        font::textOut(
+            1,
+            std::to_string(lossraund),
+            VECTOR2(1105, 30),
+            VECTOR2(1.1f, 1.1f),
+            VECTOR4(1, 1, 1, 1)
+        );
     }
     player_render();
 
