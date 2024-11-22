@@ -69,6 +69,7 @@ void judge_update()
 	case 0:
 		sprck = sprite_load(L"./Data/Images/m.png");
 		enemy_update();
+		randam = rand() % 5;
 
 		judge_state++;
 		/*fallthrough*/
@@ -79,20 +80,18 @@ void judge_update()
 		/*fallthrough*/
 	case 2:
 		debug::setString("JUDGE TIME");
-		debug::setString("judge_timer:%d", judge_timer/60);
+		debug::setString("judge_timer:%d", judge_timer / 60);
 
 
 		debug::setString("NPC	:%d", NPCNUM);
 		debug::setString("PLAYER:%d", PLAYERNUM);
-
-		if (AitemDATE[2] == true&&NPCNUM>1) {
-			NPCNUM-=1;
-			debug::setString("Stae Dawn NPC	:%d", NPCNUM);
-			AitemDATE[2] = false;
-		}
-
 		//無条件勝敗アイテムがオフの時
 		if (AitemDATE[5] == false) {
+			if (AitemDATE[2] == true && NPCNUM > 1) {
+				NPCNUM -= 1;
+				debug::setString("Stae Dawn NPC	:%d", NPCNUM);
+				AitemDATE[2] = false;
+			}
 			if (AitemDATE[3] == false) {
 				if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
 					debug::setString("			LOSS");
@@ -133,55 +132,42 @@ void judge_update()
 		}
 		//onの時
 		else if (AitemDATE[5] == true) {
-			randam = rand() % 5;
 			if (randam == 3) {
+				winner = WIN;
 				debug::setString("Ticket	WIN!");
-				winner == WIN;
 			}
 			else {
+				winner = LOSS;
 				debug::setString("Ticket	LOSS");
-				winner == LOSS;
 			}
-			AitemDATE[5] = false;
 		}
+
+		debug::setString("randam:%d", randam);
 
 		if (getraund == false) {
-			if (AitemDATE[4] == false) {
-				if (winner == WIN) {
-					StarPiece += PLAYERNUM;
-					winraund += 1;
-				}
-				else if (winner == DRAW) {
-					winraund += 0;
-					lossraund += 0;
-				}
-				else if (winner == LOSS) {
-
-					NPCPiece += NPCNUM;
-					lossraund += 1;
-
-				}
+			if (AitemDATE[5] == true && winner == DRAW) {
+				winner = LOSS;
 			}
-			else if (AitemDATE[4] == true) {
-				if (winner == WIN) {
-					StarPiece += PLAYERNUM;
-					winraund += 2;
-				}
-				else if (winner == DRAW) {
-					winraund += 0;
-					lossraund += 0;
-				}
-				else if (winner == LOSS) {
 
-					NPCPiece += NPCNUM;
-					lossraund += 2;
-
+			switch (winner) {
+			case DRAW:
+				break;
+			case WIN:
+				winraund++;
+				if (AitemDATE[4] == true) {
+					winraund++;
 				}
+				break;
+			case LOSS:
+				lossraund++;
+				if (AitemDATE[4] == true) {
+					lossraund++;
+				}
+				break;
 			}
-			raund++;
-			getraund = true;
 		}
-
+		raund++;
+		getraund = true;
 
 
 		if (winraund >= MAXRAUND) {
@@ -191,7 +177,7 @@ void judge_update()
 				break;
 			}
 		}
-		else if(lossraund >= MAXRAUND){
+		else if (lossraund >= MAXRAUND) {
 			if (TRG(0) & PAD_TRG1) {
 				Game_Winner = 2;
 				nextScene = SCENE_SCORE;
@@ -202,11 +188,10 @@ void judge_update()
 			nextScene = SCENE_GAME;
 		}
 
-		debug::setString("NEXT RAUND:%d",raund);
-
+		debug::setString("NEXT RAUND:%d", raund);
 		break;
-	}
 
+	}
 	judge_timer++;
 }
 
