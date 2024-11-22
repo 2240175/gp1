@@ -27,20 +27,12 @@ Card_INFO cardInfo[] = {
 //アニメーションするとき注意
 Card_SET	cardSet[]=
 {
-	{0,{130,350}},
-	{1,{385,250}},
-	{2,{640,350}},
-	{3,{895,250}},
-	{4,{1150,350}},
+	{0,{149,396}},
+	{1,{385,233}},
+	{2,{640,351}},
+	{3,{896,233}},
+	{4,{1133,395}},
 };
-
-CardDate::CardDate()
-{
-}
-
-CardDate::~CardDate()
-{
-}
 
 void CardDate::CardShuffle()
 {
@@ -158,7 +150,7 @@ void Card_render()
 		primitive::circle(
 			AnyCard[i].pos+AnyCard[i].offset, AnyCard[i].radius,
 			{ 1.0f, 1.0f }, ToRadian(0),
-			{ 1.0f, 0.3f, 0.5f, 0.0f }
+			{ 1.0f, 0.3f, 0.5f, 0.5f }
 		);
 	}
 }
