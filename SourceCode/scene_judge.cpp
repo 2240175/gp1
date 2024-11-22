@@ -9,6 +9,8 @@ extern OBJ2D AnyCard[CARD_MAX];
 extern bool OVERBUY[7];
 extern bool AitemDATE[7];
 
+
+
 extern int winner;
 extern int winraund;
 extern int lossraund;
@@ -23,6 +25,7 @@ extern int Game_Winner;
 bool getraund;
 
 
+Sprite* PlayerCard[5];
 
 Sprite* sprck;
 Sprite* fait[4];
@@ -65,6 +68,9 @@ void judge_deinit()
 	for (int i = 0; i < 4; i++) {
 		safe_delete(fait[i]);
 	}
+	for (int i = 0; i < 5; i++) {
+		safe_delete(PlayerCard[i]);
+	}
 }
 
 void judge_update()
@@ -72,11 +78,18 @@ void judge_update()
 	switch (judge_state) {
 	case 0:
 		sprck = sprite_load(L"./Data/Images/maingame2.png");
-
+		//勝敗画像
 		fait[0] = sprite_load(L"./Data/Images/judge/vs.png");
 		fait[1] = sprite_load(L"./Data/Images/judge/lost.png");
 		fait[2] = sprite_load(L"./Data/Images/judge/get.png");
 		fait[3] = sprite_load(L"./Data/Images/Aitem/black.png");
+		//プレイヤーカード画像
+		PlayerCard[0]=sprite_load(L"./Data/Images/Card/one.png");
+		PlayerCard[1]=sprite_load(L"./Data/Images/Card/two.png");
+		PlayerCard[2]=sprite_load(L"./Data/Images/Card/three.png");
+		PlayerCard[3]=sprite_load(L"./Data/Images/Card/four.png");
+		PlayerCard[4]=sprite_load(L"./Data/Images/Card/one.png");
+
 		enemy_update();
 		randam = rand() % 5;
 
@@ -152,6 +165,7 @@ void judge_update()
 		}
 
 		debug::setString("randam:%d", randam);
+		debug::setString("TIMER:%d", judge_timer/60);
 
 		if (getraund == false) {
 			if (AitemDATE[5] == true && winner == DRAW) {
@@ -182,20 +196,20 @@ void judge_update()
 
 
 		if (winraund >= MAXRAUND) {
-			if (TRG(0) & PAD_TRG1) {
+			if (judge_timer>300) {
 				Game_Winner = 1;
 				nextScene = SCENE_SCORE;
 				break;
 			}
 		}
 		else if (lossraund >= MAXRAUND) {
-			if (TRG(0) & PAD_TRG1) {
+			if (judge_timer > 300) {
 				Game_Winner = 2;
 				nextScene = SCENE_SCORE;
 				break;
 			}
 		}
-		else if (TRG(0) & PAD_TRG1) {
+		else if (judge_timer > 300) {
 			nextScene = SCENE_GAME;
 		}
 
@@ -218,6 +232,9 @@ void judge_render()
 		ToRadian(0),
 		1, 1, 1, 0.6f);
 
+
+	
+
 	sprite_render(fait[0], 0, 0);
 
 	if (winner == WIN) {
@@ -226,6 +243,8 @@ void judge_render()
 	else if (winner == LOSS) {
 		sprite_render(fait[1], 0, 0);
 	}
+
+	sprite_render(PlayerCard[PLAYERNUM-1], 105, 200);
 
 	enemy_render();
 }
