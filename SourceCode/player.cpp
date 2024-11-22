@@ -68,8 +68,8 @@ void player_update()
         player.pos = { 0,0 };
         player.scale = { 1.0f,1.0f };
         player.texPos = { 0,0 };
-        player.texSize = { 50, 50 };
-        player.pivot = { 25,25 };
+        player.texSize = { 38, 36 };
+        player.pivot = { 19,18 };
         player.color = { 1,1,1,1 };
 
         player.radius = 12;
