@@ -175,7 +175,7 @@ void game_update()
 
         sprB = sprite_load(L"./Data/Images/maingame.png");
         sprA = sprite_load(L"./Data/Images/maingame2.png");
-        sprC = sprite_load(L"./Data/Images/ui2.png");
+        sprC = sprite_load(L"./Data/Images/ui.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
         
