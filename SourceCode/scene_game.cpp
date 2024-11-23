@@ -20,7 +20,7 @@
 
 //------< 画像読み込み用 >---------------------------------------------------------------
 Sprite* sprB;
-Sprite* sprA;
+Sprite* sprUra;
 Sprite* sprC;
 Sprite* sprSel[2];
 MouseManager mouseManager;
@@ -64,6 +64,7 @@ int timer;
 
 extern int PLAYERNUM;
 extern int NPCNUM;
+extern bool UseCard[5];
 
 extern bool AitemDATE[7];
 
@@ -101,7 +102,7 @@ void game_init()
         StarPiece=1000;
         NPCPiece=0;
         //カードリセット
-        PLAYERNUM = 0;
+        PLAYERNUM = -1;
         NPCNUM = 0;
         //ラウンドの初期化防止
         raund = 1;
@@ -144,7 +145,7 @@ void game_deinit()
 
     //画像
     safe_delete(sprB);
-    safe_delete(sprA);
+    safe_delete(sprUra);
     safe_delete(sprC);
     safe_delete(sprSel[0]);
     safe_delete(sprSel[1]);
@@ -174,7 +175,7 @@ void game_update()
         //////// 初期設定 ////////
 
         sprB = sprite_load(L"./Data/Images/maingame.png");
-        sprA = sprite_load(L"./Data/Images/maingame2.png");
+        sprUra = sprite_load(L"./Data/Images/Card/ura.png");
         sprC = sprite_load(L"./Data/Images/ui.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
@@ -205,6 +206,12 @@ void game_update()
             StarPiece=0;
             NPCPiece=0;
             break;
+        }
+
+        if ((raund - 1) % 5 == 0) {
+            for (int i = 0; i < 5; i++) {
+                UseCard[i] = false ;
+            }
         }
 
         Card_update();
@@ -252,7 +259,7 @@ void game_render()
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
     if (aitem_time == false) {
-        sprite_render(sprA, 0, 0, 1, 1, 0, 0, 1280, 720, 0, 0, ToRadian(0),
+        sprite_render(sprB, 0, 0, 1, 1, 0, 0, 1280, 720, 0, 0, ToRadian(0),
             1, 1, 1, 1);
     }
 
@@ -260,7 +267,7 @@ void game_render()
 
     //これは画像の位置に合ったときに反応するようにしている
     //ガジェット購入
-    sprite_render(sprA, 0, 0);
+    sprite_render(sprB, 0, 0);
 
     if (aitem_time == false) {
         if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
@@ -273,6 +280,33 @@ void game_render()
 
 
     Card_render();
+    switch (int card = 0) {
+    case 0:
+        if (UseCard[card] == true) {
+            sprite_render(sprUra, 21.5f, 268.5f);
+        }
+        card++;
+    case 1:
+        if (UseCard[card] == true) {
+            sprite_render(sprUra, 257.5f, 105.5f);
+        }
+        card++;
+    case 2:
+        if (UseCard[card] == true) {
+            sprite_render(sprUra, 512.5f, 223.5f);
+        }
+        card++;
+    case 3:
+        if (UseCard[card] == true) {
+            sprite_render(sprUra, 768.5f, 105.5f);
+        }
+        card++;
+    case 4:
+        if (UseCard[card] == true) {
+            sprite_render(sprUra, 1005.5f, 267.5f);
+        }
+        break;
+    }
 
     if (aitem_time == true) {
         Aitem_render();
