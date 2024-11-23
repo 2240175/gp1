@@ -17,6 +17,7 @@ extern int StarPiece;
 extern int game_timer;
 
 extern bool aitem_time;
+extern bool npc[5];
 
 bool AitemDATE[7] = { false };
 bool OVERBUY[7] = { false };
@@ -184,7 +185,11 @@ void AitemBuy()
 	//ñ]âìãæçwì¸
 	if (AitemDATE[0] == true && OVERBUY[0] == false) {
 		StarPiece -= 8;
-		money = rand() % 5;
+		while (1) {
+			money = rand() % 5;
+			if (npc[money] == false) break;
+		}
+		npc[money] = true;
 		OVERBUY[0] = true;
 		//AitemDATE[0] == false;
 	}
