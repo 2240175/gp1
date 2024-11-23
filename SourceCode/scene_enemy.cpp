@@ -16,11 +16,14 @@ extern bool AitemDATE[7];
 //選ぶのは一回だけでいい
 bool Check;
 
+//同じのを選ばないように
+bool npc[5] = {false};
+
 void enemy_init()
 {
 	enemy_timer = 0;
 	enemy_state = 0;
-	NPCCard = 0;
+	NPCCard = -1;
 	Check = false;
 }
 
@@ -48,8 +51,12 @@ void enemy_update()
 	if (Check == false) {
 		//NPCCard = 4;
 		if (AitemDATE[0] == false) {
-			NPCCard = rand() % 5 ;
-			NPCNUM = NPCCard+ 1	;
+			while (1) {
+				NPCCard = rand() % 5;
+				if (npc[NPCCard] == false) break;
+			}
+			NPCNUM = NPCCard + 1;
+			npc[NPCCard] = true;
 		}
 		else {
 			NPCCard =money;
@@ -61,6 +68,11 @@ void enemy_update()
 void enemy_render()
 {
 	//敵のカードを映す場所
+	if (AitemDATE[2] == true && NPCNUM > 1) {
+		NPCCard -= 1;
+		debug::setString("Stae Dawn NPC	:%d", NPCNUM);
+		AitemDATE[2] = false;
+	}
 	//アニメ―ション用
 	switch (NPCCard) {
 	case 0:
