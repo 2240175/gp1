@@ -19,8 +19,9 @@
 //------< ç\ë¢ëÃ >---------------------------------------------------------------
 
 //------< âÊëúì«Ç›çûÇ›óp >---------------------------------------------------------------
-Sprite* sprB;
 Sprite* sprUra;
+Sprite* sprB;
+Sprite* sprA;
 Sprite* sprC;
 Sprite* sprSel[2];
 MouseManager mouseManager;
@@ -65,6 +66,7 @@ int timer;
 extern int PLAYERNUM;
 extern int NPCNUM;
 extern bool UseCard[5];
+extern bool npc[5];
 
 extern bool AitemDATE[7];
 
@@ -144,8 +146,9 @@ void game_deinit()
     player_deinit();
 
     //âÊëú
-    safe_delete(sprB);
     safe_delete(sprUra);
+    safe_delete(sprB);
+    safe_delete(sprA);
     safe_delete(sprC);
     safe_delete(sprSel[0]);
     safe_delete(sprSel[1]);
@@ -174,8 +177,9 @@ void game_update()
     case 0:
         //////// èâä˙ê›íË ////////
 
-        sprB = sprite_load(L"./Data/Images/maingame.png");
         sprUra = sprite_load(L"./Data/Images/Card/ura.png");
+        sprB = sprite_load(L"./Data/Images/maingame.png");
+        sprA = sprite_load(L"./Data/Images/round.png");
         sprC = sprite_load(L"./Data/Images/ui.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
@@ -211,6 +215,7 @@ void game_update()
         if ((raund - 1) % 5 == 0) {
             for (int i = 0; i < 5; i++) {
                 UseCard[i] = false ;
+                npc[i] = false ;
             }
         }
 
@@ -311,6 +316,9 @@ void game_render()
     if (aitem_time == true) {
         Aitem_render();
     }
+
+    sprite_render(sprA, 0, 0);
+
 
     std::to_string(winraund);
     std::to_string(lossraund);
