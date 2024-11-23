@@ -109,11 +109,7 @@ void judge_update()
 		debug::setString("PLAYER:%d", PLAYERNUM);
 		//無条件勝敗アイテムがオフの時
 		if (AitemDATE[5] == false) {
-			if (AitemDATE[2] == true && NPCNUM > 1) {
-				NPCNUM -= 1;
-				debug::setString("Stae Dawn NPC	:%d", NPCNUM);
-				AitemDATE[2] = false;
-			}
+
 			if (AitemDATE[3] == false) {
 				if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
 					debug::setString("			LOSS");
