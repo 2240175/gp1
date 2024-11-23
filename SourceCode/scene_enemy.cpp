@@ -9,7 +9,6 @@ int enemy_state;
 
 int NPCCard;
 
-extern bool UseCard[10];
 extern int NPCNUM;
 extern int money;
 
@@ -56,7 +55,6 @@ void enemy_update()
 			NPCCard =money;
 			NPCNUM = NPCCard + 1;
 		}
-		UseCard[NPCCard + 4] == true;
 	}
 }
 
