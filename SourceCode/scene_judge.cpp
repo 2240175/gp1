@@ -134,15 +134,15 @@ void judge_update()
 			}
 			//時計効果ありの時（反転）
 			else if (AitemDATE[3] == true) {
-				if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
+				if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
 					debug::setString("			WIN!");
 					winner = WIN;
 				}
-				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == true) {
+				else if (PLAYERNUM < NPCNUM && AitemDATE[1] == true) {
 					debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
-				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
+				else if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
 					debug::setString("			LOSS");
 					winner = LOSS;
 				}
@@ -237,16 +237,15 @@ void judge_render()
 
 	sprite_render(fait[0], 0, 0);
 
+	//タイマー表示
 	primitive::rect(525, 200, 244, 30, 0, 0, ToRadian(0), 1, 1, 1, 1);
-	primitive::rect(528, 202, 240, 26, 0, 0, ToRadian(0), 0, 0, 0, 1);
-	if (judge_timer < 60) {
-		primitive::rect(528, 202, judge_timer * 1.5f, 26, 0, 0, ToRadian(0), 0.5f, 0.5f, 0.7f, 1);
-	}
-	else if (judge_timer >= 60 && judge_timer < 209) {
-		primitive::rect(528, 202, (judge_timer + 30), 26, 0, 0, ToRadian(0), 0.5f, 0.5f, 0.7f, 1);
+	primitive::rect(527, 202, 240, 26, 0, 0, ToRadian(0), 0, 0, 0, 1);
+	if (judge_timer < 238) {
+		primitive::rect(527, 202, judge_timer, 26, 0, 0, ToRadian(0), 1.0f, 0.6f, 0.7f, 1);	//ピンク
+		//primitive::rect(528, 202, judge_timer * 1.5f, 26, 0, 0, ToRadian(0), 0.8f, 1.0f, 0.4f, 1);	//黄緑
 	}
 	else {
-		primitive::rect(528, 202, 240, 26, 0, 0, ToRadian(0), 0.2f, 0.2f, 0.7f, 1);
+		primitive::rect(527, 202, 240, 26, 0, 0, ToRadian(0), 1.0f, 0.5f, 0.6f, 1);		//濃いピンク
 	}
 
 	if (winner == WIN) {
