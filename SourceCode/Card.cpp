@@ -22,7 +22,7 @@ Card_INFO cardInfo[] = {
 	{ NULL,L"./Data/Images/Card/two.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard2},//2のカード
 	{ NULL,L"./Data/Images/Card/three.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard3},//3のカード
 	{ NULL,L"./Data/Images/Card/four.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard4},//4のカード
-	{ NULL,L"./Data/Images/Card/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
+	{ NULL,L"./Data/Images/Card/five.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
 };
 
 //カードの配置
@@ -323,22 +323,13 @@ void moveCard5(OBJ2D* obj)
 }
 
 //地獄のif文がよみがえる
-void Card_act()
+void Card_reset()
 {
-	//if (UseCard[0] == true) {
-	//	PLAYERNUM = 1;
-	//	AnyCard[0].moveAlg = nullptr;
-	//}
-	//else if (UseCard[1] == true) {
-	//	PLAYERNUM = 2;
-	//}
-	//else if (UseCard[2] == true) {
-	//	PLAYERNUM = 3;
-	//}
-	//else if (UseCard[3] == true) {
-	//	PLAYERNUM = 4;
-	//}
-	//else if (UseCard[4] == true) {
-	//	PLAYERNUM = 5;
-	//}
+	card_state = 0;
+	card_timer = 0;
+	SelCard = 0;
+	ResetRaund = 0;
+	for (int i = 0; i < 5; i++) {
+		UseCard[i] =  false ;
+	}
 }
