@@ -247,6 +247,8 @@ void game_update()
         //////// 通常時 ////////
             //マッチポイント音楽
         music::setVolume(4,0.1f);
+        music::setVolume(2,0.5f);
+        music::setVolume(3,0.5f);
 
         if (raund != nowraund) {
             raund = nowraund;
