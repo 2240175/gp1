@@ -3,8 +3,55 @@
 
 int title_state;
 int title_timer;
+int clear_timer;
+
+bool next_state = false; //リセットうごかすため
+
+
+float velocity1 = 0.0f;//初期速度
+float accelerator1 = -0.3f;//初期加速度
+int posX1 = 640;
+int posY1 = 1000;//星１の座標
+int star_state1 = 0;//状態を管理
+bool star1_active = false;
+
+
+float velocity2 = 0.0f;//初期速度
+float accelerator2 = -0.4f;//初期加速度
+int posX2 = 370;
+int posY2 = 1000;//星２
+int star_state2 = 0;//状態を管理
+bool star2_active = false;
+
+float velocity3 = 0.0f;//初期速度
+float accelerator3 = -0.4f;//初期加速度
+int posX3 = 910;
+int posY3 = 1000;//星３
+int star_state3 = 0;//状態を管理
+bool star3_active = false;
+
+float velocity4 = 0.0f;//初期速度
+float accelerator4 = -0.4f;//初期加速度
+int posX4 = 100;
+int posY4 = 1000;//星３
+int star_state4 = 0;//状態を管理
+bool star4_active = false;
+
+float velocity5 = 0.0f;//初期速度
+float accelerator5 = -0.4f;//初期加速度
+int posX5 = 1180;
+int posY5 = 1000;//星３
+int star_state5 = 0;//状態を管理
+bool star5_active = false;
+
 
 Sprite* sprCar;
+Sprite* sprStar1;
+Sprite* sprStar2;
+Sprite* sprStar3;
+Sprite* sprStar4;
+Sprite* sprStar5;
+
 
 //マウス処理（仮）
 void mousePressed() {
@@ -20,6 +67,7 @@ void title_init()
 {
     title_state = 0;
     title_timer = 0;
+    clear_timer = 0;
 }
 
 //--------------------------------------
@@ -43,6 +91,9 @@ void title_update()
         //////// 初期設定 ////////
 
         sprCar = sprite_load(L"./Data/Images/title.png");
+
+
+
 
         title_state++;
         /*fallthrough*/
