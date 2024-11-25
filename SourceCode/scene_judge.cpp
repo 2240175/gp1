@@ -120,7 +120,6 @@ void judge_update()
 		if (AitemDATE[2] == true && NPCNUM > 1) {
 			NPCNUM--;
 			NPCCard--;
-			NPCLAST--;
 			debug::setString("Stae Dawn NPC	:%d", NPCNUM);
 			AitemDATE[2] = false;
 		}
