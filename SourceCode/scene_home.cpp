@@ -4,6 +4,7 @@
 
 int home_state;
 int home_timer;
+int game_mode;
 
 bool restart;
 
@@ -49,6 +50,8 @@ void home_deinit()
 {    //TODO_11
     player_deinit();
 
+    music::stop(1);
+
     safe_delete(sprBack);
 
     safe_delete(sprSelect1);
@@ -69,7 +72,7 @@ void home_update()
         sprSelect2 = sprite_load(L"./Data/Images/kari.png");
         sprSelect3 = sprite_load(L"./Data/Images/kari.png");
         sprSelect4 = sprite_load(L"./Data/Images/kari.png");
-
+        music::play(1);
         //TODO_10
         home_state++;
         /*fallthrough*/
@@ -101,6 +104,11 @@ void home_update()
         GetCursorPos(&point);                                   // スクリーン座標を取得する
         ScreenToClient(window::getHwnd(), &point);
 
+        if (home_timer > 324060) {
+            music::stop(1);
+            home_timer = 0;
+            music::play(1);
+        }
 
         //すぐ次の画面に移るのを防止するため、判定を数秒（約0.3秒）無効化している
         //そのため一瞬画面に表示されない
@@ -110,6 +118,7 @@ void home_update()
             {
                 select1X = select1Y = 1.3f;
                 if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                    game_mode = 8;
                     nextScene = SCENE_GAME;
                 }
 
@@ -117,14 +126,14 @@ void home_update()
             else
             {
                 select1X = select1Y = 1.0f;
-
             }
 
             if (hitPointAndBlock(point, SELECT2X - 200, SELECT2Y - 35, SELECT2X + 200, SELECT2Y + 35))
             {
                 select2X = select2Y = 1.3f;
                 if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-                    nextScene = SCENE_TITLE;
+                    game_mode = 12;
+                    nextScene = SCENE_GAME;
                 }
             }
             else
@@ -136,6 +145,10 @@ void home_update()
             if (hitPointAndBlock(point, SELECT3X - 200, SELECT3Y - 35, SELECT3X + 200, SELECT3Y + 35))
             {
                 select3X = select3Y = 1.3f;
+                if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                    game_mode = 20;
+                    nextScene = SCENE_GAME;
+                }
             }
             else
             {
@@ -146,6 +159,10 @@ void home_update()
             if (hitPointAndBlock(point, SELECT4X - 200, SELECT4Y - 35, SELECT4X + 200, SELECT4Y + 35))
             {
                 select4X = select4Y = 1.3f;
+                if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                    game_mode = 30;
+                    nextScene = SCENE_GAME;
+                }
             }
             else
             {

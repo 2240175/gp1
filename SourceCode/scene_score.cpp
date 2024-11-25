@@ -9,6 +9,11 @@ Sprite* sprScore[4];
 
 void score_init()
 {
+	//music
+	music::stop(2);
+	music::stop(3);
+	music::stop(4);
+
 	score_timer = 0;
 	score_state = 0;
 }	

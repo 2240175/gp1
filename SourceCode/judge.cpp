@@ -8,8 +8,8 @@ extern OBJ2D AnyCard[CARD_MAX];
 
 extern int PLAYERNUM;
 
-extern bool UseCard[10];
 extern bool Select;
+extern bool UseCard[5];
 
 bool isLeftButtonPressed = false; // 左ボタンが押されたかどうかを追跡するフラグ
 bool isClickHandled = false;       // 押されたクリックが処理済みかどうかを追跡
@@ -60,9 +60,11 @@ void judge()
 		if (!AnyCard[i].moveAlg)              continue;
 		if (hitCheck(&player, &AnyCard[i]))
 		{
-			//UseCard[i] = true;
-			PLAYERNUM = i + 1;
-			Select = true;
+			if (UseCard[i] == false) {
+				PLAYERNUM = i + 1;
+				UseCard[i] = true;
+				Select = true;
+			}
 		}
 	}
 }

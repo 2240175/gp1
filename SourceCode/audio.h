@@ -27,6 +27,9 @@
 #define XWB_STAGE1_LASER    4
 #define XWB_STAGE1_BOMB     5
 
+
+#define MUSIC_MAX			6
+
 //------< ŠÖ” >----------------------------------------------------------------
 void audio_init();
 void audio_deinit();

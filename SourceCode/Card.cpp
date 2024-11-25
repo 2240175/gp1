@@ -6,10 +6,13 @@ int card_state;
 int card_num[5];
 
 //使用未使用判定
-bool UseCard[10] = { false };
+bool UseCard[5] = { false };
+int SelCard = 0;
+int ResetRaund = 0;
 
 extern int PLAYERNUM;
 extern int NPCNUM;
+extern int raund;
 
 OBJ2D AnyCard[CARD_MAX];
 
@@ -19,7 +22,7 @@ Card_INFO cardInfo[] = {
 	{ NULL,L"./Data/Images/Card/two.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard2},//2のカード
 	{ NULL,L"./Data/Images/Card/three.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard3},//3のカード
 	{ NULL,L"./Data/Images/Card/four.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard4},//4のカード
-	{ NULL,L"./Data/Images/Card/one.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
+	{ NULL,L"./Data/Images/Card/five.png",{ 0, 0 }, { 255, 255 }, { 127.5f,  127.5f }, 0.0f, 127.5f, moveCard5},//5のカード
 };
 
 //カードの配置
@@ -102,6 +105,8 @@ void Card_update()
 
 	case 2:
 		//通常時
+
+
 		for (int i = 0; i < CARD_MAX; ++i) {
 			//カードの動き
 			if (AnyCard[i].moveAlg == moveCard1) {
@@ -119,8 +124,11 @@ void Card_update()
 			else if (AnyCard[i].moveAlg == moveCard5) {
 				moveCard5(&AnyCard[i]);
 			}
+			
 			AnyCard[i].timer++;
 		}
+
+
 		debug::setString("Card_timer:%f", card_timer);
 		break;
 	}
@@ -145,12 +153,11 @@ void Card_render()
 			AnyCard[i].color.z, AnyCard[i].color.w
 		);
 
-
 		// カードのあたり領域の描画
 		primitive::circle(
 			AnyCard[i].pos+AnyCard[i].offset, AnyCard[i].radius,
 			{ 1.0f, 1.0f }, ToRadian(0),
-			{ 1.0f, 0.3f, 0.5f, 0.5f }
+			{ 1.0f, 0.3f, 0.5f, 0.0f }
 		);
 	}
 }
@@ -176,8 +183,14 @@ void moveCard1(OBJ2D* obj)
 		/*fallthrough*/
 	case 1:
 		//通常時
-		obj->pos.y += obj->speed.y;
-		obj->radius = 127.5f;
+		if (UseCard[0] == false) {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 127.5f;
+		}
+		else {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 0.0f;
+		}
 		break;
 	}
 }
@@ -201,8 +214,14 @@ void moveCard2(OBJ2D* obj)
 		/*fallthrough*/
 	case 1:
 		//通常時
-		obj->pos.y += obj->speed.y;
-		obj->radius = 127.5f;
+		if (UseCard[1] == false) {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 127.5f;
+		}
+		else {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 0.0f;
+		}
 
 		break;
 	}
@@ -228,8 +247,14 @@ void moveCard3(OBJ2D* obj)
 		/*fallthrough*/
 	case 1:
 		//通常時
-		obj->pos.y += obj->speed.y;
-		obj->radius = 127.5f;
+		if (UseCard[2] == false) {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 127.5f;
+		}
+		else {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 0.0f;
+		}
 		break;
 	}
 }
@@ -254,8 +279,14 @@ void moveCard4(OBJ2D* obj)
 		/*fallthrough*/
 	case 1:
 		//通常時
-		obj->pos.y += obj->speed.y;
-		obj->radius = 127.5f;
+		if (UseCard[3] == false) {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 127.5f;
+		}
+		else {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 0.0f;
+		}
 		break;
 	}
 }
@@ -279,43 +310,26 @@ void moveCard5(OBJ2D* obj)
 		/*fallthrough*/
 	case 1:
 		//通常時
-		obj->pos.y += obj->speed.y;
-		obj->radius = 127.5f;
+		if (UseCard[4] == false) {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 127.5f;
+		}
+		else {
+			obj->pos.y += obj->speed.y;
+			obj->radius = 0.0f;
+		}
 		break;
 	}
 }
 
 //地獄のif文がよみがえる
-void Card_act()
+void Card_reset()
 {
-	if (UseCard[0] == true) {
-		PLAYERNUM = 1;
-	}
-	else if (UseCard[1] == true) {
-		PLAYERNUM = 2;
-	}
-	else if (UseCard[2] == true) {
-		PLAYERNUM = 3;
-	}
-	else if (UseCard[3] == true) {
-		PLAYERNUM = 4;
-	}
-	else if (UseCard[4] == true) {
-		PLAYERNUM = 5;
-	}
-	else if (UseCard[5] == true) {
-		NPCNUM = 1;
-	}
-	else if (UseCard[6] == true) {
-		NPCNUM = 2;
-	}
-	else if (UseCard[7] == true) {
-		NPCNUM = 3;
-	}
-	else if (UseCard[8] == true) {
-		NPCNUM = 4;
-	}
-	else if (UseCard[9] == true) {
-		NPCNUM = 5;
+	card_state = 0;
+	card_timer = 0;
+	SelCard = 0;
+	ResetRaund = 0;
+	for (int i = 0; i < 5; i++) {
+		UseCard[i] =  false ;
 	}
 }

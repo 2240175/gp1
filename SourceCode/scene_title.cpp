@@ -1,5 +1,9 @@
 #include "all.h"
 #include "Mausu.h"
+#include "Card.h"
+
+extern bool AitemDATE[7] ;
+
 
 int title_state;
 int title_timer;
@@ -67,7 +71,16 @@ void title_init()
 {
     title_state = 0;
     title_timer = 0;
-    clear_timer = 0;
+//<<<<<<< HEAD
+//    clear_timer = 0;
+//=======
+//    for (int i = 0; i < MUSIC_MAX; i++) {
+//        music::stop(i);
+//    }
+//    for (int i = 0; i < 7; i++) {
+//        AitemDATE[i] = false;
+//    }
+//>>>>>>> 4f009ebd16182f629001db293b76020f7f696bca
 }
 
 //--------------------------------------
@@ -123,7 +136,11 @@ void title_update()
         break;
     }
 
-
+    if (title_timer > 243600) {
+        music::stop(0);
+        title_timer = 0;
+        music::play(0);
+    }
     
     debug::setString("");
     debug::setString("title_state:%d", title_state);
