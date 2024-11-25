@@ -9,6 +9,8 @@ Sprite* AitemCard[5];
 Sprite* AitemInfo[6];
 MouseManager mouse;
 
+int Aitem_timer;
+
 extern int winner;
 extern int raund;
 extern int lossraund;
@@ -41,7 +43,7 @@ void Aitem_init()
 	AitemCard[1] = sprite_load(L"./Data/Images/Card/two.png");
 	AitemCard[2] = sprite_load(L"./Data/Images/Card/three.png");
 	AitemCard[3] = sprite_load(L"./Data/Images/Card/four.png");
-	AitemCard[4] = sprite_load(L"./Data/Images/Card/one.png");
+	AitemCard[4] = sprite_load(L"./Data/Images/Card/five.png");
 
 	AitemInfo[0]= sprite_load(L"./Data/Images/Aitem/telescope.png");
 	AitemInfo[1]= sprite_load(L"./Data/Images/Aitem/candy.png");
@@ -58,6 +60,7 @@ void Aitem_deinit()
 	for (int i = 0; i < 5; i++) {
 		safe_delete(AitemCard[i]);
 	}
+	Aitem_timer = 0;
 }
 
 void Aitem_update()
@@ -74,6 +77,7 @@ void Aitem_update()
 			Info_state[0] = true;
 		sprite_render(AitemInfo[0], 0, 0);
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000&& AitemDATE[0] == false&&StarPiece>=8) {
+			Aitem_timer = 0;
 			AitemDATE[0] = true;
 		}
 	}
@@ -138,6 +142,8 @@ void Aitem_update()
 			}
 		}
 	}
+
+	Aitem_timer++;
 }
 
 void Aitem_render()
@@ -155,11 +161,22 @@ void Aitem_render()
 
 	sprite_render(AitemPNG, 340, 130);
 	if (AitemDATE[0] == true) {
-		sprite_render(AitemCard[money], 942, 230);
+		if (Aitem_timer < 21) {
+			sprite_render(AitemCard[money], (1280-(Aitem_timer*16.0f)), 230);
+		}
+		else {
+			sprite_render(AitemCard[money], 942, 230);
+		}
 	}
 
+	//ƒAƒCƒeƒ€à–¾
 	if (Info_state[0] == true) {
-		sprite_render(AitemInfo[0], 0, 0);
+		if (Aitem_timer < 50) {
+			sprite_render(AitemInfo[0], 0, -(Aitem_timer*5.0f) + 500);
+		}
+		else {
+			sprite_render(AitemInfo[0], 0, 0);
+		}
 	}
 	if (Info_state[1] == true) {
 		sprite_render(AitemInfo[1], 0, 0);
