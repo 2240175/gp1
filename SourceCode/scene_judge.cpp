@@ -9,6 +9,8 @@ extern OBJ2D AnyCard[CARD_MAX];
 extern bool OVERBUY[7];
 extern bool AitemDATE[7];
 
+extern bool OverPlay;
+extern bool matchpoint;
 
 
 extern int winner;
@@ -21,8 +23,11 @@ extern int StarPiece;
 extern int NPCPiece;
 
 extern int Game_Winner;
+extern int NPCCard;
+extern int NPCLAST;
 
 bool getraund;
+
 
 
 Sprite* PlayerCard[5];
@@ -71,6 +76,7 @@ void judge_deinit()
 	for (int i = 0; i < 5; i++) {
 		safe_delete(PlayerCard[i]);
 	}
+
 }
 
 void judge_update()
@@ -88,7 +94,7 @@ void judge_update()
 		PlayerCard[1]=sprite_load(L"./Data/Images/Card/two.png");
 		PlayerCard[2]=sprite_load(L"./Data/Images/Card/three.png");
 		PlayerCard[3]=sprite_load(L"./Data/Images/Card/four.png");
-		PlayerCard[4]=sprite_load(L"./Data/Images/Card/one.png");
+		PlayerCard[4]=sprite_load(L"./Data/Images/Card/five.png");
 
 		enemy_update();
 		randam = rand() % 5;
@@ -101,12 +107,24 @@ void judge_update()
 		judge_state++;
 		/*fallthrough*/
 	case 2:
+
+
 		debug::setString("JUDGE TIME");
 		debug::setString("judge_timer:%d", judge_timer / 60);
 
 
 		debug::setString("NPC	:%d", NPCNUM);
 		debug::setString("PLAYER:%d", PLAYERNUM);
+
+		//敵のカードを映す場所
+		if (AitemDATE[2] == true && NPCNUM > 1) {
+			NPCNUM--;
+			NPCCard--;
+			NPCLAST--;
+			debug::setString("Stae Dawn NPC	:%d", NPCNUM);
+			AitemDATE[2] = false;
+		}
+
 		//無条件勝敗アイテムがオフの時
 		if (AitemDATE[5] == false) {
 
@@ -119,7 +137,7 @@ void judge_update()
 					debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
-				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
+				else if (PLAYERNUM > NPCNUM) {
 					debug::setString("			WIN");
 					winner = WIN;
 				}
@@ -130,15 +148,15 @@ void judge_update()
 			}
 			//時計効果ありの時（反転）
 			else if (AitemDATE[3] == true) {
-				if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
+				if (PLAYERNUM < NPCNUM) {
 					debug::setString("			WIN!");
 					winner = WIN;
 				}
-				else if (PLAYERNUM < NPCNUM && AitemDATE[1] == true) {
+				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == true) {
 					debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
-				else if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
+				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
 					debug::setString("			LOSS");
 					winner = LOSS;
 				}
@@ -173,15 +191,19 @@ void judge_update()
 				break;
 			case WIN:
 				StarPiece += PLAYERNUM;
-				winraund++;
 				if (AitemDATE[4] == true) {
+					winraund += 2;
+				}
+				else if(AitemDATE[4]==false){
 					winraund++;
 				}
 				break;
 			case LOSS:
 				NPCPiece += NPCNUM;
-				lossraund++;
 				if (AitemDATE[4] == true) {
+					lossraund += 2;
+				}
+				else if (AitemDATE[4] == false) {
 					lossraund++;
 				}
 				break;
@@ -189,7 +211,6 @@ void judge_update()
 		}
 		raund++;
 		getraund = true;
-
 
 		if (winraund >= MAXRAUND) {
 			if (judge_timer>240) {
@@ -251,7 +272,11 @@ void judge_render()
 		sprite_render(fait[1], 0, 0);
 	}
 
-	sprite_render(PlayerCard[PLAYERNUM-1], 105, 200);
-
+	if (judge_timer < 22.5f) {
+		sprite_render(PlayerCard[PLAYERNUM - 1], ((judge_timer*16.0f)-255), 200);
+	}
+	else {
+		sprite_render(PlayerCard[PLAYERNUM - 1], 105, 200);
+	}
 	enemy_render();
 }
