@@ -48,4 +48,4 @@ void moveCard3(OBJ2D* obj);
 void moveCard4(OBJ2D* obj);
 void moveCard5(OBJ2D* obj);
 
-void Card_act();
+void Card_reset();
