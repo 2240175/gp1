@@ -207,6 +207,7 @@ void judge_update()
 				}
 				break;
 			}
+		NPCLAST--;
 		}
 		raund++;
 		getraund = true;
