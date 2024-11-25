@@ -220,13 +220,13 @@ void game_update()
             music::stop(2);
             music::stop(3);
             music::play(4, true);
-            OverPlay == true;
+            OverPlay = true;
         }
         else if ((lossraund - MAXRAUND) == -1 && OverPlay == false) {
             music::stop(2);
             music::stop(3);
             music::play(4, true);
-            OverPlay == true;
+            OverPlay = true;
         }
 
         //ÉJÅ[ÉhâÊëúì«Ç›çûÇ›
@@ -370,8 +370,8 @@ void game_render()
     sprite_render(sprA, 0, 0);
 
 
-    std::to_string(NPCLAST);
     sprite_render(sprK, 1210, 80, 0.25f, 0.25f, 0, 0, 255, 255, 0, 0, ToRadian(0));
+    std::to_string(NPCLAST);
     font::textOut(
         1,
         std::to_string(NPCLAST),
