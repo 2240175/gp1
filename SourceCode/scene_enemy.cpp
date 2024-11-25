@@ -60,7 +60,7 @@ void enemy_update()
 			NPCNUM = NPCCard + 1;
 			npc[NPCCard] = true;
 		}
-		else {
+		else if(AitemDATE[0]==true){
 			NPCCard =money;
 			NPCNUM = NPCCard + 1;
 		}
