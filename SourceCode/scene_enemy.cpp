@@ -8,9 +8,11 @@ int enemy_timer;
 int enemy_state;
 
 int NPCCard;
+int NPCLAST;
 
 extern int NPCNUM;
 extern int money;
+extern int judge_timer;
 
 extern bool AitemDATE[7];
 //選ぶのは一回だけでいい
@@ -23,7 +25,7 @@ void enemy_init()
 {
 	enemy_timer = 0;
 	enemy_state = 0;
-	NPCCard = -1;
+	NPCCard = 0;
 	Check = false;
 }
 
@@ -32,7 +34,7 @@ void enemy_deinit()
 	enemy_timer = 0;
 	enemy_state = 0;
 	NPCCard = 0;
-	for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 		safe_delete(sprNPC[i]);
 	}
 }
@@ -45,7 +47,7 @@ void enemy_update()
 		sprNPC[1] = sprite_load(L"./Data/Images/Card/two.png");
 		sprNPC[2] = sprite_load(L"./Data/Images/Card/three.png");
 		sprNPC[3] = sprite_load(L"./Data/Images/Card/four.png");
-		sprNPC[4] = sprite_load(L"./Data/Images/Card/one.png");
+		sprNPC[4] = sprite_load(L"./Data/Images/Card/five.png");
 		break;
 	}
 	if (Check == false) {
@@ -63,37 +65,65 @@ void enemy_update()
 			NPCNUM = NPCCard + 1;
 		}
 	}
+
 }
 
 void enemy_render()
 {
-	//敵のカードを映す場所
-	if (AitemDATE[2] == true && NPCNUM > 1) {
-		NPCCard -= 1;
-		debug::setString("Stae Dawn NPC	:%d", NPCNUM);
-		AitemDATE[2] = false;
-	}
 	//アニメ―ション用
 	switch (NPCCard) {
 	case 0:
-		sprite_render(sprNPC[NPCCard], 900, 200);
+		if (judge_timer < 22.5f) {
+			sprite_render(sprNPC[NPCCard], (1280 - (judge_timer * 16.0f)), 200);
+		}
+		else {
+			sprite_render(sprNPC[NPCCard], 920, 200);
+		}
 		NPCNUM = 1;
 		break;
 	case 1:
-		sprite_render(sprNPC[NPCCard], 900, 200);
+		if (judge_timer < 22.5f) {
+			sprite_render(sprNPC[NPCCard], (1280 - (judge_timer * 16.0f)), 200);
+		}
+		else {
+			sprite_render(sprNPC[NPCCard], 920, 200);
+		}
 		NPCNUM = 2;
 		break;
 	case 2:
-		sprite_render(sprNPC[NPCCard], 900, 200);
+		if (judge_timer < 22.5f) {
+			sprite_render(sprNPC[NPCCard], (1280 - (judge_timer * 16.0f)), 200);
+		}
+		else {
+			sprite_render(sprNPC[NPCCard], 920, 200);
+		}
 		NPCNUM = 3;
 		break;
 	case 3:
-		sprite_render(sprNPC[NPCCard], 900, 200);
+		if (judge_timer < 22.5f) {
+			sprite_render(sprNPC[NPCCard], (1280 - (judge_timer * 16.0f)), 200);
+		}
+		else {
+			sprite_render(sprNPC[NPCCard], 920, 200);
+		}
 		NPCNUM = 4;
 		break;
 	case 4:
-		sprite_render(sprNPC[NPCCard], 900, 200);
+		if (judge_timer < 22.5f) {
+			sprite_render(sprNPC[NPCCard], (1280 - (judge_timer * 16.0f)), 200);
+		}
+		else {
+			sprite_render(sprNPC[NPCCard], 920, 200);
+		}
 		NPCNUM =5;
 		break;
 	}
+}
+
+void enemy_reset()
+{
+	enemy_timer = 0;
+	enemy_state = 0;
+	Check = false;
+	NPCCard = 0;
 }
