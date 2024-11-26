@@ -3,6 +3,11 @@
 bool AitemNum[10] = { false };
 
 Sprite* AitemPNG;
+
+Sprite* sprEffect;
+Sprite* sprLock;
+
+
 Sprite* BLACK;
 
 Sprite* AitemCard[5];
@@ -10,6 +15,7 @@ Sprite* AitemInfo[6];
 MouseManager mouse;
 
 int Aitem_timer;
+int Anime_timer;
 
 extern int winner;
 extern int raund;
@@ -35,7 +41,12 @@ void Aitem_init()
 		Info_state[i] = { false };
 	}
 
+	Anime_timer = 0;
+
 	AitemPNG = sprite_load(L"./Data/Images/Aitem/Aitem.png");
+
+	sprEffect = sprite_load(L"./Data/Images/Aitem/kouka.png");
+	sprLock = sprite_load(L"./Data/Images/Aitem/lock.png");
 
 	BLACK = sprite_load(L"./Data/Images/Aitem/black.png");
 
@@ -61,6 +72,7 @@ void Aitem_deinit()
 		safe_delete(AitemCard[i]);
 	}
 	Aitem_timer = 0;
+	Anime_timer = 0;
 }
 
 void Aitem_update()
@@ -77,7 +89,9 @@ void Aitem_update()
 			Info_state[0] = true;
 		sprite_render(AitemInfo[0], 0, 0);
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000&& AitemDATE[0] == false&&StarPiece>=8) {
-			Aitem_timer = 0;
+			Anime_timer = 0;
+			Aitem_timer = -120;
+
 			AitemDATE[0] = true;
 		}
 	}
@@ -89,6 +103,7 @@ void Aitem_update()
 		Info_state[1] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[1] == false && StarPiece >= 8) {
 			AitemDATE[1] = true;
+			Anime_timer = 0;
 		}
 	}
 	//UFO
@@ -99,6 +114,7 @@ void Aitem_update()
 		Info_state[2] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[2] == false && StarPiece >= 4) {
 			AitemDATE[2] = true;
+			Anime_timer = 0;
 		}
 	}
 	//時計
@@ -109,6 +125,7 @@ void Aitem_update()
 		Info_state[3] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[3] == false && StarPiece >= 8) {
 			AitemDATE[3] = true;
+			Anime_timer = 0;
 		}
 	}
 	//ベル
@@ -119,6 +136,7 @@ void Aitem_update()
 		Info_state[4] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[4] == false && StarPiece >= 8) {
 			AitemDATE[4] = true;
+			Anime_timer = 0;
 		}
 	}
 	//チケット
@@ -129,6 +147,7 @@ void Aitem_update()
 		Info_state[5] = true;
 		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && AitemDATE[5] == false && StarPiece >= 3) {
 			AitemDATE[5] = true;
+			Anime_timer = 0;
 		}
 	}
 
@@ -144,6 +163,7 @@ void Aitem_update()
 	}
 
 	Aitem_timer++;
+	Anime_timer++;
 }
 
 void Aitem_render()
@@ -161,13 +181,64 @@ void Aitem_render()
 
 	sprite_render(AitemPNG, 340, 130);
 	if (AitemDATE[0] == true) {
+		if (Anime_timer < 120) {
+			sprite_render(sprEffect, 0, 0);
+		}
+		else {
+			sprite_render(sprLock, 425, 210);
+		}
+	}
+
+	if(AitemDATE[0] == true){
 		if (Aitem_timer < 21) {
-			sprite_render(AitemCard[money], (1280-(Aitem_timer*16.0f)), 230);
+			sprite_render(AitemCard[money], (1280 - (Aitem_timer * 16.0f)), 230);
 		}
 		else {
 			sprite_render(AitemCard[money], 942, 230);
 		}
 	}
+
+	// アニメーション描画 (AitemDATE[1] が有効な場合)
+	if (AitemDATE[1]==true) {
+		if (Anime_timer < 120)
+			sprite_render(sprEffect, 0, 0);  // エフェクトを最前面に描画
+		else {
+			sprite_render(sprLock, 600, 210);
+		}
+	}
+	if (AitemDATE[2] == true) {
+		if (Anime_timer < 120) {
+			sprite_render(sprEffect, 0, 0);
+		}
+		else {
+			sprite_render(sprLock, 777, 210);
+		}
+	}
+	if (AitemDATE[3] == true) {
+		if (Anime_timer < 120) {
+			sprite_render(sprEffect, 0, 0);
+		}
+		else {
+			sprite_render(sprLock, 425, 345);
+		}
+	}
+	if (AitemDATE[4] == true) {
+		if (Anime_timer < 120) {
+			sprite_render(sprEffect, 0, 0);
+		}
+		else {
+			sprite_render(sprLock, 600, 345);
+		}
+	}
+	if (AitemDATE[5] == true) {
+		if (Anime_timer < 120) {
+			sprite_render(sprEffect, 0, 0);
+		}
+		else {
+			sprite_render(sprLock, 777, 345);
+		}
+	}
+
 
 	//アイテム説明
 	if (Info_state[0] == true) {
