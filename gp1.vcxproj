@@ -184,6 +184,7 @@ attrib +h SourceCode\gp1.log</Command>
     <ClInclude Include="SourceCode\audio.h" />
     <ClInclude Include="SourceCode\Card.h" />
     <ClInclude Include="SourceCode\common.h" />
+    <ClInclude Include="SourceCode\end.h" />
     <ClInclude Include="SourceCode\Info.h" />
     <ClInclude Include="SourceCode\judge.h" />
     <ClInclude Include="SourceCode\Mausu.h" />
@@ -216,6 +217,7 @@ attrib +h SourceCode\gp1.log</Command>
     <ClCompile Include="SourceCode\audio.cpp" />
     <ClCompile Include="SourceCode\Card.cpp" />
     <ClCompile Include="SourceCode\common.cpp" />
+    <ClCompile Include="SourceCode\end.cpp" />
     <ClCompile Include="SourceCode\Info.cpp" />
     <ClCompile Include="SourceCode\judge.cpp" />
     <ClCompile Include="SourceCode\main.cpp" />
