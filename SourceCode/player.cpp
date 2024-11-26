@@ -79,7 +79,9 @@ void player_update()
         /*fallthrough*/
 
     case 2:
-
+        if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+            sound::play(XWB_SE, XWB_SE_TAP);
+        }
         break;
     }
 }
