@@ -9,6 +9,7 @@ int game_mode;
 
 bool restart;
 extern bool rule_date;
+extern int rule_state;
 
 Sprite* sprBack;
 //Sprite* sprSelect1;//選択１
@@ -75,7 +76,7 @@ void home_update()
     case 0:
         //////// 初期設定 ////////
 
-        sprBack    = sprite_load(L"./Data/Images/home.png");
+        sprBack = sprite_load(L"./Data/Images/home.png");
         //sprSelect1 = sprite_load(L"./Data/Images/kari.png");
         //sprSelect2 = sprite_load(L"./Data/Images/kari.png");
         //sprSelect3 = sprite_load(L"./Data/Images/kari.png");
@@ -108,7 +109,7 @@ void home_update()
 
         player_update();
 
-        POINT point= mouseHome.GetPosition();                                            // 位置用の変数を宣言する
+        POINT point = mouseHome.GetPosition();                                            // 位置用の変数を宣言する
         GetCursorPos(&point);                                   // スクリーン座標を取得する
         ScreenToClient(window::getHwnd(), &point);
 
@@ -186,7 +187,7 @@ void home_update()
             rule_pos_x = point.x;
             rule_pos_y = point.y;
         }
-        if (home_timer > 20&&rule_time==false) {
+        if (home_timer > 20 && rule_time == false) {
             if (point.x > 648 && point.y > 136 && point.x < 1128 && point.y < 220) {
                 if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
                     game_mode = 8;
@@ -207,8 +208,8 @@ void home_update()
             }
             else if (point.x > 782 && point.y > 564 && point.x < 1265 && point.y < 646) {
                 if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-                    rule_time=true;
-                    rule_date=true;
+                    rule_time = true;
+                    rule_date = true;
                 }
             }
         }
@@ -216,6 +217,9 @@ void home_update()
 
     if (rule_time == true) {
         info_update();
+    }
+    else if (rule_time == false) {
+        rule_state = 0;
     }
 
     home_timer++;
