@@ -76,6 +76,7 @@ extern bool UseCard[5];
 extern bool npc[5];
 
 extern bool AitemDATE[7];
+extern bool rule_date;
 
 //カードデータ
 //プレイヤー用
@@ -103,6 +104,7 @@ void game_init()
     stop = false;
     aitem_time = false;
     rule_time = false;
+    rule_date = false;
 
     for (int i = 0; i < CARD_MAX; i++) {
         //カードの初期化
@@ -168,6 +170,7 @@ void game_init()
 void game_deinit()
 {    //TODO_11
     player_deinit();
+    info_deinit();
 
     //画像
     safe_delete(sprUra);
@@ -344,9 +347,10 @@ void game_render()
         }
     }
 
+    //ルール説明アイコン
     if (aitem_time == false && game_timer > 20&&rule_time==false) {
         if (mousePos.x > 13 && mousePos.y > 545 && mousePos.x < 103 && mousePos.y < 633) {
-            sprite_render(sprrulu, 13, 545);
+            sprite_render(sprrulu, -15, 510);
             if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
                 rule_time = true;
             }
@@ -386,9 +390,7 @@ void game_render()
         Aitem_render();
     }
 
-    if (rule_time == true) {
-        info_render();
-    }
+
     sprite_render(sprA, 0, 0);
 
 
@@ -486,6 +488,11 @@ void game_render()
             VECTOR4(1, 1, 1, 1)
         );
     }
+
+    if (rule_time == true) {
+        info_render();
+    }
+
     player_render();
 
 }
