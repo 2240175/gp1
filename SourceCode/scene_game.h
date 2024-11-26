@@ -5,6 +5,12 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include "all.h"
+#include "player.h"
+#include "scene_enemy.h"
+#include "Card.h"
+#include "Mausu.h"
+#include "judge.h"
 //******************************************************************************
 //
 //
