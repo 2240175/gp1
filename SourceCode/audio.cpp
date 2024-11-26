@@ -16,7 +16,11 @@ void audio_init()
     sound::load(XWB_SYSTEM, L"./Data/Sounds/system.xwb");    // メニューなどのSE
     sound::load(XWB_STAGE1, L"./Data/Sounds/stage1.xwb");    // ステージ用のSE
 
-    sound::setVolume(XWB_STAGE1, XWB_STAGE1_JUMP, 0.1f);
+    sound::load(XWB_SE, L"./Data/Sounds/SE.xwb");    // ステージ用のSE
+
+    //sound::setVolume(XWB_STAGE1, XWB_STAGE1_JUMP, 0.1f);
+    sound::setVolume(XWB_SE, XWB_SE_TAP, 0.5f);
+    sound::setVolume(XWB_SE, XWB_SE_VS, 0.4f);
 }
 
 //--------------------------------------
