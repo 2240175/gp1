@@ -171,12 +171,7 @@ void Aitem_render()
 
 	//ƒAƒCƒeƒ€à–¾
 	if (Info_state[0] == true) {
-		if (Aitem_timer < 50) {
-			sprite_render(AitemInfo[0], 0, -(Aitem_timer*5.0f) + 500);
-		}
-		else {
-			sprite_render(AitemInfo[0], 0, 0);
-		}
+		sprite_render(AitemInfo[0], 0, 0);
 	}
 	if (Info_state[1] == true) {
 		sprite_render(AitemInfo[1], 0, 0);
