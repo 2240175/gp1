@@ -71,6 +71,7 @@ extern int PLAYERNUM;
 extern int NPCNUM;
 extern int NPCLAST;
 extern int game_mode;
+extern int rule_state;
 extern bool rule_time;
 extern bool UseCard[5];
 extern bool npc[5];
@@ -253,7 +254,7 @@ void game_update()
     case 2:
         //////// 通常時 ////////
             //マッチポイント音楽
-        music::setVolume(4,0.1f);
+        music::setVolume(4,0.3f);
         music::setVolume(2,0.5f);
         music::setVolume(3,0.5f);
 
@@ -301,6 +302,9 @@ void game_update()
             nextScene = SCENE_JUDGE;
         }
 
+        if (rule_time == false) {
+            rule_state = 0;
+        }
 
 
         break;
