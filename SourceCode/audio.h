@@ -14,6 +14,7 @@
 // XWB‚ÌŽí—Þ
 #define XWB_SYSTEM          0
 #define XWB_STAGE1          1
+#define XWB_SE				2
 
 // SYSTEM‚ÌŒø‰Ê‰¹
 #define XWB_SYSTEM_KATI     0
@@ -27,6 +28,9 @@
 #define XWB_STAGE1_LASER    4
 #define XWB_STAGE1_BOMB     5
 
+//SE‚ÌŒø‰Ê‰¹
+#define XWB_SE_TAP			0
+#define XWB_SE_VS			1
 
 #define MUSIC_MAX			6
 
