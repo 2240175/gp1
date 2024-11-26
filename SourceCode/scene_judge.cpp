@@ -31,9 +31,10 @@ bool getraund;
 
 
 Sprite* PlayerCard[5];
-
+Sprite* card_ura;
+Sprite* info;
 Sprite* sprck;
-Sprite* fait[4];
+Sprite* fait[5];
 
 int stopraund;
 int judge_timer;
@@ -70,7 +71,9 @@ void judge_deinit()
 
 	enemy_deinit();
 	safe_delete(sprck);
-	for (int i = 0; i < 4; i++) {
+	safe_delete(card_ura);
+	safe_delete(info);
+	for (int i = 0; i < 5; i++) {
 		safe_delete(fait[i]);
 	}
 	for (int i = 0; i < 5; i++) {
@@ -84,11 +87,14 @@ void judge_update()
 	switch (judge_state) {
 	case 0:
 		sprck = sprite_load(L"./Data/Images/maingame2.png");
+		info = sprite_load(L"./Data/Images/round.png");
+		card_ura = sprite_load(L"./Data/Images/Card/ura.png");
 		//勝敗画像
 		fait[0] = sprite_load(L"./Data/Images/judge/vs.png");
 		fait[1] = sprite_load(L"./Data/Images/judge/lost.png");
 		fait[2] = sprite_load(L"./Data/Images/judge/get.png");
 		fait[3] = sprite_load(L"./Data/Images/Aitem/black.png");
+		fait[4] = sprite_load(L"./Data/Images/judge/draw.png");
 		//プレイヤーカード画像
 		PlayerCard[0]=sprite_load(L"./Data/Images/Card/one.png");
 		PlayerCard[1]=sprite_load(L"./Data/Images/Card/two.png");
@@ -249,7 +255,102 @@ void judge_render()
 		ToRadian(0),
 		1, 1, 1, 0.6f);
 
+	sprite_render(info, 0, 0);
+	sprite_render(card_ura, 1210, 80, 0.25f, 0.25f, 0, 0, 255, 255, 0, 0, ToRadian(0));
 
+	std::to_string(NPCLAST);
+	font::textOut(
+		1,
+		std::to_string(NPCLAST),
+		VECTOR2(1220, 95),
+		VECTOR2(1.2f, 1.2f),
+		VECTOR4(1.0f, 0.9f, 0.9f, 1)
+	);
+
+	std::to_string(StarPiece);
+	std::to_string(raund);
+	std::to_string(lossraund);
+	std::to_string(winraund);
+
+	//星のかけら
+	if (StarPiece < 10) {
+		font::textOut(
+			1,
+			std::to_string(StarPiece),
+			VECTOR2(50, 85),
+			VECTOR2(1.0f, 1.0f),
+			VECTOR4(1.0f, 0.9f, 0.9f, 1)
+		);
+	}
+	else {
+		font::textOut(
+			1,
+			std::to_string(StarPiece),
+			VECTOR2(50, 85),
+			VECTOR2(1.0f, 1.0f),
+			VECTOR4(1.0f, 0.9f, 0.9f, 1)
+		);
+	}
+
+	//現在のラウンド
+	if (raund < 10) {
+		font::textOut(
+			1,
+			std::to_string(raund),
+			VECTOR2(619, 60),
+			VECTOR2(1.6f, 1.6f),
+			VECTOR4(1, 1, 1, 1)
+		);
+	}
+	else {
+		font::textOut(
+			1,
+			std::to_string(raund),
+			VECTOR2(600, 70),
+			VECTOR2(1.3f, 1.3f),
+			VECTOR4(1, 1, 1, 1)
+		);
+	}
+
+	//勝利ラウンド
+	if (winraund < 10) {
+		font::textOut(
+			1,
+			std::to_string(winraund),
+			VECTOR2(125, 15),
+			VECTOR2(1.6f, 1.6f),
+			VECTOR4(1, 1, 1, 1)
+		);
+	}
+	else {
+		font::textOut(
+			1,
+			std::to_string(winraund),
+			VECTOR2(111, 25),
+			VECTOR2(1.1f, 1.1f),
+			VECTOR4(1, 1, 1, 1)
+		);
+	}
+
+	//負けラウンド
+	if (lossraund < 10) {
+		font::textOut(
+			1,
+			std::to_string(lossraund),
+			VECTOR2(1108, 15),
+			VECTOR2(1.6f, 1.6f),
+			VECTOR4(1, 1, 1, 1)
+		);
+	}
+	else {
+		font::textOut(
+			1,
+			std::to_string(lossraund),
+			VECTOR2(1095, 25),
+			VECTOR2(1.1f, 1.1f),
+			VECTOR4(1, 1, 1, 1)
+		);
+	}
 
 
 	sprite_render(fait[0], 0, 0);
@@ -270,6 +371,9 @@ void judge_render()
 	}
 	else if (winner == LOSS) {
 		sprite_render(fait[1], 0, 0);
+	}
+	else {
+		sprite_render(fait[4], 0, 0);
 	}
 
 	if (judge_timer < 22.5f) {
