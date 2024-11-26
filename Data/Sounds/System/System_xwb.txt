@@ -2,3 +2,5 @@
 1 スタート.wav
 2 GAMECLEAR.wav
 3 GAMEOVER.wav
+4 tap.wav
+5 vs.wav
