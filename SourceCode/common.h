@@ -11,6 +11,7 @@ using namespace GameLib;
 #define SCENE_GAME      (2)
 #define SCENE_JUDGE     (3)
 #define SCENE_SCORE     (4)
+#define SCENE_END		(5)
 
 //‘I‘ð‚·‚é“z
 #define SELECT1X  (840)//‘I‘ð‚P
