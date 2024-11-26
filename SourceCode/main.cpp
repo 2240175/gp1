@@ -52,6 +52,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             case SCENE_SCORE:
                 score_deinit();
                 break;
+
+            case SCENE_END:
+                end_deinit();
+                break;
             }
 
             // Ÿ‚ÌƒV[ƒ“‚É‰‚¶‚½‰Šúİ’èˆ—
