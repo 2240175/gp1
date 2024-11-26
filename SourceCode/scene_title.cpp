@@ -172,7 +172,7 @@ void title_render()
     font::textOut(6, "Bet And Get", VECTOR2(100, 80), VECTOR2(2.4f, 2.4f), VECTOR4(1, 0.8f, 0, 1));
     font::textOut(1, "1234", VECTOR2(80, 180), VECTOR2(2.0f, 2.0f), VECTOR4(1, 1, 1, 1));
 
-    // "Push Enter Key" “_–Å
+    // "Push Enter Key" “_–Å<-‚±‚ê‚ð‰æ‘œ‚É’u‚«Š·‚¦‚é
     if (title_timer >> 5 & 0x01)
     {
         font::textOut(1, "Push Click", VECTOR2(120, 560), VECTOR2(1.4f, 1.4f));
