@@ -101,6 +101,7 @@ void judge_update()
 		PlayerCard[2]=sprite_load(L"./Data/Images/Card/three.png");
 		PlayerCard[3]=sprite_load(L"./Data/Images/Card/four.png");
 		PlayerCard[4]=sprite_load(L"./Data/Images/Card/five.png");
+		sound::play(XWB_SE, XWB_SE_VS);
 
 		enemy_update();
 		randam = rand() % 5;
@@ -114,6 +115,9 @@ void judge_update()
 		/*fallthrough*/
 	case 2:
 
+		music::setVolume(3, 0.3f);
+		music::setVolume(2, 0.3f);
+		music::setVolume(4, 0.1f);
 
 		debug::setString("JUDGE TIME");
 		debug::setString("judge_timer:%d", judge_timer / 60);
