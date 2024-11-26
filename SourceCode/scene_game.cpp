@@ -7,12 +7,10 @@
 //******************************************************************************
 
 //----< インクルード >-----------------------------------------------------------
-#include "all.h"
-#include "player.h"
-#include "scene_enemy.h"
-#include "Card.h"
-#include "Mausu.h"
-#include "judge.h"
+
+#include "scene_game.h"
+#include "Info.h"
+
 
 //------< 定数 >----------------------------------------------------------------
 
@@ -24,6 +22,7 @@ Sprite* sprB;
 Sprite* sprA;
 Sprite* sprC;
 Sprite* sprK;
+Sprite* sprrulu;
 Sprite* sprSel[2];
 MouseManager mouseManager;
 
@@ -72,6 +71,7 @@ extern int PLAYERNUM;
 extern int NPCNUM;
 extern int NPCLAST;
 extern int game_mode;
+extern bool rule_time;
 extern bool UseCard[5];
 extern bool npc[5];
 
@@ -102,6 +102,7 @@ void game_init()
     Select = false;
     stop = false;
     aitem_time = false;
+    rule_time = false;
 
     for (int i = 0; i < CARD_MAX; i++) {
         //カードの初期化
@@ -156,6 +157,7 @@ void game_init()
     enemy_init();
 
     Aitem_init();
+    info_init();
     //マウスカーソル非表示
     ShowCursor(false);
 }
@@ -173,6 +175,7 @@ void game_deinit()
     safe_delete(sprA);
     safe_delete(sprC);
     safe_delete(sprK);
+    safe_delete(sprrulu);
     safe_delete(sprSel[0]);
     safe_delete(sprSel[1]);
 
@@ -213,6 +216,7 @@ void game_update()
         sprA = sprite_load(L"./Data/Images/round.png");
         sprC = sprite_load(L"./Data/Images/ui.png");
         sprK = sprite_load(L"./Data/Images/Card/ura.png");
+        sprrulu = sprite_load(L"./Data/Images/scene_game/rule.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
 
@@ -277,9 +281,13 @@ void game_update()
             AitemBuy();
         }
 
+        if (rule_time == true) {
+            info_update();
+        }
+
         player_update();
 
-        if (game_timer > 20 && aitem_time == false) {
+        if (game_timer > 20 && aitem_time == false&&rule_time==false) {
             //あたり判定
             judge();
         }
@@ -311,7 +319,8 @@ void game_render()
     mouseManager.Update();
     POINT mousePos = mouseManager.GetPosition();
 
-
+    debug::setString("X:%d", mousePos.x);
+    debug::setString("Y:%d", mousePos.y);
 
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
@@ -326,7 +335,7 @@ void game_render()
     //ガジェット購入
     sprite_render(sprB, 0, 0);
 
-    if (aitem_time == false&& game_timer > 20) {
+    if (aitem_time == false&& game_timer > 20&& rule_time==false) {
         if (mousePos.x > 301 && mousePos.y > 544 && mousePos.x < 980 && mousePos.y < 649) {
             sprite_render(sprC, 0, 0);
             if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
@@ -335,6 +344,14 @@ void game_render()
         }
     }
 
+    if (aitem_time == false && game_timer > 20&&rule_time==false) {
+        if (mousePos.x > 13 && mousePos.y > 545 && mousePos.x < 103 && mousePos.y < 633) {
+            sprite_render(sprrulu, 13, 545);
+            if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+                rule_time = true;
+            }
+        }
+    }
 
     Card_render();
     switch (int card = 0) {
@@ -369,6 +386,9 @@ void game_render()
         Aitem_render();
     }
 
+    if (rule_time == true) {
+        info_render();
+    }
     sprite_render(sprA, 0, 0);
 
 
