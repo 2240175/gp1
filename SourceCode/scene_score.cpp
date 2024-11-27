@@ -4,6 +4,8 @@ int score_timer;
 int score_state;
 
 extern int Game_Winner;
+extern bool restart;
+extern bool UseCard[5];
 
 Sprite* sprScore[4];
 
@@ -13,6 +15,11 @@ void score_init()
 	game_deinit();
 	//マウスカーソル表示
 	ShowCursor(true);
+	restart = false;
+
+	for (int i = 0; i < 5; i++) {
+		UseCard[i]=false;
+	}
 	//music
 	music::stop(2);
 	music::stop(3);
@@ -47,10 +54,6 @@ void score_update()
 	case 2:
 		if (score_timer > 300) {
 			nextScene = SCENE_END;
-			break;
-		}
-		else if (score_timer > 20&&GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
-			nextScene = SCENE_TITLE;
 			break;
 		}
 	}
