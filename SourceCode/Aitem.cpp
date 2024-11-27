@@ -25,7 +25,8 @@ extern int StarPiece;
 extern int game_timer;
 
 extern bool aitem_time;
-extern bool npc[5];
+
+bool npc[5] = {false};
 
 bool AitemDATE[7] = { false };
 bool OVERBUY[7] = { false };
