@@ -132,7 +132,7 @@ void title_render()
     font::textOut(1, "1234", VECTOR2(80, 180), VECTOR2(2.0f, 2.0f), VECTOR4(1, 1, 1, 1));
 
     // "Push Enter Key" 点滅<-これを画像に置き換える
-    if (title_timer >> 6 & 0x01)
+    if ((title_timer / 32) % 2 == 0) // 32で割った値で条件を変更
     {
         sprite_render(sprTUI, 0, 0);
     }
