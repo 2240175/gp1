@@ -9,52 +9,11 @@ int title_state;
 int title_timer;
 int clear_timer;
 
-bool next_state = false; //リセットうごかすため
 
-
-float velocity1 = 0.0f;//初期速度
-float accelerator1 = -0.3f;//初期加速度
-int posX1 = 640;
-int posY1 = 1000;//星１の座標
-int star_state1 = 0;//状態を管理
-bool star1_active = false;
-
-
-float velocity2 = 0.0f;//初期速度
-float accelerator2 = -0.4f;//初期加速度
-int posX2 = 370;
-int posY2 = 1000;//星２
-int star_state2 = 0;//状態を管理
-bool star2_active = false;
-
-float velocity3 = 0.0f;//初期速度
-float accelerator3 = -0.4f;//初期加速度
-int posX3 = 910;
-int posY3 = 1000;//星３
-int star_state3 = 0;//状態を管理
-bool star3_active = false;
-
-float velocity4 = 0.0f;//初期速度
-float accelerator4 = -0.4f;//初期加速度
-int posX4 = 100;
-int posY4 = 1000;//星３
-int star_state4 = 0;//状態を管理
-bool star4_active = false;
-
-float velocity5 = 0.0f;//初期速度
-float accelerator5 = -0.4f;//初期加速度
-int posX5 = 1180;
-int posY5 = 1000;//星３
-int star_state5 = 0;//状態を管理
-bool star5_active = false;
 
 
 Sprite* sprCar;
-Sprite* sprStar1;
-Sprite* sprStar2;
-Sprite* sprStar3;
-Sprite* sprStar4;
-Sprite* sprStar5;
+Sprite* sprTUI;
 
 
 //マウス処理（仮）
@@ -104,7 +63,7 @@ void title_update()
         //////// 初期設定 ////////
 
         sprCar = sprite_load(L"./Data/Images/title.png");
-
+        sprTUI = sprite_load(L"./Data/Images/titleui.png");
 
 
 
@@ -173,9 +132,9 @@ void title_render()
     font::textOut(1, "1234", VECTOR2(80, 180), VECTOR2(2.0f, 2.0f), VECTOR4(1, 1, 1, 1));
 
     // "Push Enter Key" 点滅<-これを画像に置き換える
-    if (title_timer >> 5 & 0x01)
+    if ((title_timer / 32) % 2 == 0) // 32で割った値で条件を変更
     {
-        font::textOut(1, "Push Click", VECTOR2(120, 560), VECTOR2(1.4f, 1.4f));
+        sprite_render(sprTUI, 0, 0);
     }
 
 }
