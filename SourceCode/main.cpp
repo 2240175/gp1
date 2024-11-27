@@ -10,6 +10,11 @@
 #include "all.h"
 #include "Mausu.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
+
 //------< 変数 >----------------------------------------------------------------
 int curScene    = SCENE_NONE;
 int nextScene   = SCENE_TITLE;
@@ -170,5 +175,6 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
     // ゲームライブラリの終了処理
     GameLib::uninit();
 
+    _CrtDumpMemoryLeaks();
     return 0;
 }
