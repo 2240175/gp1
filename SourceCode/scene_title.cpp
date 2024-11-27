@@ -3,6 +3,7 @@
 #include "Card.h"
 
 extern bool AitemDATE[7] ;
+extern bool restart ;
 
 
 int title_state;
