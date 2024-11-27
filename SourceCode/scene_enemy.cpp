@@ -19,7 +19,7 @@ extern bool AitemDATE[7];
 bool Check;
 
 //“¯‚¶‚Ì‚ð‘I‚Î‚È‚¢‚æ‚¤‚É
-bool npc[5] = {false};
+extern bool npc[5];
 
 void enemy_init()
 {
@@ -34,7 +34,7 @@ void enemy_deinit()
 	enemy_timer = 0;
 	enemy_state = 0;
 	NPCCard = 0;
-		for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 5; i++) {
 		safe_delete(sprNPC[i]);
 	}
 }
