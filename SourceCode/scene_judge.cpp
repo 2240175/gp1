@@ -31,7 +31,7 @@ bool getraund;
 
 
 Sprite* PlayerCard[5];
-Sprite* card_ura;
+
 Sprite* info;
 Sprite* sprck;
 Sprite* fait[5];
@@ -71,7 +71,7 @@ void judge_deinit()
 
 	enemy_deinit();
 	safe_delete(sprck);
-	safe_delete(card_ura);
+
 	safe_delete(info);
 	for (int i = 0; i < 5; i++) {
 		safe_delete(fait[i]);
@@ -88,7 +88,6 @@ void judge_update()
 	case 0:
 		sprck = sprite_load(L"./Data/Images/maingame2.png");
 		info = sprite_load(L"./Data/Images/round.png");
-		card_ura = sprite_load(L"./Data/Images/Card/ura.png");
 		//Ÿ”s‰æ‘œ
 		fait[0] = sprite_load(L"./Data/Images/judge/vs.png");
 		fait[1] = sprite_load(L"./Data/Images/judge/lost.png");
@@ -218,8 +217,9 @@ void judge_update()
 				break;
 			}
 		NPCLAST--;
-		}
 		raund++;
+
+		}
 		getraund = true;
 
 		if (winraund >= MAXRAUND) {
@@ -260,13 +260,12 @@ void judge_render()
 		1, 1, 1, 0.6f);
 
 	sprite_render(info, 0, 0);
-	sprite_render(card_ura, 1210, 80, 0.25f, 0.25f, 0, 0, 255, 255, 0, 0, ToRadian(0));
 
 	std::to_string(NPCLAST);
 	font::textOut(
 		1,
 		std::to_string(NPCLAST),
-		VECTOR2(1220, 95),
+		VECTOR2(1222, 90),
 		VECTOR2(1.2f, 1.2f),
 		VECTOR4(1.0f, 0.9f, 0.9f, 1)
 	);
@@ -281,7 +280,7 @@ void judge_render()
 		font::textOut(
 			1,
 			std::to_string(StarPiece),
-			VECTOR2(50, 85),
+			VECTOR2(53, 85),
 			VECTOR2(1.0f, 1.0f),
 			VECTOR4(1.0f, 0.9f, 0.9f, 1)
 		);
@@ -290,7 +289,7 @@ void judge_render()
 		font::textOut(
 			1,
 			std::to_string(StarPiece),
-			VECTOR2(50, 85),
+			VECTOR2(53, 85),
 			VECTOR2(1.0f, 1.0f),
 			VECTOR4(1.0f, 0.9f, 0.9f, 1)
 		);
@@ -300,7 +299,7 @@ void judge_render()
 	if (raund < 10) {
 		font::textOut(
 			1,
-			std::to_string(raund),
+			std::to_string(raund-1),
 			VECTOR2(619, 60),
 			VECTOR2(1.6f, 1.6f),
 			VECTOR4(1, 1, 1, 1)
@@ -371,10 +370,20 @@ void judge_render()
 	}
 
 	if (winner == WIN) {
-		sprite_render(fait[2], 0, 0);
+		if (judge_timer < 60) {
+			sprite_render(fait[2], ((judge_timer* 21.5f )- 1280 ), 0);
+		}
+		else {
+			sprite_render(fait[2], 0, 0);
+		}
 	}
 	else if (winner == LOSS) {
-		sprite_render(fait[1], 0, 0);
+		if (judge_timer < 60) {
+			sprite_render(fait[1], ((-judge_timer * 21.5f) + 1280), 0);
+		}
+		else {
+			sprite_render(fait[1],0, 0);
+		}
 	}
 	else {
 		sprite_render(fait[4], 0, 0);
