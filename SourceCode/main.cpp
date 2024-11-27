@@ -129,13 +129,13 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             break;
 
         case SCENE_END:
-            score_update();
-            score_render();
+            end_update();
+            end_render();
             break;
         }
 
         // デバッグ文字列の描画
-        debug::display(0.0f, 0.0f, 0.0f, 1.5f, 1.2f);
+        debug::display(0.6f, 0.6f, 0.6f, 1.5f, 1.2f);
 
         // バックバッファの内容を表示
         GameLib::present(1, 0);
@@ -165,7 +165,7 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
         break;
 
     case SCENE_END:
-        score_deinit();
+        end_deinit();
         break;
     }
 
