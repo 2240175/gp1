@@ -44,6 +44,7 @@ void score_update()
 
 		break;
 	}
+	score_timer++;
 }	 
 
 void score_render()
