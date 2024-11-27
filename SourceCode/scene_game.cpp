@@ -21,7 +21,6 @@ Sprite* sprUra;
 Sprite* sprB;
 Sprite* sprA;
 Sprite* sprC;
-Sprite* sprK;
 Sprite* sprrulu;
 Sprite* sprSel[2];
 MouseManager mouseManager;
@@ -178,7 +177,6 @@ void game_deinit()
     safe_delete(sprB);
     safe_delete(sprA);
     safe_delete(sprC);
-    safe_delete(sprK);
     safe_delete(sprrulu);
     safe_delete(sprSel[0]);
     safe_delete(sprSel[1]);
@@ -216,7 +214,6 @@ void game_update()
         }
         sprA = sprite_load(L"./Data/Images/round.png");
         sprC = sprite_load(L"./Data/Images/ui.png");
-        sprK = sprite_load(L"./Data/Images/Card/ura.png");
         sprrulu = sprite_load(L"./Data/Images/scene_game/rule.png");
         sprSel[0] = sprite_load(L"./Data/Images/select1.png");
         sprSel[1] = sprite_load(L"./Data/Images/select2.png");
@@ -257,14 +254,6 @@ void game_update()
 
         if (raund != nowraund) {
             raund = nowraund;
-        }
-
-        if (TRG(0) & PAD_SELECT)
-        {
-            nextScene = SCENE_TITLE;
-            StarPiece = 0;
-            NPCPiece = 0;
-            break;
         }
 
         if ((raund - 1) % 5 == 0 && raund != 1) {
@@ -395,12 +384,11 @@ void game_render()
     sprite_render(sprA, 0, 0);
 
 
-    sprite_render(sprK, 1210, 80, 0.25f, 0.25f, 0, 0, 255, 255, 0, 0, ToRadian(0));
     std::to_string(NPCLAST);
     font::textOut(
         1,
         std::to_string(NPCLAST),
-        VECTOR2(1220, 95),
+        VECTOR2(1222, 90),
         VECTOR2(1.2f, 1.2f),
         VECTOR4(1.0f, 0.9f, 0.9f, 1)
     );
