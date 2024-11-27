@@ -322,7 +322,6 @@ void moveCard5(OBJ2D* obj)
 	}
 }
 
-//’n–‚Ìif•¶‚ª‚æ‚İ‚ª‚¦‚é
 void Card_reset()
 {
 	card_state = 0;
