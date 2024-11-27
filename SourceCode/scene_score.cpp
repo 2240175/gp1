@@ -9,6 +9,10 @@ Sprite* sprScore[4];
 
 void score_init()
 {
+	//scene_game
+	game_deinit();
+	//マウスカーソル表示
+	ShowCursor(true);
 	//music
 	music::stop(2);
 	music::stop(3);
@@ -41,9 +45,18 @@ void score_update()
 		score_state++;
 		/*fallthrough*/
 	case 2:
-
-		break;
+		if (score_timer > 300) {
+			nextScene = SCENE_END;
+			break;
+		}
+		else if (score_timer > 20&&GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+			nextScene = SCENE_TITLE;
+			break;
+		}
 	}
+
+	debug::setString("SCORE_TIMER:%d",score_timer);
+
 	score_timer++;
 }	 
 
@@ -55,10 +68,10 @@ void score_render()
 		sprite_render(sprScore[3], 0, 250);
 		break;
 	case 1:
-		sprite_render(sprScore[1], 0, 250);
+		sprite_render(sprScore[1], 0, 0);
 		break;
 	case 2:
-		sprite_render(sprScore[3], 0, 250);
+		sprite_render(sprScore[2], 0, 0);
 		break;
 	}
 }
