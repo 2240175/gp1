@@ -192,9 +192,6 @@ void game_deinit()
 
     Aitem_deinit();
     nowraund++;
-
-    //マウスカーソル表示
-    ShowCursor(true);
 }
 
 //--------------------------------------
@@ -270,7 +267,7 @@ void game_update()
             break;
         }
 
-        if ((raund - 1) % 5 == 0) {
+        if ((raund - 1) % 5 == 0 && raund != 1) {
             for (int i = 0; i < 5; i++) {
                 UseCard[i] = false;
                 npc[i] = false;
