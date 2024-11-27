@@ -80,6 +80,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             case SCENE_SCORE:
                 score_init();
                 break;
+
+            case SCENE_END:
+                end_init();
+                break;
             }
 
             curScene = nextScene;
@@ -118,6 +122,11 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
             score_update();
             score_render();
             break;
+
+        case SCENE_END:
+            score_update();
+            score_render();
+            break;
         }
 
         // デバッグ文字列の描画
@@ -147,6 +156,10 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
         break;
 
     case SCENE_SCORE:
+        score_deinit();
+        break;
+
+    case SCENE_END:
         score_deinit();
         break;
     }
