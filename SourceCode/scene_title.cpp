@@ -40,6 +40,11 @@ void title_init()
 //        AitemDATE[i] = false;
 //    }
 //>>>>>>> 4f009ebd16182f629001db293b76020f7f696bca
+    game_deinit();
+    score_deinit();
+    end_deinit();
+    //info_deinit();
+    enemy_deinit();
 }
 
 //--------------------------------------
