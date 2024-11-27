@@ -1,9 +1,10 @@
 #include "end.h"
 
+Sprite* sprEnd[3];
+
 int end_timer;
 int end_state;
 
-Sprite* sprEnd[3];
 
 void end_init()
 {
@@ -34,12 +35,19 @@ void end_update()
 		/*fallthrough*/
 
 	case 2:
+		if (end_timer > 300) {
+			nextScene = SCENE_TITLE;
+		}
 		break;
 	}
+
+	debug::setString("end_timer:%d",end_timer);
 	end_timer++;
 }
 
 void end_render()
 {
 	sprite_render(sprEnd[0], 0, 0);
+	sprite_render(sprEnd[1], 0, 0);
+	sprite_render(sprEnd[2], 0, 0);
 }
