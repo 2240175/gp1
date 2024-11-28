@@ -18,11 +18,13 @@
 
 //------< 画像読み込み用 >---------------------------------------------------------------
 Sprite* sprUra;
+//難易度別背景
 Sprite* sprB;
+Sprite* sprMode;
+
 Sprite* sprA;
 Sprite* sprC;
 Sprite* sprrulu;
-Sprite* sprSel[2];
 MouseManager mouseManager;
 
 Sprite* sprCard1;
@@ -175,11 +177,10 @@ void game_deinit()
     //画像
     safe_delete(sprUra);
     safe_delete(sprB);
+    safe_delete(sprMode);
     safe_delete(sprA);
     safe_delete(sprC);
     safe_delete(sprrulu);
-    safe_delete(sprSel[0]);
-    safe_delete(sprSel[1]);
 
     //カード画像
     safe_delete(sprCard1);
@@ -206,17 +207,18 @@ void game_update()
 
         switch (MAXRAUND) {
         case 8:
-            sprB = sprite_load(L"./Data/Images/scene_game/maingame8.png");     break;
+            sprB = sprite_load(L"./Data/Images/scene_game/maingame8.png");    
+            sprMode = sprite_load(L"./Data/Images/scene_game/victory8.png");     break;
         case 12:
-            sprB = sprite_load(L"./Data/Images/scene_game/maingame12.png");    break;
+            sprB = sprite_load(L"./Data/Images/scene_game/maingame12.png");    
+            sprMode = sprite_load(L"./Data/Images/scene_game/victory12.png");     break;
         case 20:
-            sprB = sprite_load(L"./Data/Images/scene_game/maingame20.png");    break;
+            sprB = sprite_load(L"./Data/Images/scene_game/maingame20.png");    
+            sprMode = sprite_load(L"./Data/Images/scene_game/victory20.png");     break;
         }
         sprA = sprite_load(L"./Data/Images/round.png");
         sprC = sprite_load(L"./Data/Images/ui.png");
         sprrulu = sprite_load(L"./Data/Images/scene_game/rule.png");
-        sprSel[0] = sprite_load(L"./Data/Images/select1.png");
-        sprSel[1] = sprite_load(L"./Data/Images/select2.png");
 
         if ((winraund - MAXRAUND) == -1&&OverPlay==false) {
             music::stop(2);
@@ -392,6 +394,9 @@ void game_render()
         VECTOR2(1.2f, 1.2f),
         VECTOR4(1.0f, 0.9f, 0.9f, 1)
     );
+
+    sprite_render(sprMode, 0, 0);
+
 
     std::to_string(StarPiece);
     std::to_string(raund);
