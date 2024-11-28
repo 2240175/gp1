@@ -129,7 +129,7 @@ void Card_update()
 		}
 
 
-		debug::setString("Card_timer:%f", card_timer);
+		//debug::setString("Card_timer:%f", card_timer);
 		break;
 	}
 	card_timer++;
