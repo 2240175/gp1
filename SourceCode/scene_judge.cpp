@@ -118,18 +118,18 @@ void judge_update()
 		music::setVolume(2, 0.3f);
 		music::setVolume(4, 0.1f);
 
-		debug::setString("JUDGE TIME");
-		debug::setString("judge_timer:%d", judge_timer / 60);
+		//debug::setString("JUDGE TIME");
+		//debug::setString("judge_timer:%d", judge_timer / 60);
 
 
-		debug::setString("NPC	:%d", NPCNUM);
-		debug::setString("PLAYER:%d", PLAYERNUM);
+		//debug::setString("NPC	:%d", NPCNUM);
+		//debug::setString("PLAYER:%d", PLAYERNUM);
 
 		//敵のカードを映す場所
 		if (AitemDATE[2] == true && NPCNUM > 1) {
 			NPCNUM--;
 			NPCCard--;
-			debug::setString("Stae Dawn NPC	:%d", NPCNUM);
+			//debug::setString("Stae Dawn NPC	:%d", NPCNUM);
 			AitemDATE[2] = false;
 		}
 
@@ -138,38 +138,38 @@ void judge_update()
 
 			if (AitemDATE[3] == false) {
 				if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
-					debug::setString("			LOSS");
+					//debug::setString("			LOSS");
 					winner = LOSS;
 				}
 				else if (PLAYERNUM < NPCNUM && AitemDATE[1] == true) {
-					debug::setString("!!!!!DRAW!!!!!");
+					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 				else if (PLAYERNUM > NPCNUM) {
-					debug::setString("			WIN");
+					//debug::setString("			WIN");
 					winner = WIN;
 				}
 				else if (PLAYERNUM == NPCNUM) {
-					debug::setString("!!!!!DRAW!!!!!");
+					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 			}
 			//時計効果ありの時（反転）
 			else if (AitemDATE[3] == true) {
 				if (PLAYERNUM < NPCNUM) {
-					debug::setString("			WIN!");
+					//debug::setString("			WIN!");
 					winner = WIN;
 				}
 				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == true) {
-					debug::setString("!!!!!DRAW!!!!!");
+					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
-					debug::setString("			LOSS");
+					//debug::setString("			LOSS");
 					winner = LOSS;
 				}
 				else if (PLAYERNUM == NPCNUM) {
-					debug::setString("!!!!!DRAW!!!!!");
+					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 			}
@@ -178,16 +178,16 @@ void judge_update()
 		else if (AitemDATE[5] == true) {
 			if (randam == 3) {
 				winner = WIN;
-				debug::setString("Ticket	WIN!");
+				//debug::setString("Ticket	WIN!");
 			}
 			else {
 				winner = LOSS;
-				debug::setString("Ticket	LOSS");
+				//debug::setString("Ticket	LOSS");
 			}
 		}
 
-		debug::setString("randam:%d", randam);
-		debug::setString("TIMER:%d", judge_timer/60);
+		//debug::setString("randam:%d", randam);
+		//debug::setString("TIMER:%d", judge_timer/60);
 
 		if (getraund == false) {
 			if (AitemDATE[5] == true && winner == DRAW) {
@@ -240,7 +240,7 @@ void judge_update()
 			nextScene = SCENE_GAME;
 		}
 
-		debug::setString("NEXT RAUND:%d", raund);
+		//debug::setString("NEXT RAUND:%d", raund);
 		break;
 
 	}
@@ -386,7 +386,12 @@ void judge_render()
 		}
 	}
 	else {
-		sprite_render(fait[4], 0, 0);
+		if (judge_timer < 60) {
+			sprite_render(fait[4], 0, ((-judge_timer * 12.5f) + 720));
+		}
+		else {
+			sprite_render(fait[4], 0, 0);
+		}
 	}
 
 	if (judge_timer < 22.5f) {
