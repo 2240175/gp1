@@ -7,7 +7,7 @@ extern int Game_Winner;
 extern bool restart;
 extern bool UseCard[5];
 
-Sprite* sprScore[4];
+Sprite* sprScore[3];
 
 void score_init()
 {
@@ -31,7 +31,7 @@ void score_init()
 
 void score_deinit() 
 {
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 3; i++) {
 		safe_delete(sprScore[i]);
 	}
 }
@@ -40,10 +40,9 @@ void score_update()
 {
 	switch (score_state) {
 	case 0:
-		sprScore[0] = sprite_load(L"./Data/Images/m.jpg");
-		sprScore[1] = sprite_load(L"./Data/Images/win.png");
-		sprScore[2] = sprite_load(L"./Data/Images/loss.png");
-		sprScore[3] = sprite_load(L"./Data/Images/error.png");
+		sprScore[0] = sprite_load(L"./Data/Images/winner/win.png");
+		sprScore[1] = sprite_load(L"./Data/Images/winner/loss.png");
+		sprScore[2] = sprite_load(L"./Data/Images/winner/error.png");
 
 		sound::play(XWB_SE, XWB_SE_VS);
 
@@ -59,10 +58,7 @@ void score_update()
 			nextScene = SCENE_END;
 			break;
 		}
-
 	}
-
-	//debug::setString("SCORE_TIMER:%d",score_timer);
 	score_timer++;
 }	 
 
@@ -71,13 +67,14 @@ void score_render()
 	sprite_render(sprScore[0], 0, 0);
 	switch (Game_Winner) {
 	case 0:
-		sprite_render(sprScore[3], 0, 250);
+		sprite_render(sprScore[2], 0, 0);
+		score_timer = 0;
 		break;
 	case 1:
-		sprite_render(sprScore[1], 0, 0);
+		sprite_render(sprScore[0], 0, 0);
 		break;
 	case 2:
-		sprite_render(sprScore[2], 0, 0);
+		sprite_render(sprScore[1], 0, 0);
 		break;
 	}
 }
