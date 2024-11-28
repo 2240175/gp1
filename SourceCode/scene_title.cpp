@@ -3,8 +3,8 @@
 #include "Card.h"
 
 extern bool AitemDATE[7] ;
+extern bool npc[5] ;
 extern bool restart ;
-
 
 int title_state;
 int title_timer;
@@ -47,6 +47,10 @@ void title_init()
     end_deinit();
     //info_deinit();
     enemy_deinit();
+    //念のため
+    for (int i = 0; i < 5; i++) {
+        npc[i] = false;
+    }
     //マウスカーソル表示
     ShowCursor(false);
 }
@@ -74,7 +78,6 @@ void title_update()
 
         sprCar = sprite_load(L"./Data/Images/title.png");
         sprTUI = sprite_load(L"./Data/Images/titleui.png");
-
 
 
         title_state++;
@@ -132,7 +135,6 @@ void title_render()
     GameLib::clear(0.3f, 0.5f, 1.0f);
     sprite_render(sprCar, 0, 0);
 
-    // "Push Enter Key" 点滅<-これを画像に置き換える
     if ((title_timer / 32) % 2 == 0) // 32で割った値で条件を変更
     {
         sprite_render(sprTUI, 0, 0);
