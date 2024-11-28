@@ -97,9 +97,9 @@ void home_update()
     case 2:
         //////// í èÌéû ////////
 
-        debug::setString("");
-        debug::setString("Left ClickÅFselectS");
-        debug::setString("");
+        //debug::setString("");
+        //debug::setString("Left ClickÅFselectS");
+        //debug::setString("");
 
         if (TRG(0) & PAD_SELECT)
         {
@@ -231,8 +231,8 @@ void home_render()
     mouseHome.Update();
     POINT pos = mouseHome.GetPosition();
 
-    debug::setString("X:%d", pos.x);
-    debug::setString("Y:%d", pos.y);
+    //debug::setString("X:%d", pos.x);
+    //debug::setString("Y:%d", pos.y);
 
     GameLib::clear(0.2f, 0.2f, 0.4f);
 
@@ -248,7 +248,6 @@ void home_render()
     else {
         sprite_render(sprSelect[1], 600, 400);
     }*/
-   /* player_render();*/
 
     if (rule_time == true) {
         info_render();
@@ -300,4 +299,6 @@ void home_render()
 
 
     //);
+
+    player_render();
 }
