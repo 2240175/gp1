@@ -61,10 +61,7 @@ void end_render()
 	if (end_timer> 6891) {
 		sprite_render(sprEnd[2], 0, 0);
 	}
-		
-	
-	//debug::display(1.0f, 1.0f, 1.0f, 1.5f, 1.2f);
-	//debug::setString("end_timer:%d", end_timer);
+
 	if (end_timer > 30) {
 		font::textOut(4, "Click Skip", VECTOR2(1070, 700), VECTOR2(1.0f, 1.0f), VECTOR4(0.7f, 0.7f, 0.7f, 0.7f));
 	}
