@@ -44,6 +44,9 @@ void score_update()
 		sprScore[1] = sprite_load(L"./Data/Images/win.png");
 		sprScore[2] = sprite_load(L"./Data/Images/loss.png");
 		sprScore[3] = sprite_load(L"./Data/Images/error.png");
+
+		sound::play(XWB_SE, XWB_SE_VS);
+
 		score_state++;
 		/*fallthrough*/
 	case 1:
@@ -56,10 +59,10 @@ void score_update()
 			nextScene = SCENE_END;
 			break;
 		}
+
 	}
 
-	debug::setString("SCORE_TIMER:%d",score_timer);
-
+	//debug::setString("SCORE_TIMER:%d",score_timer);
 	score_timer++;
 }	 
 
