@@ -91,7 +91,7 @@ void judge_update()
 		//勝敗画像
 		fait[0] = sprite_load(L"./Data/Images/judge/vs.png");
 		fait[1] = sprite_load(L"./Data/Images/judge/lost.png");
-		fait[2] = sprite_load(L"./Data/Images/judge/get.png");
+		fait[2] = sprite_load(L"./Data/Images/judge/won.png");
 		fait[3] = sprite_load(L"./Data/Images/Aitem/black.png");
 		fait[4] = sprite_load(L"./Data/Images/judge/draw.png");
 		//プレイヤーカード画像
@@ -118,18 +118,10 @@ void judge_update()
 		music::setVolume(2, 0.3f);
 		music::setVolume(4, 0.1f);
 
-		//debug::setString("JUDGE TIME");
-		//debug::setString("judge_timer:%d", judge_timer / 60);
-
-
-		//debug::setString("NPC	:%d", NPCNUM);
-		//debug::setString("PLAYER:%d", PLAYERNUM);
-
 		//敵のカードを映す場所
 		if (AitemDATE[2] == true && NPCNUM > 1) {
 			NPCNUM--;
 			NPCCard--;
-			//debug::setString("Stae Dawn NPC	:%d", NPCNUM);
 			AitemDATE[2] = false;
 		}
 
@@ -138,38 +130,30 @@ void judge_update()
 
 			if (AitemDATE[3] == false) {
 				if (PLAYERNUM < NPCNUM && AitemDATE[1] == false) {
-					//debug::setString("			LOSS");
 					winner = LOSS;
 				}
 				else if (PLAYERNUM < NPCNUM && AitemDATE[1] == true) {
-					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 				else if (PLAYERNUM > NPCNUM) {
-					//debug::setString("			WIN");
 					winner = WIN;
 				}
 				else if (PLAYERNUM == NPCNUM) {
-					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 			}
 			//時計効果ありの時（反転）
 			else if (AitemDATE[3] == true) {
 				if (PLAYERNUM < NPCNUM) {
-					//debug::setString("			WIN!");
 					winner = WIN;
 				}
 				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == true) {
-					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 				else if (PLAYERNUM > NPCNUM && AitemDATE[1] == false) {
-					//debug::setString("			LOSS");
 					winner = LOSS;
 				}
 				else if (PLAYERNUM == NPCNUM) {
-					//debug::setString("!!!!!DRAW!!!!!");
 					winner = DRAW;
 				}
 			}
@@ -178,16 +162,11 @@ void judge_update()
 		else if (AitemDATE[5] == true) {
 			if (randam == 3) {
 				winner = WIN;
-				//debug::setString("Ticket	WIN!");
 			}
 			else {
 				winner = LOSS;
-				//debug::setString("Ticket	LOSS");
 			}
 		}
-
-		//debug::setString("randam:%d", randam);
-		//debug::setString("TIMER:%d", judge_timer/60);
 
 		if (getraund == false) {
 			if (AitemDATE[5] == true && winner == DRAW) {
@@ -240,7 +219,6 @@ void judge_update()
 			nextScene = SCENE_GAME;
 		}
 
-		//debug::setString("NEXT RAUND:%d", raund);
 		break;
 
 	}
@@ -355,19 +333,25 @@ void judge_render()
 		);
 	}
 
+	//タイマー表示
+	primitive::rect(925, 94, 244, 30, 0, 0, ToRadian(0), 1, 1, 1, 1);
+	primitive::rect(927, 96, 240, 26, 0, 0, ToRadian(0), 0, 0, 0, 1);
+	if (judge_timer < 238) {
+		primitive::rect(927, 96, judge_timer, 26, 0, 0, ToRadian(0), 1.0f, 0.6f, 0.7f, 1);	//ピンク
+	}
+	else {
+		primitive::rect(927, 96, 240, 26, 0, 0, ToRadian(0), 1.0f, 0.5f, 0.6f, 1);		//濃いピンク
+	}
 
 	sprite_render(fait[0], 0, 0);
 
-	//タイマー表示
-	primitive::rect(525, 200, 244, 30, 0, 0, ToRadian(0), 1, 1, 1, 1);
-	primitive::rect(527, 202, 240, 26, 0, 0, ToRadian(0), 0, 0, 0, 1);
-	if (judge_timer < 238) {
-		primitive::rect(527, 202, judge_timer, 26, 0, 0, ToRadian(0), 1.0f, 0.6f, 0.7f, 1);	//ピンク
-		//primitive::rect(528, 202, judge_timer * 1.5f, 26, 0, 0, ToRadian(0), 0.8f, 1.0f, 0.4f, 1);	//黄緑
+	if (judge_timer < 22.5f) {
+		sprite_render(PlayerCard[PLAYERNUM - 1], ((judge_timer * 16.0f) - 255), 200);
 	}
 	else {
-		primitive::rect(527, 202, 240, 26, 0, 0, ToRadian(0), 1.0f, 0.5f, 0.6f, 1);		//濃いピンク
+		sprite_render(PlayerCard[PLAYERNUM - 1], 105, 200);
 	}
+	enemy_render();
 
 	if (winner == WIN) {
 		if (judge_timer < 60) {
@@ -394,11 +378,7 @@ void judge_render()
 		}
 	}
 
-	if (judge_timer < 22.5f) {
-		sprite_render(PlayerCard[PLAYERNUM - 1], ((judge_timer*16.0f)-255), 200);
-	}
-	else {
-		sprite_render(PlayerCard[PLAYERNUM - 1], 105, 200);
-	}
-	enemy_render();
+
+
+
 }
