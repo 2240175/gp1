@@ -10,6 +10,7 @@ void end_init()
 {
 	end_timer = 0;
 	end_state = 0;
+	music::play(5, false);
 }
 
 void end_deinit()
@@ -17,6 +18,7 @@ void end_deinit()
 	for (int i = 0; i < 3; i++) {
 		safe_delete(sprEnd[i]);
 	}
+	music::stop(5);
 }
 
 void end_update()
@@ -50,18 +52,20 @@ void end_render()
 	GameLib::clear(0.0f, 0.0f, 0.0f);
 
 		
-	sprite_render(sprEnd[0], 0, ((-end_timer)+2000)*0.5f);
+	sprite_render(sprEnd[0], 0, ((-end_timer)+ 2057)*0.35f);
 	
-	sprite_render(sprEnd[1], 0, ((-end_timer) + 3280) * 0.5f);
+	sprite_render(sprEnd[1], 0, ((-end_timer) + 4114)*0.35f);
 	
-	sprite_render(sprEnd[2], 0, ((-end_timer) + 4560) * 0.5f);
+	sprite_render(sprEnd[2], 0, ((-end_timer) + 6891)*0.35f);
 
-	if (((-end_timer + 2400) * 0.5f) == 0) {
+	if (end_timer> 6891) {
 		sprite_render(sprEnd[2], 0, 0);
 	}
 		
 	
-	debug::display(1.0f, 1.0f, 1.0f, 1.5f, 1.2f);
-	debug::setString("end_timer:%d", end_timer);
-	font::textOut(4, "Click Skip", VECTOR2(1070, 700), VECTOR2(1.0f, 1.0f), VECTOR4(0.7f, 0.7f, 0.7f, 0.7f));
+	//debug::display(1.0f, 1.0f, 1.0f, 1.5f, 1.2f);
+	//debug::setString("end_timer:%d", end_timer);
+	if (end_timer > 30) {
+		font::textOut(4, "Click Skip", VECTOR2(1070, 700), VECTOR2(1.0f, 1.0f), VECTOR4(0.7f, 0.7f, 0.7f, 0.7f));
+	}
 }
