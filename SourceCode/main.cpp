@@ -25,7 +25,7 @@ int nextScene   = SCENE_TITLE;
 int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 {
     //乱数系列の設定
-    GameLib::init(L"Bet And Get", SCREEN_W, SCREEN_H);
+    GameLib::init(L"ステラ・ステラ", SCREEN_W, SCREEN_H,true);
 
     // オーディオの初期設定
     audio_init();
