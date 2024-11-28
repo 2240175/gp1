@@ -172,6 +172,7 @@ int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
     // オーディオの終了処理
     audio_deinit();
 
+
     // ゲームライブラリの終了処理
     GameLib::uninit();
 
