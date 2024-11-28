@@ -114,15 +114,15 @@ void game_init()
 
     if (restart == false) {
         //2回目の星のかけら継続防止
-        StarPiece=1000;
+        StarPiece=0;
         NPCPiece=0;
         //カードリセット
         PLAYERNUM = -1;
         NPCNUM = 0;
         //ラウンドの初期化防止
         raund = 1;
-        winraund = 10;
-        lossraund = 10;
+        winraund = 0;
+        lossraund = 0;
         winner = DRAW;
 
         //現在のラウンド
@@ -248,7 +248,7 @@ void game_update()
     case 2:
         //////// 通常時 ////////
             //マッチポイント音楽
-        music::setVolume(4,0.3f);
+        music::setVolume(4,0.2f);
         music::setVolume(2,0.5f);
         music::setVolume(3,0.5f);
 
@@ -312,8 +312,8 @@ void game_render()
     mouseManager.Update();
     POINT mousePos = mouseManager.GetPosition();
 
-    debug::setString("X:%d", mousePos.x);
-    debug::setString("Y:%d", mousePos.y);
+    //debug::setString("X:%d", mousePos.x);
+    //debug::setString("Y:%d", mousePos.y);
 
     GameLib::clear(0.0f, 0.0f, 0.0f);
 
