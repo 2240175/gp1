@@ -240,13 +240,24 @@ void judge_render()
 	sprite_render(info, 0, 0);
 
 	std::to_string(NPCLAST);
-	font::textOut(
-		1,
-		std::to_string(NPCLAST),
-		VECTOR2(1222, 90),
-		VECTOR2(1.2f, 1.2f),
-		VECTOR4(1.0f, 0.9f, 0.9f, 1)
-	);
+	if (NPCLAST != 0) {
+		font::textOut(
+			1,
+			std::to_string(NPCLAST),
+			VECTOR2(1223, 90),
+			VECTOR2(1.2f, 1.2f),
+			VECTOR4(1.0f, 0.9f, 0.9f, 1)
+		);
+	}
+	else {
+		font::textOut(
+			1,
+			std::to_string(NPCLAST),
+			VECTOR2(1225, 90),
+			VECTOR2(1.2f, 1.2f),
+			VECTOR4(1.0f, 0.9f, 0.9f, 1)
+		);
+	}
 
 	std::to_string(StarPiece);
 	std::to_string(raund);
