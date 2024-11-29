@@ -15,6 +15,8 @@ int  rule_pos_y;
 bool  rule_time;
 
 extern int game_timer;
+extern int home_timer;
+
 void info_init()
 {
 	rule_timer = 0;
@@ -79,6 +81,7 @@ void info_update()
 			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && rule_timer > 10) {
 				rule_time = false;
 				game_timer = 0;
+				home_timer = 0;
 			}
 		}
 	}
