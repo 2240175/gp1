@@ -258,7 +258,7 @@ void game_update()
             raund = nowraund;
         }
 
-        if ((raund - 1) % 5 == 0 && raund != 1) {
+        if ((raund - 1) % 5 == 1 && raund != 1) {
             for (int i = 0; i < 5; i++) {
                 UseCard[i] = false;
                 npc[i] = false;
