@@ -57,6 +57,7 @@ void home_deinit()
     info_deinit();
 
     music::stop(1);
+    rule_time = false;
 
     safe_delete(sprBack);
 }
@@ -108,7 +109,7 @@ void home_update()
             rule_pos_x = point.x;
             rule_pos_y = point.y;
         }
-        if (home_timer > 20 && rule_time == false) {
+        if (home_timer > 60 && rule_time == false) {
             if (point.x > 648 && point.y > 136 && point.x < 1128 && point.y < 220) {
                 if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
                     game_mode = 8;
@@ -130,7 +131,6 @@ void home_update()
             else if (point.x > 782 && point.y > 564 && point.x < 1265 && point.y < 646) {
                 if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
                     rule_time = true;
-                    rule_date = true;
                 }
             }
         }
